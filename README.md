@@ -27,55 +27,60 @@ Config datasource to connect to mysql userdb
 ## Usage
 Download this source code. cd to directory: loan-management
 
-Run:
+## Run:
 
-.. Mongo:
-... cd mongo
-... run: docker-compose up -d
-... run: docker-compose ps  (To make sure mongo express is up)
-... open mongo express: http://localhost:8081/
-... loans database should be imported
+### Mongo:
 
-
-.. wildfly
-... cd wildfly
-... To build wildfly image with preconfiguration, run:
-... make build
-... docker-compose up -d
+ - cd mongo
+ - run: docker-compose up -d
+ - run: docker-compose ps  (To make sure mongo express is up)
+ - open mongo express: http://localhost:8081/
+ - loans database should be imported
 
 
-... To upload userdb into mysql:
-.... Copy file from local to docker container:
-.... docker cp db/userdb.sql mysql:/userdb.sql
-.... docker exec -it mysql bash
-.... Inside mysql docker container:
-.... mysql -u root -p userdb < userdb.sql
-.... password: admin
+### wildfly
 
-.... To access wildfly admin console:
-.... Run: http://localhost:9990
-.... username: admin
-.... password: dina
+ 1. cd wildfly
+ 2. To build wildfly image with preconfiguration, run:
+    
+    - make build
+    - docker-compose up -d
+
+ 3. To upload userdb into mysql:
+ 
+    - copy file from local to docker container:
+    
+     1. docker cp db/userdb.sql mysql:/userdb.sql
+     2. docker exec -it mysql bash
+     3. inside mysql docker container:
+     4. mysql -u root -p userdb < userdb.sql
+     5. password: admin
+
+4. To access wildfly admin console:
+  - Run: http://localhost:9990
+  - username: admin
+  - password: dina
 
 
-.. loan-management applications
-... run: mvn clean package
+### loan-management applications
 
-... For deployment:
-.... cd dina-loan-admin/target
-.... deploy loan-admin.war into wildfly
-.... cd dina-loan-web/target
-.... deploy loan.war into wildfly
+  - run: mvn clean package
+
+  - For deployment:
+  - cd dina-loan-admin/target
+  - deploy loan-admin.war into wildfly
+  - cd dina-loan-web/target
+  - deploy loan.war into wildfly
 
 
 
-Run the app:
+### Run the app:
 
-Loan request form:
-http://localhost:8080/loan
-
-Loan admin:
-https://localhost:8443/loan-admin
+  - Loan request form:
+  - http://localhost:8080/loan
+  
+  - Loan admin:
+  - https://localhost:8443/loan-admin
 
 
 
