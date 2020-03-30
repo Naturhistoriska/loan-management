@@ -3,8 +3,7 @@ package se.nrm.dina.mongodb.jdbc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.DB;
-import com.mongodb.MongoClient;
-import com.mongodb.ReadConcern;
+import com.mongodb.MongoClient; 
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -12,9 +11,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map; 
-import java.util.UUID; 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.UUID;  
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -41,7 +38,7 @@ public class MongoJDBC implements Serializable {
   protected DB db;
   private Jongo jongo;
 
-  private final String LOCAL_HOST = "localhost";
+  private final String LOCAL_HOST = "mongo";
   private final String DB_HOST = "db";
 
   private String HOST = null;
@@ -80,7 +77,7 @@ public class MongoJDBC implements Serializable {
   @PostConstruct
   void init() {
      
-    mongo = new MongoClient(HOST, PORT);
+    mongo = new MongoClient(LOCAL_HOST, PORT);
     db = mongo.getDB("loans");
     jongo = new Jongo(db);
     loanCollection = jongo.getCollection(LOAN_COLLECTION_NAME);
