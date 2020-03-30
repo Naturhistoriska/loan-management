@@ -20,7 +20,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
-import lombok.extern.slf4j.Slf4j; 
+import lombok.extern.slf4j.Slf4j;
 import se.nrm.dina.email.vo.LoanMail;
 import se.nrm.dina.email.vo.NewAccountMail;
 import se.nrm.dina.email.vo.PasswordRecoveryMail;
@@ -32,7 +32,7 @@ import se.nrm.dina.email.vo.PasswordRecoveryMail;
 @Stateless
 @Slf4j
 public class Mail {
- 
+
   private final String LOCAL_LOAN_PDF = "/Users/idali/Documents/dina_project/onlineloans/loan_files/";
   private final String REMOTE_LOAN_PDF = "/home/admin/wildfly-8.0.0-2/loans/";
 
@@ -42,9 +42,9 @@ public class Mail {
 
   private String pdfFileName;
 
-  @Resource(name = "java:jboss/mail/loan")
+  @Resource(name = "java:jboss/mail/Default")
   private Session session;
-    
+
   public void sendNewAdminAccountMail(String username, String password, String emailAddress) {
     log.info("sendNewAdminAccountMail : {} ", emailAddress);
 
@@ -79,42 +79,46 @@ public class Mail {
     }
   }
 
-  public void send(Map<String, String> map) throws AddressException, MessagingException, UnsupportedEncodingException { 
+  public void send(Map<String, String> map) throws AddressException, MessagingException, UnsupportedEncodingException {
     log.info("send : {} -- {}", map.get("primaryemail"), map.get("secondaryemail"));
+    try {
 
-    Message message = new MimeMessage(session);
-    session.setDebug(true);
+      Message message = new MimeMessage(session);
+      session.setDebug(true);
 
-    loan = new LoanMail(map);
-    buildPdfFilePath(map, "adminSummaryFile");
+      loan = new LoanMail(map);
+      buildPdfFilePath(map, "adminSummaryFile");
 
-    String primaryEmail = map.get("primaryemail");
-    String secondaryEmail = map.get("secondaryemail");
+      String primaryEmail = map.get("primaryemail");
+      String secondaryEmail = map.get("secondaryemail");
 
-    String adminEmail = map.get("manager");
-    String curatorEmail = map.get("curratormail");
+      String adminEmail = map.get("manager");
+      String curatorEmail = map.get("curratormail");
 
-    //  for testing now
-    adminEmail = primaryEmail;
-    curatorEmail = primaryEmail;
+      //  for testing now
+      adminEmail = primaryEmail;
+      curatorEmail = primaryEmail;
 
-    String outofoffice = map.get("outofoffice");
-    boolean isOut = outofoffice == null ? false : Boolean.valueOf(outofoffice);
+      String outofoffice = map.get("outofoffice");
+      boolean isOut = outofoffice == null ? false : Boolean.valueOf(outofoffice);
 
-    if (Boolean.valueOf(map.get("hasPrimaryContact"))) {
-      sendMailToPrimaryBorrower(primaryEmail, message);
+      if (Boolean.valueOf(map.get("hasPrimaryContact"))) {
+        sendMailToPrimaryBorrower(primaryEmail, message);
+        message = new MimeMessage(session);
+        sendMailToBorrower(secondaryEmail, message);
+      } else {
+        sendMailToBorrower(primaryEmail, message);
+      }
+
       message = new MimeMessage(session);
-      sendMailToBorrower(secondaryEmail, message);
-    } else {
-      sendMailToBorrower(primaryEmail, message);
-    }
+      sendMailToAdmin(adminEmail, curatorEmail, message);
 
-    message = new MimeMessage(session);
-    sendMailToAdmin(adminEmail, curatorEmail, message);
-
-    if (isOut) {
-      message = new MimeMessage(session);
-      sendOutOfOfficeNotification(primaryEmail, secondaryEmail, message);
+      if (isOut) {
+        message = new MimeMessage(session);
+        sendOutOfOfficeNotification(primaryEmail, secondaryEmail, message);
+      }
+    } catch (NullPointerException ex) {
+      log.error(ex.getMessage());
     }
   }
 
@@ -127,7 +131,7 @@ public class Mail {
     log.info("pdffilename : {}", pdfFileName);
   }
 
-  private void sendOutOfOfficeNotification(String primary, String secondary, Message message) 
+  private void sendOutOfOfficeNotification(String primary, String secondary, Message message)
           throws MessagingException, UnsupportedEncodingException {
 
     message.addRecipient(Message.RecipientType.TO, new InternetAddress(primary));
@@ -157,7 +161,7 @@ public class Mail {
     Transport.send(message);
   }
 
-  private void sendMailToAdmin(String adminEmail, String curatorEmail, Message message) 
+  private void sendMailToAdmin(String adminEmail, String curatorEmail, Message message)
           throws MessagingException, UnsupportedEncodingException {
     log.info("sendAdminMail : {} -- {}", adminEmail, curatorEmail);
 
@@ -188,7 +192,7 @@ public class Mail {
     Transport.send(message);
   }
 
-  public void send(String email, String id, String agreement) { 
+  public void send(String email, String id, String agreement) {
     log.info("send : {} -- {}", email, id);
 
     Message message = new MimeMessage(session);
