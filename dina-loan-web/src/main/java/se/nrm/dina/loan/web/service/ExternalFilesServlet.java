@@ -2,6 +2,8 @@ package se.nrm.dina.loan.web.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,34 +27,68 @@ public class ExternalFilesServlet extends HttpServlet  {
   private final String LOCAL_LOAN_PDF = "/Users/idali/Documents/onlineloans/loan_files/";
   private final String REMOTE_LOAN_PDF_LOAN = "/home/admin/wildfly-8.0.0-2/loans/";
   private final String REMOTE_LOAN_PDF_AS = "/home/admin/wildfly-8.1.0-0/loans/";
-
+  
+  private final String forDockerWildflyPolicy = "/opt/jboss/wildfly/loan_policy/";
+  private final String forDockerWildfly = "/opt/jboss/wildfly/loan/";
+  
   private String baseDirectory;
+  private String intHost;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     log.info("ExternalFilesServlet.doGet : {} -- {}", request.getParameter("pdf"), request.getParameter("id"));
+     
+    String host = request.getServerName(); 
+    
+    InetAddress inetAddress = null;
+    try {
+      inetAddress = InetAddress.getLocalHost();
+    } catch (UnknownHostException une) {
+      log.warn(une.getMessage());
+    }
+    if (inetAddress != null) {
+      intHost = inetAddress.getHostName();
+    }
 
-    String host = request.getServerName();
     File file;
     String mimetype = "application/pdf";
     String fileName = "";
+
     if (request.getParameter("pdf") != null && !request.getParameter("pdf").isEmpty()) {
       fileName = request.getParameter("pdf");
-      if (host.toLowerCase().contains("dina-loans")) {
-        baseDirectory = REMOTE_POLICY_FILE_LOAN;
-      } else if (host.toLowerCase().contains("local")) {
+      if (intHost.toLowerCase().contains("local")) {
         baseDirectory = LOCAL_POLICY_FILE;
+      } else if (host.contains("dina-loans")) {
+        baseDirectory = REMOTE_POLICY_FILE_LOAN;
       } else {
-        baseDirectory = REMOTE_POLICY_FILE_AS;
+         baseDirectory = forDockerWildflyPolicy;
       }
+
+//      if (host.toLowerCase().contains("dina-loans")) {
+//        baseDirectory = REMOTE_POLICY_FILE_LOAN;
+//      } else if (host.toLowerCase().contains("local")) {
+//        baseDirectory = LOCAL_POLICY_FILE;
+//      } else {
+//        baseDirectory = forDockerWildflyPolicy;
+//      }
     } else {
-      if (host.contains("dina-loans")) {
-        baseDirectory = REMOTE_LOAN_PDF_LOAN;
-      } else if (host.contains("local")) {
-        baseDirectory = LOCAL_LOAN_PDF;
+      
+      if (intHost.toLowerCase().contains("local")) {
+        baseDirectory = LOCAL_POLICY_FILE;
+      } else if (host.contains("dina-loans")) {
+        baseDirectory = REMOTE_POLICY_FILE_LOAN;
       } else {
-        baseDirectory = REMOTE_LOAN_PDF_AS;
+         baseDirectory = forDockerWildfly;
       }
+      
+//      if (host.contains("dina-loans")) {
+//        baseDirectory = REMOTE_LOAN_PDF_LOAN;
+//      } else if (host.contains("local")) {
+//        baseDirectory = LOCAL_LOAN_PDF;
+//      } else {
+//        baseDirectory = forDockerWildfly;
+//      }
+      
       String loanFile;
       if (request.getParameter("id") != null && !request.getParameter("id").isEmpty()) {
         loanFile = request.getParameter("id");
@@ -68,14 +104,14 @@ public class ExternalFilesServlet extends HttpServlet  {
     if (request.getParameter("att") != null && !request.getParameter("att").isEmpty()) {
       mimetype = getFileType(file.getPath());
     }
-
+    log.info("base directory : {}", baseDirectory);
     byte[] content = FileUtils.readFileToByteArray(file);
 
     response.setContentType(mimetype);
     response.setContentLength(content.length);
     response.getOutputStream().write(content);
 
-    log.info("base directory : {}", baseDirectory);
+    
   }
 
   private String getFileType(String filePath) {

@@ -28,6 +28,9 @@ public class FileHandler implements Serializable {
   private static final String FILE_LOCAL = "/Users/idali/Documents/dina_project/onlineloans/loan_files/";
   private static final String FILE_REMOTE_LOAN = "/home/admin/wildfly-8.0.0-2/loans/";
   private static final String FILE_REMOTE_AS = "/home/admin/wildfly-8.1.0-0/loans/";
+  private static final String forDockerWildfly = "/opt/jboss/wildfly/loan/";
+  
+  
   private String host;
   private File file;
   private final String basePath;
@@ -51,7 +54,7 @@ public class FileHandler implements Serializable {
     } else if (host.contains("dina-loans")) {
       basePath = FILE_REMOTE_LOAN;
     } else {
-      basePath = FILE_REMOTE_AS;
+      basePath = forDockerWildfly;
     }
   }
 

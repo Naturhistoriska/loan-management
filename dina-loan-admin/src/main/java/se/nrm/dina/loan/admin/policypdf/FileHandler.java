@@ -22,6 +22,8 @@ public class FileHandler implements Serializable {
 
   private final String LOCAL_POLICY_FILES = "/Users/idali/Documents/dina_project/onlineloans/policydocuments/"; 
   private final String REMOTE_POLICY_FILES_AS = "/home/admin/wildfly-8.1.0-0/policydocuments/";
+  private static final String forDockerWildfly = "/opt/jboss/wildfly/loan_policy/";
+  
   private final String FILE_PATH;
 
   private File file; 
@@ -37,11 +39,20 @@ public class FileHandler implements Serializable {
       host = inetAddress.getHostName();
     }
 
-    if (host.contains("local")) {
+    log.info("host : {}", host); 
+    if (host.toLowerCase().contains("local")) {
       FILE_PATH = LOCAL_POLICY_FILES; 
-    } else {
+    } else if (host.contains("dina-loans")) {
       FILE_PATH = REMOTE_POLICY_FILES_AS;
+    } else {
+      FILE_PATH = forDockerWildfly;
     }
+    
+//    if (host.contains("local")) {
+//      FILE_PATH = LOCAL_POLICY_FILES; 
+//    } else {
+//      FILE_PATH = REMOTE_POLICY_FILES_AS;
+//    }
 
     if (file == null) {
       file = new File(FILE_PATH);
