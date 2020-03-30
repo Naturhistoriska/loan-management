@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>
+      <h:panelGroup  id="page4panel"> 
+        <h:panelGroup layout="block" id="page4panel1" rendered="#{onlineForm.step == 5}" styleClass="sectionstyle1"  > 
+          <!-- page 4 section 1 -->
+          <h:panelGroup layout="block" id="page41panel" rendered="#{onlineForm.numOfPages == 9}" styleClass="sectionstyle1"  >   
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.page4title}" styleClass="maintext" />  
+            </h:panelGroup>
+            <br />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.page4title2}" styleClass="subtitle"  /> 
+            </h:panelGroup> 
+            <p:spacer width="900" height="30" />
+            <h:panelGroup layout="block" id="page4collectionpanel">
+              <h:selectOneRadio id="console" value="#{onlineForm.selectedCollection}"  
+                                layout="pageDirection" styleClass="collectionlistradiofont" >
+                <f:selectItems value="#{collectionsData.collectionItems}" />  
+                <p:ajax event="change"  listener="#{onlineForm.collectionChanged()}" 
+                        update="page41panel " global="false" />  
+              </h:selectOneRadio> 
+            </h:panelGroup>     
+            <p:spacer width="900" height="40" /> 
+            <h:panelGroup layout="block" style="width: 150px; float: right;  " id="page4buttonpanel1">  
+              <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage3}" process="@this"  
+                               update=" page2panel  page4panel page3panel " global="false"  />  
+              <p:spacer width="10" />
+              <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage5}" disabled="#{!onlineForm.isCollectionSelect}" process="page4panel"
+                               update="page4panel page5panel " global="false"  />
+            </h:panelGroup>   
+            <p:spacer width="900" height="30" /> 
+          </h:panelGroup>
+
+          <!-- page 4 section 2 -->
+          <h:panelGroup layout="block" id="page42panel" rendered="#{onlineForm.numOfPages != 9}" styleClass="sectionstyle1"  >   
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.edpage4title}" styleClass="maintext" />  
+            </h:panelGroup>
+            <br />
+            <p:inputTextarea id="page4desc" value="#{onlineForm.page4Description}" rows="7" cols="110" styleClass="contactfieldstext" />  
+            <p:spacer width="900" height="30" />
+            <h:panelGrid columns="3" style="font-size: 12px;">
+              <p:outputLabel value="#{onlineForm.loanRequestPeriod}:" styleClass="text" />  
+              <h:panelGrid cellspacing="0" cellpadding="0">
+                <p:calendar pattern="yyyy-MM-dd" showButtonPanel="true" navigator="true"   
+                            id="fromdate" value="#{onlineForm.fromDate}" pages="3" mindate="#{onlineForm.minDate}"   >    
+                  <p:ajax event="dateSelect" listener="#{onlineForm.handleFromDateSelect()}" update="toDatePanel" />  
+                </p:calendar>  
+              </h:panelGrid>
+
+              <h:panelGrid cellspacing="0" cellpadding="0" id="toDatePanel">
+                <p:calendar pattern="yyyy-MM-dd" showButtonPanel="true" navigator="true"  
+                            id="todate"  value="#{onlineForm.toDate}" pages="3" mindate="#{onlineForm.toMinDate}"  >  
+                </p:calendar>  
+              </h:panelGrid>
+
+              <p:spacer width="5" /> 
+              <h:panelGrid cellspacing="0" cellpadding="0">
+                <p:outputLabel value="#{msg.from}" styleClass="text" />  
+              </h:panelGrid>
+
+              <h:panelGrid cellspacing="0" cellpadding="0">
+                <p:outputLabel value="#{msg.to}" styleClass="text" />  
+              </h:panelGrid>
+            </h:panelGrid>
+
+            <h:panelGroup style="float: right; " layout="block"  id="uploadedpfilePanel" >
+              <h:panelGroup layout="block" style="width: 300px; float: left; ">
+                <p:outputLabel value="#{msg.optional}:" styleClass="text" /> 
+                <br />
+                <p:outputLabel value="#{msg.commonattachment}:" styleClass="text" />    
+
+                <h:panelGrid cellpadding="0" cellspacing="0" >
+                  <p:fileUpload fileUploadListener="#{onlineForm.handleEDFileUpload}"  
+                                mode="advanced"   label="#{msg.uploadfile}" invalidSizeMessage="#{msg.invalidfilesiz}"
+                                auto="true" styleClass="originalbutton" sizeLimit="5000000" 
+                                update=":onlineform:uploadedpfilePanel" />  
+                </h:panelGrid> 
+
+                <h:panelGrid  id="uploadededpFilePanel" cellpadding="0" cellspacing="0" style="margin-top: -20px; " rendered="#{not empty onlineForm.edPurposeFileName}">
+                  <p:panel style="border: none; font-size: 12px; " > 
+                    <p:outputLabel value="#{onlineForm.edPurposeFileName}" /> 
+                    <p:spacer width="10" />
+                    <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.edPurposeFileName)}"  process="uploadedpfilePanel"
+                                   title="#{msg.btnremovefile}"  update="uploadedpfilePanel"  global="false" > 
+                      <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                    </p:commandLink> 
+                  </p:panel>    
+                </h:panelGrid>
+              </h:panelGroup> 
+
+            </h:panelGroup>  
+            <p:spacer width="900" height="60" /> 
+            <h:panelGroup layout="block" style="width: 150px; float: right;  " id="page4buttonpanel2">  
+              <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage3}"  process="@this"  
+                               update="page4panel page3panel " global="false"  />  
+              <p:spacer width="10" />
+              <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage5}" process="page4panel"
+                               update="page4panel page5panel page8panel " global="false" />
+            </h:panelGroup>   
+            <p:spacer width="900" height="30" />
+          </h:panelGroup>  
+        </h:panelGroup>
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:p="http://primefaces.org/ui"  > 
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >   
+        <h:panelGroup styleClass="main" layout="block" id="mainpanel" >  
+          <h:panelGroup id="aboutPanel" layout="block" styleClass="sectionstyle1" >    
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{about.title}" styleClass="maintext" /> 
+            </h:panelGroup>
+            <br /><br /><br />
+            <p:outputLabel styleClass="defaulttext">
+              #{about.text1}
+              <br /><br />
+              #{about.text2} 
+              <br /><br />
+              #{about.text3} 
+              <br /><br />
+              #{about.text4}
+              <p:commandLink actionListener="#{navigate.gotoContactPage()}" 
+                             value=" #{about.problems}"  process="@this" global="false" style="color: #8B8786; " />    
+              #{about.text5}
+              <h:outputLink value="mailto:#{contact.emailAddress}"  style="color: #8B8786; ">#{about.webMaster}</h:outputLink>  
+            </p:outputLabel>   
+          </h:panelGroup> 
+        </h:panelGroup>
+      </ui:define> 
+    </ui:composition>
+  </body>
+</html>

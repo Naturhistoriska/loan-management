@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>  
+      <h:panelGroup  id="confirmationpagepanel" >
+        <h:panelGroup layout="block" id="confirmationpagepanel1" rendered="#{onlineForm.step == 100}" styleClass="sectionstyle1"   > 
+          <h:panelGroup layout="block" style="background-color: #036fab; color: #FFFFFF; text-align: center; padding: 10px 10px 10px 10px; " > 
+            <p:outputLabel value="#{msg.requestnumber}" styleClass="subtitle" /> 
+            <p:spacer width="5" />
+            <p:outputLabel value="#{onlineForm.loanId}" />
+          </h:panelGroup>  
+          <h:panelGroup layout="block" style="background-color: #036fab; color: #FFFFFF; text-align: center; padding: 10px 10px 10px 10px; " > 
+            <p:outputLabel value="#{msg.confirmationtext}" styleClass="subtitle" /> 
+          </h:panelGroup> 
+          <p:spacer width="800" height="30" /> 
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.problemcontact}" styleClass="text" />  
+            <h:outputLink value="mailto:stefan.daume@nrm.se" style="color: #8B8786; " >webmaster</h:outputLink>. 
+          </h:panelGroup> 
+          <p:spacer width="800" height="20" /> 
+        </h:panelGroup> 
+      </h:panelGroup> 
+    </ui:composition> 
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>     
+      <h:panelGrid id="deptLinks" > 
+        <h:panelGroup layout="block" id="botanypanel" rendered="#{onlineForm.department == 'botany'}" 
+                      styleClass="sectionstyle1" >  
+          <h:panelGroup>
+            <p:outputLabel value="#{msg.botany}" styleClass="maintext"  />
+          </h:panelGroup>
+          <p:spacer width="800" height="20" />
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.departmentlinkssubtitle1}" styleClass="subtitle"  />
+            <br />
+            <p:outputLabel value="#{msg.departmentlinkssubtitle2}" styleClass="subtitle"  />
+          </h:panelGroup>
+          <p:spacer width="800" height="20" />
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.botany}" />
+            <br /> 
+            <h:outputLink value="#{msg.botanyurl1}" title="#{msg.botanyurl1}"  
+                          target="_blank" styleClass="departmentUrl"  >#{msg.botanyurl1}</h:outputLink>
+          </h:panelGroup> 
+          <p:spacer width="800" height="20" />  
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" id="esbpanel" 
+                      rendered="#{onlineForm.department == 'envionmentspecimenbank'}" 
+                      styleClass="sectionstyle1" > 
+          <h:panelGroup>
+            <p:outputLabel value="#{msg.esb}" styleClass="maintext"  />
+          </h:panelGroup>  
+          <p:spacer width="800" height="20" />
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.departmentlinkssubtitle1}" styleClass="subtitle"  />
+            <br />
+            <p:outputLabel value="#{msg.departmentlinkssubtitle2}" styleClass="subtitle"  />
+          </h:panelGroup>
+          <p:spacer width="800" height="20" /> 
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.esb}" />
+            <br /> 
+            <h:outputLink  value="#{msg.esburl}" title="#{msg.esburl}"  
+                           target="_blank" styleClass="departmentUrl" >#{msg.esburl}</h:outputLink>
+          </h:panelGroup>  
+          <p:spacer width="800" height="20" /> 
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" id="geologypanel" 
+                      rendered="#{onlineForm.department == 'geology'}" styleClass="sectionstyle1" >  
+          <h:panelGroup>
+            <p:outputLabel value="#{msg.geology}" styleClass="maintext"  />
+          </h:panelGroup>  
+          <p:spacer width="800" height="20" />  
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.departmentlinkssubtitle1}" styleClass="subtitle"  />
+            <br />
+            <p:outputLabel value="#{msg.departmentlinkssubtitle2}" styleClass="subtitle"  />
+          </h:panelGroup>
+          <p:spacer width="800" height="20" /> 
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.mineralogy}" />
+            <br />
+            <h:outputLink  value="#{msg.mineralogyurl}" title="#{msg.mineralogyurl}"  target="_blank" styleClass="departmentUrl" >#{msg.mineralogyurl}</h:outputLink>
+          </h:panelGroup> 
+          <p:spacer width="800" height="20" /> 
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" id="palaebiologypanel" 
+                      rendered="#{onlineForm.department == 'palaeobiology'}" styleClass="sectionstyle1" >  
+          <h:panelGroup>
+            <p:outputLabel value="#{msg.palaeobiology}" styleClass="maintext"  />
+          </h:panelGroup>
+          <p:spacer width="800" height="20" />  
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.departmentlinkssubtitle1}" styleClass="subtitle"  />
+            <br />
+            <p:outputLabel value="#{msg.departmentlinkssubtitle2}" styleClass="subtitle"  />
+          </h:panelGroup>
+          <p:spacer width="800" height="20" />  
+          <h:panelGroup layout="block">
+            <p:outputLabel value="#{msg.palaeobiology}" />
+            <br />
+            <h:outputLink  value="#{msg.palaebotanyurl}" title="#{msg.palaebotanyurl}"  
+                           target="_blank" styleClass="departmentUrl" >#{msg.palaebotanyurl}</h:outputLink> 
+          </h:panelGroup> 
+          <p:spacer width="800" height="20" /> 
+        </h:panelGroup> 
+      </h:panelGrid>
+    </ui:composition>
+  </body>
+</html>

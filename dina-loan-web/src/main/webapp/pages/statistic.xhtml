@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>    
+      <h:panelGrid  id="statisticpanel"> 
+        <h:panelGrid columns="3" columnClasses="aligntop,aligntop,aligntop">
+          <p:panelGrid columns="3" style="border: solid 1px; width: 290px; "  >
+            <p:outputLabel value="#{msg.statisticloans}"  styleClass="boldtext"   />
+            <p:outputLabel value="#{statistic.currentYear}" styleClass="boldtext" />
+            <p:outputLabel value="#{msg.statisticTotal}" styleClass="boldtext"   />
+
+            <p:outputLabel value="#{msg.scientificpurpose}" />
+            <p:outputLabel value="#{statistic.secientificYearCount}" />
+            <p:outputLabel value="#{statistic.secientificTotalCount}" />
+
+            <p:outputLabel value="#{msg.educationexhibition}" />
+            <p:outputLabel value="#{statistic.educationalYearCount}" />
+            <p:outputLabel value="#{statistic.educationalTotalCount}" />
+
+            <p:outputLabel value="#{msg.commercialart}" />
+            <p:outputLabel value="#{statistic.otherYearCount}" /> 
+            <p:outputLabel value="#{statistic.otherTotalCount}" /> 
+          </p:panelGrid>
+          <p:spacer width="10" />
+
+          <!-- this message displays only during the holiday season -->
+          <h:panelGrid style="border: 1px solid; border-color: red; width: 400px; " rendered="#{onlineForm.isHolidaySession}">
+            <p:outputLabel value="#{msg.tempmsg}" />
+          </h:panelGrid>
+
+        </h:panelGrid>
+        <br /> 
+        <h:panelGroup  layout="block" id="chart_div" style="width: 700px;  border: solid 1px;">  </h:panelGroup> 
+
+      </h:panelGrid>
+    </ui:composition>
+  </body>
+</html>

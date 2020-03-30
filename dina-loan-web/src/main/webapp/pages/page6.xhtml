@@ -1,0 +1,150 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>  
+      <h:panelGroup id="page6panel">
+        <h:panelGroup layout="block" id="page6panel1" rendered="#{onlineForm.step == 7}" 
+                      styleClass="sectionstyle1"> 
+          <h:panelGroup layout="block" id="page6physicalpanel" rendered="#{!onlineForm.isPhoto}"   > 
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.page6title}" styleClass="maintext" />  
+            </h:panelGroup> 
+            <p:spacer width="900" height="30" />
+            <h:panelGroup layout="block">
+              <p:panel header="#{msg.page6checkboxtitle}" >
+                <h:selectOneRadio value="#{onlineForm.destractive}" layout="pageDirection" styleClass="collectionlistradiofont">
+                  <f:selectItem itemValue="false" itemLabel="#{msg.page6radiolabel1}" />
+                  <f:selectItem itemValue="true" itemLabel="#{msg.page6radiolabel2}" /> 
+                  <p:ajax listener="#{onlineForm.selectDestractive()}" event="change" 
+                          update="distractivePanel page6physicalpanel" global="false" />
+                </h:selectOneRadio> 
+                <h:panelGrid > 
+                  <p:outputLabel value="#{msg.page6radiolabel3}" styleClass="textPaddingLeft" />  
+                </h:panelGrid> 
+                <p:commandLink value="#{msg.policy}"  onclick="PF('destructivePolicyDlg').show();" global="false"  
+                               style="float: left; font-size: 12px; font-family: Arial,sans-serif; padding-left: 25px;   " />  
+                <p:spacer width="20" />
+              </p:panel>  
+              <br />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" rendered="#{onlineForm.isDestractiveLoan}" id="destractiveDescriptionPanel">
+              <h:panelGroup layout="block" >
+                <p:spacer width="800" height="20" />
+                <p:outputLabel value="#{msg.page6title2}" styleClass="text" /> 
+                <p:outputLabel value="#{msg.page6title3}" styleClass="boldtext"  /> 
+                <p:outputLabel value="#{msg.page6title4}" styleClass="text" /> 
+                <p:outputLabel value="#{msg.page6title5}" styleClass="boldtext" /> 
+                <p:outputLabel value="#{msg.page6title6}" styleClass="text" /> 
+              </h:panelGroup> 
+              <br /> 
+              <h:panelGroup layout="block" style="padding-left: 35px; "> 
+                <p:inputTextarea id="page6Desc" value="#{onlineForm.destructiveMethod}" 
+                                 rows="5" cols="110" styleClass="contactfieldstext" >
+                  <p:ajax event="blur" listener="#{onlineForm.handleDesctractiveMethod()}" 
+                          update="distractivePanel" />
+                </p:inputTextarea>
+              </h:panelGroup>  
+
+              <h:panelGroup style="float: right; " layout="block" id="uploaddesfilePanel" >  
+                <h:panelGroup layout="block" style="width: 300px; float: left; ">
+                  <p:outputLabel value="#{msg.optional}:" styleClass="text" /> 
+                  <br />
+                  <p:outputLabel value="#{msg.page6attachment}:" styleClass="text" />   
+
+                  <h:panelGrid cellpadding="0" cellspacing="0" >
+                    <p:fileUpload fileUploadListener="#{onlineForm.handleDestructiveFileUpload}"  
+                                  mode="advanced"   label="#{msg.uploadfile}"  invalidSizeMessage="#{msg.invalidfilesiz}"
+                                  auto="true" styleClass="originalbutton" sizeLimit="5000000" 
+                                  update=":onlineform:uploaddesfilePanel distractivePanel" style="font-size: 12px; " />  
+                  </h:panelGrid> 
+
+                  <h:panelGrid  id="uploadeddespFilePanel" cellpadding="0" cellspacing="0" style="margin-top: -20px; " rendered="#{not empty onlineForm.destructiveMethodFileName}">
+                    <p:panel style="border: none; font-size: 12px; " > 
+                      <p:outputLabel value="#{onlineForm.destructiveMethodFileName}" /> 
+                      <p:spacer width="10" />
+                      <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.destructiveMethodFileName)}" title="#{msg.btnremovefile}"  
+                                     update="uploaddesfilePanel distractivePanel"  global="false"  process="uploaddesfilePanel"> 
+                        <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                      </p:commandLink>  
+                    </p:panel>    
+                  </h:panelGrid>
+                </h:panelGroup> 
+              </h:panelGroup>    
+            </h:panelGroup>
+            <p:spacer width="900" height="40" />
+            <h:panelGroup layout="block" id="distractivePanel"  > 
+              <p:spacer width="800" height="50" /> 
+              <p:panel> 
+                <h:panelGroup layout="block" style="width: 150px; float: right;    ">    
+                  <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage5}" process="@this"  
+                                   update="page5panel page6panel  " global="false"  />  
+                  <p:spacer width="10" />
+                  <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage7}" disabled="#{!onlineForm.isDestractiveSelected}" 
+                                   update="page7panel page6panel "  
+                                   global="false" process="page6physicalpanel" />
+                </h:panelGroup> 
+              </p:panel> 
+            </h:panelGroup>  
+            <p:spacer width="900" height="40" />
+          </h:panelGroup>
+
+          <!-- page 6 photo -->
+          <h:panelGroup layout="block" id="page6photopanel" rendered="#{onlineForm.isPhoto}"   > 
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.page6phototitle1}" styleClass="maintext" /> 
+            </h:panelGroup> 
+            <p:spacer width="900" height="30" />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.page6phototitle2}" styleClass="text" /> 
+            </h:panelGroup> 
+            <br /> 
+            <h:panelGroup layout="block" style="padding-left: 15px; " >
+              <p:inputTextarea id="page6photoInst" value="#{onlineForm.photoInstruction}" rows="5" cols="110" styleClass="contactfieldstext" />  
+            </h:panelGroup> 
+
+            <h:panelGroup style="float: right; " layout="block" >  
+              <h:panelGroup layout="block" style="width: 300px; float: left; " id="uploadphotodesfilePanel">
+                <p:outputLabel value="#{msg.optional}:" styleClass="text" /> 
+                <br />
+                <p:outputLabel value="#{msg.attachfile}:" styleClass="text" />   
+
+                <h:panelGrid cellpadding="0" cellspacing="0" >
+                  <p:fileUpload fileUploadListener="#{onlineForm.handlePhotoInstFileUpload}"  
+                                mode="advanced"   label="#{msg.uploadfile}"  invalidSizeMessage="#{msg.invalidfilesiz}"
+                                auto="true" styleClass="originalbutton"  sizeLimit="5000000" 
+                                update=":onlineform:uploadphotodesfilePanel" />  
+                </h:panelGrid> 
+
+                <h:panelGrid  id="uploadedphotodespFilePanel" cellpadding="0" cellspacing="0" style="margin-top: -20px; " rendered="#{not empty onlineForm.photoInstructionFileName}">
+                  <p:panel style="border: none; font-size: 12px; " > 
+                    <p:outputLabel value="#{onlineForm.photoInstructionFileName}" /> 
+                    <p:spacer width="10" />
+                    <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.photoInstructionFileName)}"  process="uploadphotodesfilePanel"
+                                   title="#{msg.btnremovefile}"  update="uploadphotodesfilePanel" global="false"   > 
+                      <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                    </p:commandLink> 
+                  </p:panel>    
+                </h:panelGrid>
+              </h:panelGroup> 
+            </h:panelGroup>
+            <p:spacer width="900" height="60" />
+            <p:panel> 
+              <h:panelGroup layout="block" style="width: 150px; float: right;  ">  
+                <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage5}" process="@this"  
+                                 update="page5panel page6panel" global="false" />  
+                <p:spacer width="10" />
+                <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage7}" 
+                                 update="page7panel page6panel" global="false" process="page6photopanel" />
+              </h:panelGroup> 
+            </p:panel> 
+            <p:spacer width="900" height="30" />
+          </h:panelGroup>  
+        </h:panelGroup>
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

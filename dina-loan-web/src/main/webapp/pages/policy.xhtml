@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:p="http://primefaces.org/ui"  > 
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >    
+        <h:panelGroup styleClass="main" layout="block" id="mainpanel" >  
+          <h:panelGroup id="aboutPanel" layout="block" styleClass="sectionstyle1" > 
+            <br /><br /><br /> 
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.downloadpolicy}" styleClass="subtitle" />  
+            </h:panelGroup>
+            <p:spacer width="700" height="50" /> 
+            <p:commandButton id="scPolicyBtn"  value="#{msg.scientificloanpolicy}" type="button"  />
+            <p:overlayPanel id="currentScPolicyPanel" for="scPolicyBtn" hideEffect="fade" dynamic="true"   >
+              <object type="application/pdf" data="#{policy.scientificPurposeLoanPolicy}" height="750px" width="800px" 
+                      title="Scientific policy"    /> 
+            </p:overlayPanel>  
+            <p:spacer width="700" height="30" />
+            <p:commandButton id="edPolicyBtn" value="#{msg.educationalloanpolicy}" type="button" />
+
+            <p:overlayPanel id="currentEdPolicyPanel" for="edPolicyBtn" hideEffect="fade" dynamic="true"  >
+              <object type="application/pdf" data="#{policy.educationalPurposeLoanPolicy}" height="750px" width="800px"  />  
+            </p:overlayPanel> 
+          </h:panelGroup>
+        </h:panelGroup>
+      </ui:define>
+
+    </ui:composition>
+  </body>
+</html>

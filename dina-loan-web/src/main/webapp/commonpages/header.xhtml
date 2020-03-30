@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:h="http://java.sun.com/jsf/html"  >
+
+  <body>
+    <ui:composition>   
+      <h:panelGrid styleClass="back" cellpadding="0" cellspacing="0" id="headerPanel"> 
+        <h:panelGrid columns="2" width="960" styleClass="top roundedtop " cellpadding="0" cellspacing="0" > 
+          <h:outputText value="#{msg.headername}" styleClass="headertitle" /> 
+          <h:outputLink value="#{msg.nrmurl}"  target="_blank" > 
+            <p:graphicImage value="/resources/images/headerimages/logoNRM.png" styleClass="logonrm" title="#{msg.nrm}" /> 
+          </h:outputLink>  
+        </h:panelGrid>    
+        <h:panelGrid styleClass="topmenu" cellpadding="0" cellspacing="0"  > 
+          <h:panelGrid id="topmenupanel" columns="2"  cellpadding="0" cellspacing="0" 
+                       styleClass="topmenupanel" >
+            <h:panelGrid width="700px;"  cellpadding="0" cellspacing="0" >
+              <h:panelGroup>
+                <ul>
+                  <li>     
+                    <p:commandLink actionListener="#{onlineForm.start()}" 
+                                   value="#{msg.start}" styleClass="#{style.menu1}" 
+                                   process="@this" global="false"    /> 
+                  </li> 
+                  <li> 
+                    <p:commandLink actionListener="#{onlineForm.about()}" 
+                                   value="#{msg.about}" styleClass="#{style.menu2}" 
+                                   process="@this" global="false"  />  
+                  </li>  
+                  <li> 
+                    <p:commandLink actionListener="#{onlineForm.readloanpolicies()}" 
+                                   value="#{msg.readloanpolicies}" styleClass="#{style.menu3}" 
+                                   process="@this" global="false"  />    
+                  </li>  
+                  <li> 
+                    <p:commandLink actionListener="#{onlineForm.contact()}" 
+                                   value="#{msg.contact}" styleClass="#{style.menu4}" 
+                                   process="@this" global="false"   />    
+                  </li> 
+                </ul>   
+              </h:panelGroup>
+            </h:panelGrid>
+
+            <h:panelGroup style=" float: right; text-align: right; "   >     
+              <h:panelGroup style=" float: right; text-align: right; " layout="block" >   
+                <h:panelGrid   columns="2"  cellpadding="0" cellspacing="0"  rendered="#{languages.isSwedish}" >
+                  <p:commandLink actionListener="#{onlineForm.changelanguage('en')}"    style="border: none;  " 
+                                 process="@this " global="false" value="#{languages.language}" update="@all" >    
+                  </p:commandLink>  
+                  <p:commandLink actionListener="#{onlineForm.changelanguage('en')}"  style="border: none;  " 
+                                 process="@this " global="false" update="@all" >  
+                    <p:graphicImage value="/resources/images/headerimages/icons_en.png" 
+                                    styleClass="languageimg" title="#{msg.nrm}"   /> 
+                  </p:commandLink> 
+                </h:panelGrid> 
+
+                <h:panelGrid  columns="3"   cellpadding="0" cellspacing="0" rendered="#{!languages.isSwedish}" 
+                              style=" float: right; text-align: right; " >
+                  <p:spacer width="40" height="5" />
+                  <p:commandLink actionListener="#{onlineForm.changelanguage('sv')}"   ajax="true"
+                                 style="border: none;   float: right; text-align: right; " 
+                                 process="@this " global="false" value="#{languages.language}" update="@all" >    
+                  </p:commandLink>  
+                  <p:commandLink actionListener="#{onlineForm.changelanguage('sv')}"  style="border: none; " 
+                                 process="@this " global="false" update="@all" >  
+                    <p:graphicImage value="/resources/images/headerimages/icons_sv.png" 
+                                    styleClass="languageimg" title="#{msg.nrm}" />  
+                  </p:commandLink>   
+                </h:panelGrid>
+              </h:panelGroup>   
+            </h:panelGroup> 
+          </h:panelGrid>   
+
+        </h:panelGrid> 
+      </h:panelGrid>   
+    </ui:composition>
+  </body>
+
+</html>
+

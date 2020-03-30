@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ 
+    
+    
+<!--    <navigation-rule>
+        <from-view-id>/clientpages/home.xhtml</from-view-id>
+
+        <navigation-case>
+            <from-outcome>goOnlineForm</from-outcome>
+            <to-view-id>/clientpages/departments.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>-->
+    
+    
+<!--    <converter> 
+        <converter-for-class>se.nrm.dina.loan.web.vo.SolrRecord</converter-for-class>
+        <converter-class>se.nrm.dina.loan.web.vo.SolrRecordConverter</converter-class>
+    </converter>-->
+    
+    <lifecycle>
+        <phase-listener>
+            se.nrm.dina.loan.web.phaseListener.UACompatibleHeaderPhaseListener
+        </phase-listener>
+    </lifecycle>
+    
+    
+    <render-kit>
+        <renderer>
+            <component-family>org.primefaces.component</component-family>
+            <renderer-type>org.primefaces.component.FileUploadRenderer</renderer-type>
+            <renderer-class>se.nrm.dina.loan.web.fileupload.MyFileUploadRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+    
+<!--    <factory>
+        <exception-handler-factory>
+            org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
+        </exception-handler-factory> 
+    </factory>
+    -->
+    
+     
+    <application>
+        <locale-config>
+            <default-locale>sv</default-locale>
+            <supported-locale>en</supported-locale>  
+        </locale-config>
+        <resource-bundle>
+            <base-name>Messages</base-name>
+            <var>msg</var>
+        </resource-bundle> 
+    </application>  
+</faces-config>
+
+
+
+
+

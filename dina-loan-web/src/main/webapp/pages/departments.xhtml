@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"   > 
+  <body>
+    <ui:composition>    
+      <h:panelGroup id="collectionpanel">
+        <h:panelGroup layout="block" id="collectionpanel1" 
+                      rendered="#{onlineForm.step == 1}" styleClass="collectionpanel" >
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.departmentstitle}" styleClass="maintext" /> 
+          </h:panelGroup>
+          <p:spacer width="800" height="20" />
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.departmentsubtitle}" styleClass="subtitle" /> 
+          </h:panelGroup> 
+          <p:spacer width="800" height="30" />
+          <p:panel >    
+            <h:selectOneRadio value="#{onlineForm.department}" layout="pageDirection">
+              <f:selectItem itemValue="zoology" itemLabel="#{msg.zoology}" />	  
+              <f:selectItem itemValue="botany" itemLabel="#{msg.botany}" />
+              <f:selectItem itemValue="envionmentspecimenbank" itemLabel="#{msg.esb}" />	   	
+              <f:selectItem itemValue="geology" itemLabel="#{msg.geology}" />	   
+              <f:selectItem itemValue="palaeobiology" itemLabel="#{msg.palaeobiology}" />	   
+              <p:ajax event="change"  listener="#{onlineForm.departmentChanged()}" 
+                      global="false" update="deptLinks departmentViewBtnPanel" />  
+            </h:selectOneRadio> 
+          </p:panel>  
+          <p:spacer width="800" height="30" />
+          <ui:include src="/pages/departmentlinks.xhtml" />
+          <h:panelGroup layout="block" style="width: 150px; float: right;" id="departmentViewBtnPanel">  
+            <p:commandButton value="#{msg.back}" actionListener="#{onlineForm.start}"   
+                             oncomplete="drawRegionsMap();" 
+                             update="mainpanel page1panel" global="false"  /> 
+            <p:spacer width="10" />
+            <p:commandButton value="#{msg.next}" actionListener="#{onlineForm.goToPage1}"   
+                             disabled="#{!onlineForm.isImplemented}"
+                             update="collectionpanel page1panel" 
+                             global="false"  process="collectionpanel"  > 
+              <p:resetInput target=":onlineform" />
+            </p:commandButton>
+          </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

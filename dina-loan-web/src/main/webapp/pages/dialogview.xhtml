@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" >
+  <body>
+    <ui:composition>     
+      <p:dialog id="policyDialog" header="#{msg.loanpolicy}" widgetVar="policyDlg" style="width: 820px; height: 700px;">
+        <p:panel  id="policyDialogPanel" > 
+          <h:panelGrid rendered="#{onlineForm.numOfPages == 9}">      
+            <object type="application/pdf" data="#{policy.scientificPurposeLoanPolicyPageOne}"  
+                    height="750px" width="820px" rendered="#{onlineForm.isPolicyLinkEnabled}">
+              Your browser can't display pdf, 
+              <h:outputLink value="#{policy.scientificPurposeLoanPolicyPageOne}"   > 
+                click
+              </h:outputLink>
+              to download pdf instead.
+            </object>   
+          </h:panelGrid>
+
+          <h:panelGrid rendered="#{onlineForm.numOfPages != 9}"> 
+            <object type="application/pdf" data="#{policy.educationalPurposeLoanPolicyPageOne}"  
+                    height="750px" width="820px" rendered="#{onlineForm.isPolicyLinkEnabled}">
+              Your browser can't display pdf, 
+              <h:outputLink value="#{policy.educationalPurposeLoanPolicyPageOne}"  > 
+                click
+              </h:outputLink>
+              to download pdf instead.
+            </object>   
+          </h:panelGrid> 
+        </p:panel>
+      </p:dialog>
+
+      <p:dialog id="destructivePolicyDialog" header="#{msg.loanpolicy}" 
+                widgetVar="destructivePolicyDlg" style="width: 820px; height: 700px;">
+        <p:panel  id="destructivePolicyDialogPanel">   
+          <object type="application/pdf" data="#{policy.destructiveSamplingPolicy}" height="750px" width="820px"  rendered="#{onlineForm.isDestructivePolicyLinkEnabled}">
+            Your browser can't display pdf, 
+            <h:outputLink value="#{policy.destructiveSamplingPolicy}"  > 
+              click 
+            </h:outputLink>
+            to download pdf instead.
+          </object> 
+        </p:panel>
+      </p:dialog>
+
+      <p:dialog id="speciesdialog" header="#{msg.searchreault}" widgetVar="speciesDlg" 
+                style="width: 920px; font-size: 24px; font-weight: bold; " draggable="false"> 
+        <p:panel style="width: 920px; height: 800px; font-size: 10px; font-weight: normal; " > 
+          <p:dataTable id="records" var="record" value="#{onlineForm.records}" rowKey="#{record.catalogNum}"  
+                       selection="#{onlineForm.selectedRecord}" selectionMode="single"  scrollable="true" scrollWidth="920" >
+
+            <p:ajax event="rowSelect" listener="#{onlineForm.onRowSelect}" update=":onlineform:newrequestpanel" 
+                    global="false" process="@widgetVar(speciesDlg)" />
+
+            <p:column headerText="#{msg.tblheader2}" width="120">
+              #{record.catalogNum}
+            </p:column>
+
+            <p:column headerText="#{msg.tblheader3}" width="80">
+              #{record.family}
+            </p:column>
+
+            <p:column headerText="#{msg.tblheader4}" width="80">
+              #{record.genus}
+            </p:column>
+
+            <p:column headerText="#{msg.tblheader5}" width="80">
+              #{record.fullname}
+            </p:column>
+
+            <p:column headerText="#{msg.tblheader6}" width="80">
+              #{record.auth}
+            </p:column>
+
+            <p:column headerText="#{msg.localitycountry}" width="80">
+              #{record.country}
+            </p:column>
+
+            <p:column headerText="#{msg.locality}" width="125">
+              #{record.locality}
+            </p:column>
+ 
+            <p:column headerText="#{msg.collectdyear}" width="70">
+              #{record.collectedYear}
+            </p:column>
+  
+            <p:column headerText="#{msg.collector}" width="80">
+              #{record.collectors}
+            </p:column>
+
+            <p:column headerText="#{msg.typespecimen}" width="100">
+              #{record.preparationString}
+            </p:column> 
+
+          </p:dataTable>
+        </p:panel>
+      </p:dialog> 
+    </ui:composition>
+  </body>
+</html>

@@ -1,0 +1,567 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>  
+      <h:panelGroup id="lastpagepanel"> 
+        <h:panelGroup layout="block" id="lastpagepanel1" rendered="#{onlineForm.step == 10}"  styleClass="sectionstyle1"  > 
+
+          <p:messages id="lastpagepanelmsg" autoUpdate="true" showDetail="true" showSummary="false" closable="true"   showIcon="true" />
+
+
+          <h:panelGroup layout="block" rendered="#{!onlineForm.isInformation}">
+            <p:outputLabel value="#{msg.lastpagetitle}" styleClass="maintext" /> 
+          </h:panelGroup> 
+          <p:spacer width="900" height="40" />
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.review}" styleClass="subtitle" /> 
+          </h:panelGroup>   
+          <br />
+          <h:panelGroup layout="block" >  
+            <p:commandButton value="#{msg.closerequest}" action="#{onlineForm.closesummary()}" rendered="#{onlineForm.openSummary}"  
+                             update=":onlineform:lastpagepanel"  global="false" process="@this" /> 
+
+            <p:commandButton value="#{msg.reviewrequest}" action="#{onlineForm.reviewrequest()}" 
+                             update=":onlineform:lastpagepanel" 
+                             rendered="#{!onlineForm.openSummary}" global="false" process="@this" /> 
+          </h:panelGroup> 
+          <p:spacer width="900" height="40" /> 
+          <h:panelGroup id="summaryPanel" layout="block" rendered="#{onlineForm.openSummary}"> 
+
+            <p:panel style="width: 700px; " header="#{msg.contactdetail} (#{msg.inplaceedit})" > 
+
+              <h:panelGrid  rendered="#{onlineForm.hasPrimaryContact}" styleClass="defaulttext">  
+                <p:spacer width="5" /> 
+                <h:panelGrid  styleClass="defaultboldtext" >
+                  <p:outputLabel value="#{msg.primaryborrower}"  />
+                </h:panelGrid> 
+                <h:panelGrid columns="5" cellpadding="0" cellspacing="0" >
+                  <p:inplace  label="#{onlineForm.contact2.title}" effectSpeed="fast" event="click">  
+                    <h:selectOneMenu value="#{onlineForm.contact2.title}">
+                      <f:selectItem itemValue="#{msg.mrs}" itemLabel="#{msg.mrs}" />
+                      <f:selectItem itemValue="#{msg.ms}" itemLabel="#{msg.ms}" />
+                      <f:selectItem itemValue="#{msg.miss}" itemLabel="#{msg.miss}" />
+                      <f:selectItem itemValue="#{msg.dr}" itemLabel="#{msg.dr}" />
+                      <f:selectItem itemValue="#{msg.prof}" itemLabel="#{msg.prof}" />
+                      <f:selectItem itemValue="#{msg.docent}" itemLabel="#{msg.docent}" />
+                      <f:selectItem itemValue="#{msg.assprof}" itemLabel="#{msg.assprof}" />
+                      <f:selectItem itemValue="#{msg.postdoc}" itemLabel="#{msg.postdoc}" />  
+                    </h:selectOneMenu>
+                  </p:inplace>
+                  <p:spacer width="5" /> 
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact2.firstname}" label="text" required="#{onlineForm.hasPrimaryContact}"  />
+                  </p:inplace>
+                  <p:spacer width="5" /> 
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact2.lastname}" label="text" required="#{onlineForm.hasPrimaryContact}"  />
+                  </p:inplace> 
+                </h:panelGrid>
+
+                <p:inplace editor="true"  styleClass="originalbutton">
+                  <p:inputText value="#{onlineForm.contact2.email}" label="text" required="#{onlineForm.hasPrimaryContact}"  />
+                </p:inplace>
+
+                <p:inplace editor="true"  styleClass="originalbutton"> 
+                  <p:inputText value="#{onlineForm.contact2.phone}" required="#{onlineForm.hasPrimaryContact}" label="text"  
+                               validatorMessage="#{msg.invalidphone}"  styleClass="contactfieldstext" >  
+                    <f:validateRegex pattern="^[+ ]?([0-9]+([- .]+)?)*" />  
+                  </p:inputText> 
+                </p:inplace>
+
+                <p:inplace editor="true" styleClass="originalbutton" >
+                  <p:inputText value="#{onlineForm.contact2.institution}" label="text" required="#{onlineForm.hasPrimaryContact}"  />
+                </p:inplace>
+
+                <p:inplace editor="true"  styleClass="originalbutton">
+                  <p:inputText value="#{onlineForm.contact2.department}" label="text" />
+                </p:inplace>
+
+                <p:inplace editor="true"  styleClass="originalbutton">
+                  <p:inputText value="#{onlineForm.contact2.address.address}" label="text" required="#{onlineForm.hasPrimaryContact}" />
+                </p:inplace>
+
+                <h:panelGrid columns="5" cellpadding="0" cellspacing="0">
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact2.address.zip}" label="text"   style="font-size: 12px; " 
+                                 required="#{onlineForm.hasPrimaryContact}" />
+                  </p:inplace>
+                  <p:spacer width="5" />
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact2.address.city}" label="text" required="#{onlineForm.hasPrimaryContact}"  />
+                  </p:inplace>
+                  <p:spacer width="5" />
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact2.address.state}" label="text" />
+                  </p:inplace> 
+                </h:panelGrid> 
+
+                <p:inplace label="#{onlineForm.contact2.address.country}" effectSpeed="fast" event="click"> 
+                  <h:selectOneMenu  value="#{onlineForm.contact2.address.country}" required="#{onlineForm.hasPrimaryContact}" >
+                    <f:selectItems value="#{onlineForm.countryList}"  />
+                  </h:selectOneMenu>
+                </p:inplace> 
+              </h:panelGrid>   
+              <p:spacer width="900" height="30" /> 
+              <h:panelGrid rendered="#{onlineForm.hasPrimaryContact}" styleClass="defaultboldtext" >
+                <p:outputLabel value="#{msg.secondaryborrower}"  />
+              </h:panelGrid> 
+              <h:panelGrid rendered="#{!onlineForm.hasPrimaryContact}" styleClass="defaultboldtext" >
+                <p:outputLabel value="#{msg.contactdetail}"  />
+              </h:panelGrid> 
+
+              <h:panelGrid styleClass="defaulttext" >      
+
+                <h:panelGrid columns="5" cellpadding="0" cellspacing="0" >
+                  <p:inplace  label="#{onlineForm.contact1.title}" effectSpeed="fast" event="click">  
+                    <h:selectOneMenu value="#{onlineForm.contact1.title}">
+                      <f:selectItem itemValue="#{msg.mrs}" itemLabel="#{msg.mrs}" />
+                      <f:selectItem itemValue="#{msg.ms}" itemLabel="#{msg.ms}" />
+                      <f:selectItem itemValue="#{msg.miss}" itemLabel="#{msg.miss}" />
+                      <f:selectItem itemValue="#{msg.dr}" itemLabel="#{msg.dr}" />
+                      <f:selectItem itemValue="#{msg.prof}" itemLabel="#{msg.prof}" />
+                      <f:selectItem itemValue="#{msg.docent}" itemLabel="#{msg.docent}" />
+                      <f:selectItem itemValue="#{msg.assprof}" itemLabel="#{msg.assprof}" />
+                      <f:selectItem itemValue="#{msg.postdoc}" itemLabel="#{msg.postdoc}" />
+                      <f:selectItem itemValue="#{msg.phd}" itemLabel="#{msg.phd}" /> 
+                      <f:selectItem itemValue="#{msg.master}" itemLabel="#{msg.master}" /> 
+                    </h:selectOneMenu>
+                  </p:inplace>
+                  <p:spacer width="5" /> 
+                  <p:inplace editor="true"  styleClass="originalbutton" >
+                    <p:inputText value="#{onlineForm.contact1.firstname}" required="true" label="text" />
+                  </p:inplace>
+                  <p:spacer width="5" /> 
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact1.lastname}" required="true" label="text" />
+                  </p:inplace> 
+                </h:panelGrid>
+
+                <p:inplace editor="true"  styleClass="originalbutton">
+                  <p:inputText value="#{onlineForm.contact1.email}" required="true" label="text" />
+                </p:inplace>
+
+                <p:inplace editor="true"  styleClass="originalbutton">  
+                  <p:inputText value="#{onlineForm.contact1.phone}" required="true" label="text"  
+                               validatorMessage="#{msg.invalidphone}"  styleClass="contactfieldstext" >  
+                    <f:validateRegex pattern="^[+ ]?([0-9]+([- .]+)?)*" />  
+                  </p:inputText> 
+                </p:inplace>
+
+                <p:inplace editor="true" styleClass="originalbutton" >
+                  <p:inputText value="#{onlineForm.contact1.institution}" required="true" label="text" />
+                </p:inplace>
+
+                <p:inplace editor="true"  styleClass="originalbutton">
+                  <p:inputText value="#{onlineForm.contact1.department}"  label="text" />
+                </p:inplace>
+
+                <p:inplace editor="true"  styleClass="originalbutton">
+                  <p:inputText value="#{onlineForm.contact1.address.address}" required="true" label="text" />
+                </p:inplace>
+
+                <h:panelGrid columns="5" cellpadding="0" cellspacing="0">
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact1.address.zip}" required="true" label="text"  style="font-size: 12px; " />
+                  </p:inplace>
+                  <p:spacer width="5" />
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact1.address.city}" required="true" label="text" />
+                  </p:inplace>
+                  <p:spacer width="5" />
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputText value="#{onlineForm.contact1.address.state}" label="text" />
+                  </p:inplace> 
+                </h:panelGrid>  
+                <p:inplace label="#{onlineForm.contact1.address.country}" effectSpeed="fast" event="click" > 
+                  <h:selectOneMenu  value="#{onlineForm.contact1.address.country}">
+                    <f:selectItems value="#{onlineForm.countryList}" />
+                  </h:selectOneMenu>
+                </p:inplace>
+              </h:panelGrid>   
+            </p:panel>  
+            <p:spacer width="900" height="30" />
+            <p:panel header="#{msg.requestinfo}"  rendered="#{onlineForm.numOfPages == 9}">    
+              <h:panelGrid columns="3" styleClass="defaulttext" >
+                <p:outputLabel value="#{msg.collection}:" style="color: #8B8786;" />
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.departmentName}" style="color: #8B8786;" />
+
+                <p:outputLabel  value="#{msg.purposeofloan}:" style="color: #8B8786;" />
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.purposeName}" style="color: #8B8786;" />
+
+                <p:outputLabel value="#{msg.typeofrequest}:" style="color: #8B8786;" />
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.requestType}" style="color: #8B8786;" />
+
+                <p:outputLabel value="#{msg.relevantcollection}:"  style="color: #8B8786;" />
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.selectedCollection}" style="color: #8B8786;" /> 
+              </h:panelGrid>  
+              <br />  
+              <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif; padding-top: 10px;  " rendered="#{!onlineForm.isInformation}"  > 
+                <p:outputLabel value="#{msg.descriptionofloan}:" /> 
+                <p:inplace editor="true"  styleClass="originalbutton" rendered="#{not empty onlineForm.descriptionOfLoan}">
+                  <p:inputTextarea rows="5" cols="90" value="#{onlineForm.descriptionOfLoan}"   />
+                </p:inplace>  
+                <p:outputLabel value=" -- " style="color: #8B8786;" rendered="#{empty onlineForm.descriptionOfLoan}" />    
+                <h:panelGrid columns="5" style="font-size: 12px; font-family:  Arial,sans-serif;   " rendered="#{not empty onlineForm.scPurposeFileName}" >
+                  <p:outputLabel value="#{msg.attachment}:"  /> 
+                  <p:spacer width="5" />
+                  <p:outputLabel value="#{onlineForm.scPurposeFileName}" />
+                  <p:spacer width="20" />
+                  <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.scPurposeFileName)}"  
+                                 title="#{msg.btnremovefile}"  update=":onlineform:summaryPanel" global="false"  > 
+                    <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                  </p:commandLink>  
+                </h:panelGrid> 
+              </h:panelGrid>    
+            </p:panel>
+
+            <p:panel header="#{msg.taxadetail} (#{msg.inplaceedit})"  rendered="#{onlineForm.numOfPages == 9}" >    
+              <h:panelGroup layout="block" id="samplesPanel" style="width: 700px; ">
+                <h:panelGrid rendered="#{not empty onlineForm.samples}">
+                  <ui:repeat value="#{onlineForm.samples}" var="sample"   varStatus="status">
+                    <h:panelGrid columns="3" styleClass="#{style.getSamplePanelColor(status.index)}" columnClasses="column1,column2,column3" cellpadding="5">
+                      <p:outputLabel value="#{msg.catalognumber}:"  />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.catalogNumber}"  />
+                      </p:inplace>  
+                      <p:commandLink actionListener="#{onlineForm.remove(sample)}"  
+                                     title="#{msg.btnremovefile}"  update=":onlineform:samplesPanel"   > 
+                        <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                      </p:commandLink>  
+
+                      <p:outputLabel value="#{msg.tblheader3}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.family}"  />
+                      </p:inplace>   
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.tblheader4}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.genus}"  />
+                      </p:inplace>    
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.tblheader5}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.species}"  />
+                      </p:inplace>   
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.tblheader6}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.auctor}"  />
+                      </p:inplace>    
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.tblheader7}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.typeStatus}"  />
+                      </p:inplace>   
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.localitycountry}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.country}"  />
+                      </p:inplace>   
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.locality}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.locality}"  />
+                      </p:inplace>   
+                      <p:spacer width="5" />
+ 
+                      <p:outputLabel value="#{msg.collectdyear}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.collectedYear}"  />
+                      </p:inplace>   
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.collector}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.collector}"  />
+                      </p:inplace>     
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.typespecimen}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.type}" required="#{!onlineForm.isPhoto}" requiredMessage="#{msg.errmsgtypespecimen}"  />
+                      </p:inplace>    
+                      <p:spacer width="5" />
+
+                      <p:outputLabel value="#{msg.tblheader9}:" />  
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputText value="#{sample.other}"  />
+                      </p:inplace>  
+                      <p:spacer width="5" />
+                    </h:panelGrid>   
+                  </ui:repeat>
+                  <p:spacer width="900" height="30" />
+                </h:panelGrid>
+ 
+                <h:panelGrid style="font-size: 12px; font-family:  Arial,sans-serif; "  
+                             columns="1" rendered="#{not empty onlineForm.additionInformation}">
+                  <p:outputLabel value="#{msg.additioninfor}:" />   
+                  <p:inplace editor="true"  styleClass="originalbutton">
+                    <p:inputTextarea rows="5" cols="90" value="#{onlineForm.additionInformation}"  />
+                  </p:inplace>
+                </h:panelGrid> 
+                <h:panelGrid style="font-size: 12px; font-family:  Arial,sans-serif;   "  columns="1" rendered="#{empty onlineForm.additionInformation}">
+                  <p:outputLabel value="#{msg.additioninfor}:" />   
+                  <p:outputLabel value=" -- " style="color: #8B8786;"  />   
+                </h:panelGrid> 
+              </h:panelGroup>  
+            </p:panel>
+
+            <h:panelGrid rendered="#{!onlineForm.isPhoto}" >
+
+              <h:panelGrid rendered="#{!onlineForm.isInformation}">
+                <p:panel header="#{msg.destructivehandling} (#{msg.inplaceedit})"  rendered="#{onlineForm.numOfPages == 9}" id="summarydestructivehandlingpanel">  
+
+                  <h:panelGrid rendered="#{onlineForm.isDestractive}" >
+                    <h:panelGrid style="font-size: 12px; font-family:  Arial,sans-serif;   " >
+                      <p:outputLabel value="#{msg.destructive}" />   
+                    </h:panelGrid>
+                    <br /> 
+                    <h:panelGrid columns="1" style="font-size: 12px; font-family:  Arial,sans-serif;   " rendered="#{not empty onlineForm.destructiveMethod}">
+                      <p:outputLabel value="#{msg.destructivedesc}:" /> 
+                      <p:inplace editor="true"  styleClass="originalbutton">
+                        <p:inputTextarea rows="5" cols="90" value="#{onlineForm.destructiveMethod}"  />
+                      </p:inplace> 
+                    </h:panelGrid> 
+
+                    <h:panelGrid columns="1" style="font-size: 12px; font-family:  Arial,sans-serif;   " rendered="#{empty onlineForm.destructiveMethod}">
+                      <p:outputLabel value="#{msg.destructivedesc}:" /> 
+                      <p:outputLabel value=" -- " style="color: #8B8786;" />
+                    </h:panelGrid> 
+
+                    <h:panelGrid columns="5" style="font-size: 12px; font-family:  Arial,sans-serif;   " rendered="#{not empty onlineForm.destructiveMethodFileName}" >
+                      <p:outputLabel  value="#{msg.attachment}:"/>
+                      <p:spacer width="5" />
+                      <p:outputLabel value="#{onlineForm.destructiveMethodFileName}" /> 
+                      <p:spacer width="20" />
+                      <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.destructiveMethodFileName)}"  process="summarydestructivehandlingpanel"
+                                     title="#{msg.btnremovefile}"  update=":onlineform:summaryPanel" global="false"  > 
+                        <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                      </p:commandLink>  
+                    </h:panelGrid>
+                  </h:panelGrid> 
+
+                  <h:panelGrid rendered="#{!onlineForm.isDestractive}" >
+                    <h:panelGrid style="font-size: 12px; font-family:  Arial,sans-serif;   " >
+                      <p:outputLabel value="#{msg.nodestructive}" />   
+                    </h:panelGrid>
+                  </h:panelGrid> 
+                </p:panel>
+              </h:panelGrid> 
+            </h:panelGrid>
+ 
+            <p:panel header="#{msg.photoinstruction} (#{msg.inplaceedit})"  rendered="#{onlineForm.isPhoto}" id="summaryphotoinstractionpanel" >  
+              <h:panelGrid columns="1" style="font-size: 12px; font-family:  Arial,sans-serif;  " rendered="#{not empty onlineForm.photoInstruction}">
+                <p:outputLabel value="#{msg.photoinstruction}:" /> 
+
+                <p:inplace editor="true"  styleClass="originalbutton"  >
+                  <p:inputTextarea rows="5" cols="90" value="#{onlineForm.photoInstruction}"  />
+                </p:inplace>  
+              </h:panelGrid> 
+
+
+              <h:panelGrid columns="1" style="font-size: 12px; font-family:  Arial,sans-serif;  " rendered="#{empty onlineForm.photoInstruction}">
+                <p:outputLabel value="#{msg.photoinstruction}:" /> 
+                <p:outputLabel value=" -- " style="color: #8B8786;" />
+              </h:panelGrid> 
+
+
+              <h:panelGrid columns="5" style="font-size: 12px; font-family:  Arial,sans-serif;   "   rendered="#{not empty onlineForm.photoInstructionFileName}" >
+                <p:outputLabel  value="#{msg.attachment}:"/>
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.photoInstructionFileName}" /> 
+                <p:spacer width="20" />
+                <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.photoInstructionFileName)}"  global="false"
+                               title="#{msg.btnremovefile}"  update=":onlineform:summaryPanel"  process="summaryphotoinstractionpanel"  > 
+                  <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                </p:commandLink>  
+              </h:panelGrid>
+            </p:panel>
+ 
+            <h:panelGrid rendered="#{!onlineForm.isInformation}" >
+              <p:panel header="#{msg.page7title} (#{msg.inplaceedit})"   rendered="#{onlineForm.numOfPages == 9}" >  
+
+                <h:panelGrid columns="3" style="font-size: 12px; font-family:  Arial,sans-serif;   "  rendered="#{not empty onlineForm.citesNumber}">
+                  <p:outputLabel value="#{msg.registnumber}" />
+                  <p:spacer width="5" />
+                  <p:inplace editor="true"  styleClass="originalbutton" >
+                    <p:inputText value="#{onlineForm.citesNumber}"  />
+                  </p:inplace>    
+                </h:panelGrid>
+
+                <h:panelGrid columns="3" style="font-size: 12px; font-family:  Arial,sans-serif;   "  rendered="#{empty onlineForm.citesNumber}">
+                  <p:outputLabel value="#{msg.registnumber}" />
+                  <p:spacer width="5" />
+                  <p:outputLabel value=" -- " style="color: #8B8786;" /> 
+                </h:panelGrid> 
+              </p:panel>
+            </h:panelGrid>   
+
+            <p:panel header="#{msg.educationexhibition}"  rendered="#{onlineForm.numOfPages == 7}" >    
+              <h:panelGrid columns="3" style="font-size: 12px; font-family:  Arial,sans-serif;   " >
+                <p:outputLabel value="#{msg.purpose1}:" style="color: #C5C4C4;"  />
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.educationPurposeName}" style="color: #8B8786;"  />  
+              </h:panelGrid> 
+              <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif; padding-top: 10px;  " rendered="#{not empty onlineForm.page4Description}"  > 
+                <p:outputLabel value="#{msg.description}:" /> 
+                <p:inplace editor="true"  styleClass="originalbutton" >
+                  <p:inputTextarea rows="5" cols="90" value="#{onlineForm.page4Description}"   />
+                </p:inplace> 
+              </h:panelGrid> 
+
+              <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif; padding-top: 10px;  " rendered="#{empty onlineForm.page4Description}"  > 
+                <p:outputLabel value="#{msg.description}:" /> 
+                <p:outputLabel value=" -- " style="color: #8B8786;" />  
+              </h:panelGrid> 
+
+
+              <h:panelGrid columns="5" style="font-size: 12px; font-family:  Arial,sans-serif;   "  rendered="#{not empty onlineForm.edPurposeFileName}" >
+                <p:outputLabel  value="#{msg.attachment}:"/>
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.edPurposeFileName}" /> 
+                <p:spacer width="20" />
+                <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.edPurposeFileName)}"  
+                               title="#{msg.btnremovefile}"  update=":onlineform:summaryPanel"   > 
+                  <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                </p:commandLink>  
+              </h:panelGrid>
+
+              <h:panelGrid columns="3" style="font-size: 12px; font-family:  Arial,sans-serif;   "  > 
+                <p:outputLabel  value="#{onlineForm.loanRequestPeriod}: "/>
+                <p:spacer width="5" />  
+                <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif;   " columns="5" cellpadding="0" cellspacing="0">
+
+                  <p:inplace editor="true"  styleClass="originalbutton" >
+                    <p:calendar pattern="yyyy-MM-dd" showButtonPanel="true" navigator="true"  
+                                value="#{onlineForm.fromDate}"   mindate="#{onlineForm.minDate}"    showOn="button" >
+                      <!--<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+3" />-->
+                      <f:convertDateTime pattern="yyyy-MM-dd"  />
+                    </p:calendar>  
+                  </p:inplace> 
+                  <p:spacer width="5" />
+                  <p:outputLabel  value=" - "/>
+                  <p:spacer width="5" /> 
+                  <p:inplace editor="true"  styleClass="originalbutton" >
+                    <p:calendar pattern="yyyy-MM-dd" showButtonPanel="true" navigator="true"  
+                                value="#{onlineForm.toDate}"   mindate="#{onlineForm.toMinDate}"    showOn="button" >
+                      <!--<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+3" />-->
+                      <f:convertDateTime pattern="yyyy-MM-dd"  />
+                    </p:calendar>  
+                  </p:inplace>
+                </h:panelGrid> 
+              </h:panelGrid>
+
+              <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif; padding-top: 10px;  "  rendered="#{not empty onlineForm.exhPorpuseDesc}" > 
+                <p:outputLabel value="#{msg.exhibitiondesc}:" /> 
+                <p:inplace editor="true"  styleClass="originalbutton" >
+                  <p:inputTextarea rows="5" cols="90" value="#{onlineForm.exhPorpuseDesc}"   />
+                </p:inplace> 
+              </h:panelGrid>  
+
+              <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif; padding-top: 10px;  "  rendered="#{empty onlineForm.exhPorpuseDesc}" > 
+                <p:outputLabel value="#{msg.exhibitiondesc}:" /> 
+                <p:outputLabel value=" -- " style="color: #8B8786;" />  
+              </h:panelGrid>  
+            </p:panel>
+
+            <p:panel header="#{msg.commercialart} (#{msg.inplaceedit})"  rendered="#{onlineForm.numOfPages == 6}" >    
+              <h:panelGrid columns="3" style="font-size: 12px; font-family:  Arial,sans-serif;   " >
+                <p:outputLabel value="#{msg.typeofrequest}:" style="color: #C5C4C4;"  />
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.page3requestType}" style="color: #8B8786;"  />  
+              </h:panelGrid> 
+              <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif; padding-top: 10px;  " rendered="#{not empty onlineForm.page4Description}"> 
+                <p:outputLabel value="#{msg.description}:" /> 
+                <p:inplace editor="true"  styleClass="originalbutton" >
+                  <p:inputTextarea rows="5" cols="90" value="#{onlineForm.page4Description}"   />
+                </p:inplace> 
+              </h:panelGrid>
+
+              <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif; padding-top: 10px;  " rendered="#{empty onlineForm.page4Description}"> 
+                <p:outputLabel value="#{msg.description}:" /> 
+                <p:outputLabel value=" -- " style="color: #8B8786;" /> 
+              </h:panelGrid>
+
+              <h:panelGrid columns="5" style="font-size: 12px; font-family:  Arial,sans-serif;   "  rendered="#{not empty onlineForm.edPurposeFileName}" >
+                <p:outputLabel  value="#{msg.attachment}:"/>
+                <p:spacer width="5" />
+                <p:outputLabel value="#{onlineForm.edPurposeFileName}" /> 
+                <p:spacer width="20" />
+                <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.edPurposeFileName)}"  
+                               title="#{msg.btnremovefile}"  update=":onlineform:summaryPanel" global="false"  > 
+                  <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                </p:commandLink>  
+              </h:panelGrid>
+
+              <h:panelGrid columns="3" style="font-size: 12px; font-family:  Arial,sans-serif;   "  > 
+
+                <p:outputLabel  value="#{onlineForm.loanRequestPeriod}:"/>
+                <p:spacer width="5" />  
+                <h:panelGrid  style="font-size: 12px; font-family:  Arial,sans-serif;   " columns="5" cellpadding="0" cellspacing="0">  
+
+                  <p:inplace editor="true"  styleClass="originalbutton" >
+                    <p:calendar pattern="yyyy-MM-dd" showButtonPanel="true" navigator="true"  
+                                value="#{onlineForm.fromDate}"   mindate="#{onlineForm.minDate}"    showOn="button" >
+                      <!--<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+3" />-->
+                      <f:convertDateTime pattern="yyyy-MM-dd"  />
+                    </p:calendar>  
+                  </p:inplace>  
+                  <p:spacer width="5" />
+                  <p:outputLabel  value=" - "/>
+                  <p:spacer width="5" />  
+                  <p:inplace editor="true"  styleClass="originalbutton" >
+                    <p:calendar pattern="yyyy-MM-dd" showButtonPanel="true" navigator="true"  
+                                value="#{onlineForm.toDate}"   mindate="#{onlineForm.minDate}"    showOn="button" >
+                      <!--<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+3" />-->
+                      <f:convertDateTime pattern="yyyy-MM-dd"  />
+                    </p:calendar>  
+                  </p:inplace>
+
+                </h:panelGrid> 
+              </h:panelGrid>  
+            </p:panel> 
+            <hr />
+          </h:panelGroup>
+
+          <h:panelGrid rendered="#{!onlineForm.isInformation}">
+            <h:panelGrid > 
+              <p:commandLink value="#{msg.policytitle}"  onclick="PF('policyDlg').show();" global="false"
+                             style="float: left; font-size: 12px; font-family: Arial,sans-serif; padding-left: 25px;   " />
+              <br />
+            </h:panelGrid>
+            <h:panelGrid columns="3" columnClasses="aligntop,aligntop,aligntop"    >
+              <h:selectBooleanCheckbox   value="#{onlineForm.isPolicyRead}" > 
+                <p:ajax listener="#{onlineForm.onIsPolicyReadStatusChange}" update="lastpagepanel" global="false"  />
+              </h:selectBooleanCheckbox> 
+              <p:spacer width="5" />
+              <p:outputLabel value="#{msg.policylbl}"  styleClass="defaulttext"  />
+            </h:panelGrid>
+          </h:panelGrid> 
+          <p:spacer width="900" height="30" />
+          <h:panelGroup layout="block" style="width: 300px; float: right;  ">  
+            <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage8}" process="@this"  
+                             update=":onlineform:lastpagepanel :onlineform:page8panel" global="false"  >  
+            </p:commandButton> 
+            <p:spacer width="10" />
+            <p:commandButton value="#{msg.submitloan}" action="#{onlineForm.gotoConfirmationPage}" styleClass="largebutton"
+                             update=":onlineform:lastpagepanel :onlineform:confirmationpagepanel" disabled="#{!onlineForm.isPolicyRead}"   />
+          </h:panelGroup>  
+          <p:spacer width="900" height="30" />
+        </h:panelGroup> 
+      </h:panelGroup> 
+    </ui:composition>
+  </body>
+</html>

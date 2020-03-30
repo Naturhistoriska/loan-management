@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>  
+      <h:panelGroup id="page2panel">
+        <h:panelGroup layout="block" id="page2panel1" rendered="#{onlineForm.step == 3}" styleClass="page2Panel" > 
+          <!-- page 2 section 1 -->
+          <h:panelGroup layout="block" id="page12panel" rendered="#{onlineForm.numOfPages == 9}" styleClass="page2Panel" > 
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.form11title}" styleClass="maintext" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="30" />
+            <p:panel>
+              <h:panelGrid columns="3"  > 
+                <h:selectOneRadio value="#{onlineForm.requestType}" layout="pageDirection" styleClass="customradio" id="page2radio">
+                  <f:selectItem itemValue="Physical" itemLabel="#{msg.physical}" />
+                  <f:selectItem itemValue="Photo" itemLabel="#{msg.photo}" />	
+                  <f:selectItem itemValue="Information" itemLabel="#{msg.information}" />	  
+                  <p:ajax event="change"  listener="#{onlineForm.sampleTypeChanged()}" global="false" />  
+                </h:selectOneRadio> 
+
+                <h:panelGrid columns="1" style="padding: 5px; ">
+                  <p:graphicImage value="/resources/images/icon_question_mark.jpg" styleClass="languageimg"  alt="#{msg.helptext}" id="page2radio1" />  
+                  <p:graphicImage value="/resources/images/icon_question_mark.jpg" styleClass="languageimg" alt="#{msg.helptext}"  id="page2radio2" />  
+                  <p:graphicImage value="/resources/images/icon_question_mark.jpg" styleClass="languageimg" alt="#{msg.helptext}"  id="page2radio3" /> 
+                </h:panelGrid>
+
+                <p:tooltip for="page2radio1" value="#{msg.physicalrequesttip}" 
+                           showEffect="fade" hideEffect="fade" style="font-size: 12px; white-space: normal; width: 250px; "/>  
+
+                <p:tooltip for="page2radio2" value="#{msg.photorequesttip}" 
+                           showEffect="fade" hideEffect="fade" style="font-size: 12px; white-space: normal; width: 250px; "/>  
+
+                <p:tooltip for="page2radio3" value="#{msg.informationrequesttip}" 
+                           showEffect="fade" hideEffect="fade" style="font-size: 12px; white-space: normal; width: 250px; "/>  
+              </h:panelGrid>  
+            </p:panel> 
+          </h:panelGroup>
+
+          <!-- page 2 section 2 -->
+          <h:panelGroup layout="block" id="page22panel" rendered="#{onlineForm.numOfPages == 7}" styleClass="page2Panel" >  
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.edpage2Title}" styleClass="maintext" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="40" />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.edpage2text1}" styleClass="text"  /> 
+              <p:outputLabel value="#{msg.edpage2text2}" styleClass="boldtext"  /> 
+              <p:outputLabel value="#{msg.edpage2text3}" styleClass="text"  /> 
+            </h:panelGroup> 
+            <p:spacer width="900" height="40" />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.observe}" styleClass="subtitle" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="30" />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.observetext}" styleClass="text"  /> 
+              <p:outputLabel value="#{msg.observetext2}" styleClass="boldtext"  />  
+            </h:panelGroup>  
+          </h:panelGroup>
+
+          <!-- page 2 section 3 -->
+          <h:panelGroup layout="block" id="page23panel" rendered="#{onlineForm.numOfPages == 6}" styleClass="page2Panel" >       
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.otpage2title}" styleClass="maintext" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="30" />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.otpagetext1}" styleClass="text"  /> 
+              <p:outputLabel value="#{msg.otpagetext2}" styleClass="boldtext"  /> 
+              <p:outputLabel value="#{msg.otpagetext3}" styleClass="text"  /> 
+            </h:panelGroup> 
+            <p:spacer width="900" height="30" /> 
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.observe}" styleClass="maintext" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="30" />  
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.observetext}" styleClass="text"  /> 
+              <p:outputLabel value="#{msg.observetext2}" styleClass="boldtext"  />  
+            </h:panelGroup> 
+            <p:spacer width="900" height="30" />   
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.bill}" styleClass="text"  />  
+            </h:panelGroup>  
+          </h:panelGroup> 
+          <p:spacer width="900" height="30" />
+          <h:panelGroup layout="block" style="width: 150px; float: right;  ">  
+            <p:commandButton value="#{msg.back}" action="#{onlineForm.goToPage1}"  process="@this"
+                             update="page2panel page1panel " global="false" />  
+            <p:spacer width="10" />
+            <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage3}" process="page2panel" 
+                             update="page2panel page3panel  page4panel " global="false" />
+          </h:panelGroup> 
+          <p:spacer width="900" height="30" />
+        </h:panelGroup>
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

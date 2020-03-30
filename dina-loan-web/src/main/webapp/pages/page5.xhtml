@@ -1,0 +1,328 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition> 
+      <h:panelGroup id="page5panel" >
+        <h:panelGroup layout="block" id="page5panel1" rendered="#{onlineForm.step == 6}" styleClass="sectionstyle2"  >   
+          <!-- page 5 section 1 -->
+          <h:panelGroup layout="block" id="page51panel" rendered="#{onlineForm.numOfPages == 9}" styleClass="sectionstyle2"  >  
+            <h:panelGrid id="samplelistpanel" rendered="#{onlineForm.samples.size() > 0}">    
+
+              <p:dataTable var="sample" value="#{onlineForm.samples}"   editable="true"   scrollable="true" scrollWidth="900"   >    
+                <f:facet name="header">
+                  <p:outputLabel value="#{msg.page5title}"   /> 
+                </f:facet>  
+                <p:column styleClass="alignTop" style="width: 20px; font-size: 12px;">   
+                  <p:commandLink update=":onlineform:page51panel" title="Remove" 
+                                 process=":onlineform:samplelistpanel" 
+                                 action="#{onlineForm.removeSample(sample.catalogNumber)}" global="false"  >   
+                    <p:graphicImage value="/resources/images/button_remove.gif" styleClass="images" />
+                    <p:collector value="#{sample}"  removeFrom="#{onlineForm.samples}" unique="true"   />  
+                  </p:commandLink>  
+                </p:column>  
+                <p:column style="width:45px">
+                  <p:rowEditor />
+                </p:column> 
+                <p:column headerText="#{msg.catalognumber}" width="130" style="font-size: 12px;">      
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.catalogNumber}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="catalogNumberInput" value="#{sample.catalogNumber}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor> 
+                </p:column>   
+                <p:column  headerText="#{msg.tblheader3}" width="120" style="font-size: 12px; ">  
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.family}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="familyInput" value="#{sample.family}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>  
+                </p:column>  
+                <p:column headerText="#{msg.tblheader4}" width="120" style="font-size: 12px; ">     
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.genus}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="genusInput" value="#{sample.genus}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>   
+                </p:column>  
+                <p:column headerText="#{msg.tblheader5}" width="120" style="font-size: 12px; ">     
+                  <p:cellEditor>
+                    <f:facet name="output"><p:outputLabel value="#{sample.species}"   /></f:facet>
+                    <f:facet name="input"><p:inputText id="speciesInput" value="#{sample.species}"  style="width:100%"/></f:facet>
+                  </p:cellEditor>      
+                </p:column>  
+                <p:column headerText="#{msg.tblheader6}" width="80" style="font-size: 12px; ">  
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.auctor}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="auctorInput" value="#{sample.auctor}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>    
+                </p:column>  
+                <p:column headerText="#{msg.tblheader7}" width="60" style="font-size: 12px; ">     
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.typeStatus}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="typestatusInput" value="#{sample.typeStatus}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>    
+                </p:column>  
+                <p:column headerText="#{msg.localitycountry}" width="140" style="font-size: 12px; ">    
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.country}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="localitycountryInput" value="#{sample.country}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>    
+                </p:column>  
+                <p:column headerText="#{msg.locality}" width="140" style="font-size: 12px; ">    
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.locality}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="localityInput" value="#{sample.locality}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>    
+                </p:column>  
+                <p:column headerText="#{msg.collectdyear}" width="80" style="font-size: 12px; ">    
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.collectedYear}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="collectedyearInput" value="#{sample.collectedYear}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>    
+                </p:column>  
+                <p:column headerText="#{msg.collector}" width="80" style="font-size: 12px; ">    
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.collector}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="collectorInput" value="#{sample.collector}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>   
+                </p:column>  
+                <p:column headerText="#{msg.typespecimen}" width="120" style="font-size: 12px; ">   
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.type}"   />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="typeInput" value="#{sample.type}"  style="width:100%" />
+                    </f:facet>
+                  </p:cellEditor>     
+                </p:column>  
+                <p:column headerText="#{msg.tblheader9}" width="180" style="font-size: 12px; ">     
+                  <p:cellEditor>
+                    <f:facet name="output">
+                      <p:outputLabel value="#{sample.other}" />
+                    </f:facet>
+                    <f:facet name="input">
+                      <p:inputText id="otherInput" value="#{sample.other}"  style="width:100%"/>
+                    </f:facet>
+                  </p:cellEditor>  
+                </p:column>   
+              </p:dataTable>  
+              <p:spacer width="900" height="20" />
+            </h:panelGrid> 
+
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.page5usbtitle}" styleClass="subtitle"  /> 
+              <p:spacer width="900" height="20" />
+              <p:outputLabel value="#{msg.page5subtitle2}" styleClass="subsubtitle"  /> 
+              <p:spacer width="900" height="20" />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="padding-left: 20px; "> 
+              <ul>
+                <li>
+                  <p:outputLabel value="#{msg.page5additionaltext1}" styleClass="defaulttext"  /> 
+                </li>
+                <li>
+                  <p:outputLabel value="#{msg.page5additionaltext2}" styleClass="defaulttext"  />
+                  <p:outputLabel value="#{msg.page5additionbold}" styleClass="defaultboldtext"  />
+                  <p:outputLabel value="#{msg.page5additionnormal}" styleClass="defaulttext"  /> 
+                </li>
+                <li>
+                  <p:outputLabel value="#{msg.page5additionaltext3}" styleClass="defaulttext"  /> 
+                </li>
+                <li>
+                  <p:outputLabel value="#{msg.page5additionaltext4}" styleClass="defaulttext"  />    
+                </li>  
+              </ul> 
+            </h:panelGroup> 
+            <br />
+            <br />   
+            <p:panel id="taxarequestpanel" styleClass="taxasampletext"> 
+              <p:messages id="page5panelmsg" autoUpdate="true" showDetail="true" showSummary="false" closable="true"   showIcon="true" />
+              <h:panelGrid columns="5" id="newrequestpanel"> 
+                <p:spacer width="5" />
+                <p:spacer width="5" /> 
+                <p:spacer width="5" /> 
+                <p:outputLabel value="#{msg.tblheader1}" style="font-weight: bold; font-size: 16px;" />
+                <p:spacer width="5" /> 
+                <p:outputLabel for="samplecatalognumber" value="#{msg.tblheader2}:"  /> 
+                <p:inputText id="samplecatalognumber" value="#{onlineForm.sample.catalogNumber}" size="45" />  
+                <p:outputLabel value="&lt;==&gt;" style="color: #0b5e82; "  /> 
+                <p:commandButton value="#{msg.dina}" id="btnCatNum" process="@this,samplecatalognumber" 
+                                 update="newrequestpanel" actionListener="#{onlineForm.searchCatalogNumberFromDina}" />
+                <p:spacer width="5" />
+
+                <p:outputLabel for="samplefamily" value="#{msg.tblheader3}:" styleClass="contactfieldstext" />
+                <p:inputText id="samplefamily" value="#{onlineForm.sample.family}" size="45"> 
+                </p:inputText> 
+                <p:outputLabel value="&lt;==&gt;" style="color: #0b5e82; " />
+                <p:commandButton value="#{msg.dina}" actionListener="#{onlineForm.searchFamilyFromDina()}" process="@this,samplefamily" 
+                                 update="speciesdialog newrequestpanel" />
+                <p:commandButton value="#{msg.gbif}" actionListener="#{onlineForm.searchFromGbif(onlineForm.sample.family)}" process="@this,samplefamily" 
+                                 update="openWindow"   />  
+                <p:outputLabel for="samplegenus" value="#{msg.tblheader4}:"  />
+                <p:inputText id="samplegenus" value="#{onlineForm.sample.genus}" size="45" />  
+                <p:outputLabel value="&lt;==&gt;" style="color: #0b5e82; " />
+                <p:commandButton value="#{msg.dina}" actionListener="#{onlineForm.searchGenusFromDina()}" process="@this,samplegenus" 
+                                 update="speciesdialog newrequestpanel"  />
+                <p:commandButton value="#{msg.gbif}" actionListener="#{onlineForm.searchFromGbif(onlineForm.sample.genus)}" process="@this,samplegenus" 
+                                 update="openWindow"   />  
+                <p:outputLabel for="samplespecies" value="#{msg.tblheader5}:"  />  
+                <p:inputText id="samplespecies" value="#{onlineForm.sample.species}" size="45" />  
+                <p:outputLabel value="&lt;==&gt;" style="color: #0b5e82; " />
+                <p:commandButton value="#{msg.dina}" actionListener="#{onlineForm.searchSpeciesFromDina()}" process="@this,samplespecies" 
+                                 update="speciesdialog newrequestpanel" />
+                <p:commandButton value="#{msg.gbif}" actionListener="#{onlineForm.searchFromGbif(onlineForm.sample.species)}" 
+                                 process="@this,samplespecies"  update="openWindow"   />  
+                <p:outputLabel for="sampleauctor" value="#{msg.tblheader6}:" />   
+                <p:inputText id="sampleauctor" value="#{onlineForm.sample.auctor}" size="45" />  
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+                <p:spacer width="5" />  
+                <p:outputLabel for="sampletypeStatus" value="#{msg.tblheader7}:" />   
+                <p:inputText id="sampletypeStatus" value="#{onlineForm.sample.typeStatus}" size="45" />  
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+                <p:spacer width="5" /> 
+                <p:outputLabel for="samplecountry" value="#{msg.localitycountry}:" /> 
+                <p:inputText id="samplecountry" value="#{onlineForm.sample.country}" size="45"> 
+                </p:inputText> 
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+                <p:spacer width="5" /> 
+                <p:outputLabel for="samplelocality" value="#{msg.locality}:" /> 
+                <p:inputText id="samplelocality" value="#{onlineForm.sample.locality}" size="45"> 
+                </p:inputText> 
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+                <p:spacer width="5" /> 
+                <p:outputLabel for="samplecollectedyear" value="#{msg.collectdyear}:"   />
+                <p:inputText id="samplecollectedyear" value="#{onlineForm.sample.collectedYear}" size="45"> 
+                </p:inputText>     
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+                <p:spacer width="5" /> 
+                <p:outputLabel for="samplecollector" value="#{msg.collector}:"  /> 
+                <p:inputText id="samplecollector" value="#{onlineForm.sample.collector}" size="45"> 
+                </p:inputText>
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+                <p:spacer width="5" /> 
+                <p:outputLabel for="typespecimen" value="#{msg.typespecimen}:" />   
+                <p:inputText id="typespecimen" value="#{onlineForm.sample.type}" 
+                             required="#{!onlineForm.isPhoto}" requiredMessage="#{msg.errmsgtypespecimen}"  size="45"> 
+                </p:inputText>
+                <p:message for="typespecimen" display="icon"   /> 
+                <p:spacer width="5" />  
+                <p:spacer width="5" /> 
+                <p:spacer width="5" /> 
+                <p:outputLabel value="#{msg.typespecimendesc}" style="font-size: 11px;"  />
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+                <p:spacer width="5" /> 
+                <p:outputLabel for="sampletypeother" value="#{msg.tblheader9}:" />
+                <p:inputText id="sampletypeother" value="#{onlineForm.sample.other}"  size="45"> 
+                </p:inputText> 
+                <p:spacer width="5" /> 
+                <p:spacer width="5" />
+                <p:spacer width="5" />
+              </h:panelGrid>
+            </p:panel>
+            <br />
+            <h:panelGroup layout="block" style="width: 160px; float: right;  ">   
+              <p:commandButton value="#{msg.cancel}" update="newrequestpanel" process="@this" actionListener="#{onlineForm.cleartaxafields()}" global="false"  />
+              <p:spacer width="10" />  
+              <p:commandButton value="#{msg.add}" action="#{onlineForm.addTaxa()}"  update="page51panel" global="false" process="page51panel"  />
+            </h:panelGroup>  
+            <p:spacer width="900" height="20" />  
+            <hr /> 
+            <h:panelGrid  style="border: 1px solid; border-color: #FF0000; width: 840px; margin-right: auto; margin-left: auto;   "> 
+              <h:panelGroup>
+                <p:outputLabel value="#{msg.page5additionaltext5}" styleClass="defaultboldtext" style="font-size: 16px; " />
+                <p:outputLabel value="#{msg.page5additionaltext6}" styleClass="defaulttext"  style="font-size: 16px;"  /> 
+                <h:outputLink value="#{msg.page5additionaltext7}" target="_blank" > 
+                  <h:outputText value="#{msg.page5additionaltext7}" style="color: #8B8786; font-style: normal; " /> 
+                </h:outputLink>  
+                <p:outputLabel value="#{msg.page5additionaltext8}" styleClass="defaulttext"  style="font-size: 16px;"  /> 
+              </h:panelGroup>
+              <p:spacer width="10" />
+              <p:outputLabel value="#{msg.page5additionaltext9}" styleClass="defaulttext" style="font-size: 16px;"  />      
+            </h:panelGrid>
+            <br /> 
+            <h:panelGroup layout="block" style="padding-left: 35px; " >
+              <p:outputLabel value="#{msg.additioninforinfor}" styleClass="subtitle" rendered="#{onlineForm.isInformation}" />
+              <p:outputLabel value="#{msg.additioninfor}" styleClass="subtitle" rendered="#{!onlineForm.isInformation}" /> <br/>
+              <p:outputLabel value="#{msg.additioninfordesc}" styleClass="defaulttext" /> 
+            </h:panelGroup> 
+            <br /> 
+            <h:panelGroup layout="block" style="padding-left: 35px; ">
+              <p:inputTextarea id="page5additioninfo" value="#{onlineForm.additionInformation}" 
+                               rows="5" cols="110" 
+                               styleClass="contactfieldstext" />  
+            </h:panelGroup>  
+            <p:spacer width="900" height="30" />
+          </h:panelGroup>
+
+          <!-- page 5 section 2 -->
+          <h:panelGroup layout="block" id="page52panel" rendered="#{onlineForm.numOfPages != 9}" styleClass="sectionstyle2"  >      
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.edpage5title}" styleClass="maintext" />   
+            </h:panelGroup> 
+            <p:spacer width="900" height="20" /> 
+            <h:panelGroup style="padding-left: 45px; ">
+              <p:inputTextarea id="page5desc" value="#{onlineForm.exhPorpuseDesc}" 
+                               rows="7" cols="110" styleClass="contactfieldstext" />  
+            </h:panelGroup> 
+          </h:panelGroup>
+          <p:spacer width="900" height="20" />
+          <h:panelGroup layout="block" style="width: 150px; float: right;  ">  
+            <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage4}"  process="@this"  
+                             update="page4panel page5panel " global="false"  />  
+            <p:spacer width="10" />
+            <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage6}"  
+                             process="@this,page5additioninfo,page5desc"    
+                             update="page8panel page6panel page7panel page5panel policyDialogPanel destructivePolicyDialogPanel "
+                             global="false" />
+          </h:panelGroup> 
+          <p:spacer width="900" height="20" />
+        </h:panelGroup> 
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

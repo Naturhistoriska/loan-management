@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui" >
+
+  <h:head >
+    <link rel="shortcut icon" href="//www.dina-web.net/loan/resources/images/favicon.ico" 
+          type="image/x-icon" />
+    <title>
+      #{msg.headername} 
+    </title>     
+
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script> 
+    <script type='text/javascript'>
+      google.load('visualization', '1', {'packages': ['geochart']});
+      google.setOnLoadCallback(drawRegionsMap);
+        function drawRegionsMap() {
+          var data = google.visualization.arrayToDataTable([
+            ['Country', 'No. loans'],           
+            <c:forEach var = "mapData" items = "${statistic.mapList}" >
+              ['${mapData.country}',${mapData.count}],
+            </c:forEach>
+                  ]);
+            var options = {
+              backgroundColor: '#BDBDBD',
+              colors: ['#FFFFCC', '#FF9966', '#244700']};  
+            var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+          };
+        </script> 
+    </h:head            > 
+
+  <f:view locale="#{languages.locale}"  > 
+    <ui:remove>
+    <f:metadata> 
+      <f:event listener="#{onlineForm.init()}"  type="preRenderView"  /> 
+    </f:metadata>
+    </ui:remove>
+
+    <h:body styleClass="background"> 	    
+      <h:outputScript library="js" name="loan.js" target="head"/>    
+      <h:outputStylesheet library="css" name="default.css"  />
+
+      <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" /> 
+      <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">   
+        <h:panelGrid columns="3"  >  
+          <p:graphicImage value="/resources/images/loaderA32.gif"   alt="#{msg.wait}" title="#{msg.wait}" styleClass="images" /> 
+          <p:spacer width="10" />
+          <p:outputLabel value="#{msg.wait}" style="font-size: 16px; font-weight: bold;" /> 
+          <!--<a href="../templates/masterLayout.xhtml"></a>-->
+        </h:panelGrid>  
+      </p:dialog>
+
+      <!--<h:panelGroup id="idlemonitorpanel">-->  
+        <p:idleMonitor timeout="7200000">
+          <!--<p:idleMonitor timeout="10000">-->
+          <p:ajax event="idle" listener="#{idleMonitorView.onIdle}"  />
+          <p:ajax event="active" listener="#{idleMonitorView.onActive}"   />
+        </p:idleMonitor> 
+      <!--</h:panelGroup>-->
+
+      <h:panelGroup layout="block" style="width: 960px; margin: auto;">
+        <h:panelGroup  id="header" layout="block"  style="width: 960px;  ">
+          <ui:insert name="header" >
+            <ui:include src="/commonpages/header.xhtml" />
+          </ui:insert> 
+        </h:panelGroup>
+        <h:panelGroup  id="navigator" layout="block"  style="width: 960px; margin-top: -5px; ">
+          <ui:insert name="navigator" >
+            <ui:include src="/pages/navigator.xhtml" />
+          </ui:insert> 
+        </h:panelGroup> 
+        <h:panelGroup id="main" layout="block" style="width: 960px; margin-top: -5px; ">
+          <ui:insert name="content"/>
+        </h:panelGroup> 
+        <h:panelGroup id="footer" layout="block" style="width: 960px;  ">
+          <ui:insert name="footer" >
+            <ui:include src="/commonpages/footer.xhtml" />
+          </ui:insert>
+        </h:panelGroup> 
+      </h:panelGroup> 
+    </h:body>
+  </f:view>
+</html>

@@ -1,0 +1,865 @@
+/* 
+    Document   : loan.css
+    Created on : 2013-nov-22, 14:14:41
+    Author     : Sofia Ivarsson, Ida Li
+    Description: Baserad på NRMs grafiska profil och pollenrapporten -sitevision.
+    Stylesheet for dina-loan-web, NRM
+*/
+
+
+.body{
+    font-family: "Arial",sans-serif;
+    position: relative; 
+    min-height: 100%; 
+    top: 0px;
+}
+
+/*back*/
+.background{
+    background-color:#ebede8;
+    /*background-image:url(/images/18.67f7c5a013d827ecb4c32f/1367827613667/bg.gif);*/
+    background-repeat:no-repeat;
+    margin:0 0 0 0;
+}
+
+.back {
+    border:none;
+    width:100%;
+    min-width:0;
+    padding:0;
+    margin:0;
+    padding-top:7px;
+    padding-bottom:0px;
+    border-radius: 10px 10px 0 0;
+    float:none !important
+}
+
+
+.roundedtop {
+  -webkit-border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px;    
+}
+
+.top {
+    background-color:#0b5e82; /*#86ad16;*/
+    margin:0 auto;
+    max-width:960px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    
+}
+
+.topmenu {
+    background-color:#072735; 
+/*    margin-left:-10px; */
+    width:960px;
+    padding-bottom: 2px;
+}
+
+
+.topmenu a.current {
+    background: none repeat scroll 0 0 #036fab; /*#0C7D0C;*/
+}
+
+.topmenu a {
+   width: auto; 
+   padding: 11px 15px;
+   border-right: none;
+   border-right: 1px solid #0b5e82;
+   color: #FFFFFF;
+   display: block;
+   font-family: "Arial",sans-serif;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   text-shadow: 1px 2px 1px #436b16;  
+   /* filter: dropshadow(color=#2e5900, offx=1, offy=1);*/
+}
+
+ 
+.topmenu li {
+   overflow: hidden;
+   position: relative;
+   float: left;
+   display: block;
+   width: auto;
+}
+
+.topmenu ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+}
+
+.menubutton {
+    color:#ffffff;
+    margin-top:-4px;
+    padding-bottom:5px;
+    padding-left:10px;
+}
+
+.topmenupanel {
+    margin-top: -3px;
+}
+
+
+/*top*/
+/*.roundedtop {
+  -webkit-border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px;    
+}
+
+.top {
+    background-color:#0b5e82; #86ad16;
+    margin:0 auto;
+    max-width:960px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    
+}
+
+.topmenu {
+    background-color:#072735; 
+    margin-left:-10px; 
+    width:960px;
+}
+
+
+.topmenu a.current {
+    background: none repeat scroll 0 0 #036fab; #0C7D0C;
+}
+
+.topmenu a {
+   width: auto;
+   padding: 12px 10px;
+   border-right: none;
+   border-right: 1px solid #0b5e82;
+   color: #FFFFFF;
+   display: block;
+   font-family: "Arial",sans-serif;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   text-shadow: 1px 2px 1px #436b16; 
+    filter: dropshadow(color=#2e5900, offx=1, offy=1);
+}
+
+ 
+.topmenu li {
+   overflow: hidden;
+   position: relative;
+   float: left;
+   display: block;
+   width: auto;
+}
+
+.topmenu ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+}
+
+.menubutton {
+    color:#ffffff;
+    margin-top:-4px;
+    padding-bottom:5px;
+    padding-left:10px;
+}*/
+
+.whitetext {
+    color: #FFFFFF;
+    font-weight: normal;
+    font-family: "Arial",sans-serif;
+    font-size: 14px;
+}
+
+.noborder {
+    border-style: none;
+}
+
+.logonrm {   
+    margin-right: 20px;
+    float: right;
+    border-style: none;
+}
+
+/*main*/
+
+.main {
+    background-color:#ffffff;
+    margin:0 auto;
+    max-width:960px; 
+    padding:30px 0 30px 0;
+}
+ 
+.imgswitch {
+    width: 960px;
+    /*padding-top: -5px;*/
+    /*margin-bottom: -5px;*/ 
+}
+   
+
+ 
+.sectionstyle1 {
+    width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sectionstyle2 {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.departmentUrl {
+    text-decoration: none; 
+    color: #8B8786; 
+    font-size: 12px; 
+}
+
+
+.radio:first-child:after {
+    content: "Your content";
+    color: #FF0000;
+}
+
+a {
+    color: #000000;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+}
+
+.header {
+    font-size: 20px;
+    margin-top:10px;
+    margin-bottom: 30px;
+    color: #5e5e5e; 
+    font-family: "Arial",sans-serif;
+}
+
+
+.headertitle {
+    font-size: 46px;
+    color: #FFFFFF;
+    text-align: left;
+    margin-left: 20px;
+    font-family:   serif; 
+}
+
+
+
+
+.maintext {
+    font-size: 24px;
+    font-family: "Arial",sans-serif;
+    font-weight: bold;
+}
+
+ 
+
+.unactiveTab {
+    color: #000000;
+    font-family: "Arial",sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+
+.activeTab { 
+    background-color: #c2dfef; 
+    text-decoration: underline; 
+    font-family: "Arial",sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+.breadcrumbpanel {
+    width: 930px; 
+    margin-top: -5px;   
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+
+
+.ui-breadcrumb {
+  padding-top: 30px;
+  margin-top: -2px;
+  margin-bottom: -2px;
+}
+
+
+.ui-breadcrumb ul li a {   
+    float: left; 
+    margin-top: 0; 
+    padding-right: 2px;
+    position: relative;
+    font-size: 11px; 
+    text-decoration: none;
+}
+
+ 
+
+
+
+.ui-breadcrumb ul li {   
+    float: left; 
+    margin-top: 0; 
+    padding-right: 2px;
+    position: relative;
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+
+.ui-breadcrumb ul li.first a { 
+    background-image: none;
+    text-indent: 10px;
+    display: block;  
+    width: 30px;
+    margin-top: 0; 
+    overflow: hidden;
+    position: relative; 
+    background: transparent;
+}
+
+.ui-widget-header {
+     background:  #FFFFFF;
+     border: none;
+}
+
+
+ 
+
+
+
+.collectionpanel {
+    width: 600px; 
+    margin: auto; 
+    margin-bottom: 40px;
+}
+
+
+.page2Panel {
+    width: 600px; 
+    margin: auto; 
+    margin-bottom: 40px;
+}
+
+
+.defaulttext {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+.collectionlistradiofont {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+.smalltext {
+    font-size: 11px;
+    font-family: "Arial",sans-serif;
+}
+
+
+.contactfieldstext {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+.noupdate {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+ 
+.taxasampletext.ui-widget-content { 
+    border: none !important;
+    font-size: 12px !important;
+    font-family:  Arial,sans-serif !important; 
+}
+
+.defaultboldtext {
+    font-weight: bold;
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+.subheader{
+    font-weight: bold;
+}
+        
+.text {
+    font-family: "Arial",sans-serif;
+    color: #424242; 
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+        
+.textPaddingLeft {
+    font-family: "Arial",sans-serif;
+    color: #424242; 
+    font-size: 12px;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+ 
+
+.boldtext {
+    font-family: "Arial",sans-serif;
+    color: #424242; 
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.italictext {
+    font-family: "Arial",sans-serif;
+    color: #424242; 
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+
+
+
+
+.subtitle {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Arial",sans-serif;
+}
+
+.subsubtitle {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "Arial",sans-serif;
+}
+
+ 
+.backtofomrlink {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+    float: right;
+    width: 200px;
+    text-align: right;
+    padding-right: 20px;
+} 
+
+.subheader2 {
+    font-style: italic;
+}
+
+.dnatext{
+    font-size: 11px;
+    color: lightsteelblue;
+    width: 450px;
+    word-wrap: break-word;
+    font-family:monospace;
+}
+
+.imgtext{
+    font-size: 12px;
+}
+
+
+
+
+
+.menyrad {
+/* -- */
+}
+
+
+.images {  
+    border: none;  
+}
+
+.languageimg {  
+    border: none;   
+}
+ 
+/*foot*/
+#foot {
+    /*position: absoulte;*/
+    bottom: 0;
+    height: 125px;
+}
+
+.footstyle{
+    background-color:#686868;
+    margin:0 auto;
+    max-width:940px;
+    padding-bottom:20px;
+    padding-left:10px;
+    padding-right:10px;
+    -webkit-border-radius: 0px 0px 15px 15px;
+    border-radius: 0px 0px 15px 15px; 
+    float: left;
+    width: 100%;
+}
+
+.textfoot{ 
+    font-size: 10px;
+    color:#ffffff;
+    font-family: "Arial",sans-serif;   
+}
+
+
+
+
+
+
+
+.aligntop {
+    vertical-align: top;
+}
+
+.alignBottom {
+    vertical-align: bottom;
+}
+
+.col1 {
+    vertical-align:bottom;
+    width: 450px;
+}
+
+
+#map_canvas {
+    width:395px;  
+    overflow:hidden; 
+    float: left
+}
+#map_canvas svg {
+     margin-left: -200px;
+    margin-right: 350px;   
+    overflow: hidden;
+} 
+
+.ui-tabs-nav {
+    font-size: 11px !important; 
+} 
+ 
+ 
+
+.ui-tabs .ui-tabs-panel {
+    border: none !important;
+    padding: 0px 0px 0px 0px; 
+    font-size: 11px;
+} 
+
+.ui-widget-content { 
+    border: none !important;
+    font-size: 12px !important;
+    font-family:  Arial,sans-serif !important; 
+}
+
+ 
+ 
+.uploadfilecol1 {
+    width: 60%;
+}
+
+.uploadfilecol2 {
+    width: 30%;
+    float: right;
+}
+
+
+
+.ui-growl {
+    right: 40%;
+    top: 250px;
+    font-size: 12px;
+}
+
+.progresscol1 {
+    padding-left: 10px;
+    width: 40px;
+}
+
+.progresscol2 {
+    width: 200px;
+}
+
+ 
+
+.subtablecol {
+    width: 70px;
+}
+
+/*.hide-column-names table thead tr {
+    display: none !important; 
+}
+
+
+
+ datatable
+.ui-datatable * {
+    border : 0px !important;   
+    padding: 0px !important;  
+    padding-bottom: 2px !important;
+    padding-top: 2px !important;
+}
+
+
+.ui-datatable table thead tr{
+    display: none !important; 
+} 
+
+.ui-datatable table thead tr {
+    display: none !important; 
+} 
+
+
+
+
+
+
+ for safari 
+\
+.ui-datatable * {
+    border : 0px !important;   
+    padding: 0px !important;  
+    padding-bottom: 2px !important;
+    padding-top: 2px !important;
+}
+
+
+ 
+
+\
+.ui-datatable table thead tr {
+    display: none !important; 
+} 
+
+
+\
+.resulttbl {
+    font-size: 12px;
+}
+
+ for safari */
+
+ 
+
+.greentext {
+    color: #33CC00;
+}
+
+.redtext {
+    color: #D00000;
+}
+ 
+.resulttextfont1 {
+    font-family:  courier;
+    font-size: 7px; 
+    font-size: 10px !important;  
+}
+
+
+
+.ui-button-text {
+    background-color:  #0b5e82;
+}
+.ui-button-text-only .ui-button-text {
+    font-size: 9pt; 
+    color: #FFFFFF;
+}
+
+.originalbutton .ui-button-text {
+    background:  #D2CFCF;
+}
+
+
+ 
+
+.largebutton .ui-button-text {
+    background-color: #0b5e82;
+    width: 150px;
+}
+
+
+.ui-radiobutton .ui-radiobutton-box { 
+    bottom: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+ 
+.ui-icon-bullet {
+    background-position: -83px -146px !important;
+}
+
+
+
+
+
+.ui-datatable .ui-row-editor .ui-icon-pencil { 
+    background: url('../resources/images/edit_icon.gif') no-repeat center !important; 
+    background-position: center center !important; 
+    height: 20px;
+    margin-top: -3px;
+}
+ 
+
+.ui-datatable .ui-row-editor .ui-icon-check { 
+    background: url('../resources/images/Checkmark16x16.png') no-repeat center;  
+}
+
+
+.ui-datatable .ui-row-editor .ui-icon-close {
+    margin-left: 10px;
+    background: transparent url('../resources/images/delete.png') no-repeat center; 
+}
+
+
+.samplespanelodd {
+    font-size: 12px; 
+    font-family:  Arial,sans-serif; 
+    background-color: #EDF6FA;
+    width: 690px;
+}
+
+.samplespaneleven {
+    font-size: 12px; 
+    font-family:  Arial,sans-serif; 
+    background-color: #FFFFFF; 
+    width: 690px;
+}
+
+.column1 {
+    width: 150px;
+}
+
+.column2 {
+    width: 500px;
+}
+
+.column3 {
+    width: 30px;
+    float: right; 
+}
+
+.column4 {
+    width: 230px;
+}
+
+.column5 {
+    width: 10px;
+}
+
+.column6 {
+    width: 300px;
+}
+
+
+.contactCol1 {
+    width: 53%; 
+    float:left;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.contactCol2 {
+    margin-left: 25%;
+}
+
+.ui-fileupload-buttonbar { 
+    font-size: 12px !important;
+}
+ 
+.ui-datepicker {
+    font-size: 12px !important;
+} 
+
+
+#wrap { 
+   height:310px;
+   width:480px; 
+}
+
+
+ui-selectonemenu .ui-selectonemenu-label {
+    font-size: 11px !important;
+    font-family:  Arial,sans-serif !important; 
+}
+
+.ui-selectonemenu-item .ui-selectonemenu-list-item {
+    font-size: 11px !important;
+    font-family:  Arial,sans-serif !important; 
+}
+
+
+
+
+
+.ui-tooltip {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 #ddd;
+    -moz-box-shadow: 0 0 10px 0 #ddd;
+    -webkit-box-shadow: 0 0 10px 0 #ddd;
+    color: #666;
+    background: #EDF6FA;
+}
+
+
+.ui-dialog-title-dialog {
+    font-size: 24px;
+    font-weight: bold;
+    font-family:  Arial,sans-serif;
+    color: #FFFFFF;
+}
+
+
+.ui-dialog-titlebar  {
+    background-color: #036fab;
+    font-size: 18px;
+    font-weight: bold;
+    font-family:  Arial,sans-serif;
+    color: #FFFFFF;
+}
+
+
+ 
+ul {
+    list-style-type: disc;
+    /*list-style: square url('../resources/images/bullet_square.png');*/
+}
+ 
+
+/** ##################################### data table ################################ **/  
+.sampletable.ui-datatable table thead tr {
+    display: none !important;
+    border: none !important;
+} 
+
+
+ 
+.table.customradio  th, table.customradio td {
+    padding: 3px;
+} 

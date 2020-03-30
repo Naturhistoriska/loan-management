@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:p="http://primefaces.org/ui"  > 
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >   
+        <h:panelGroup styleClass="main" layout="block" id="mainpanel" >  
+          <h:panelGroup id="aboutPanel" layout="block" styleClass="sectionstyle1" >     
+            <h:panelGroup  layout="block" >
+              <p:outputLabel value="#{contact.contactUs}"  styleClass="maintext" />  
+            </h:panelGroup>  
+            <br /><br />
+            <h:panelGroup styleClass="subtitle"> 
+              #{contact.subtitle1} <br /> 
+              #{contact.subtitle2}
+            </h:panelGroup> 
+            <p:spacer width="800" height="40" />
+            <h:panelGroup styleClass="subtitle"> 
+              #{contact.contactInfo}<br /> 
+            </h:panelGroup>
+            <h:panelGroup styleClass="text">  
+              #{contact.revanDepartment} 
+            </h:panelGroup> 
+            <p:spacer width="800" height="30" />
+            <h:panelGroup styleClass="defaulttext"> 
+              #{contact.loanForm}<br /> 
+              #{contact.nrmName}<br />
+              #{contact.poBox}<br />
+              #{contact.zip}<br />
+              #{contact.country} 
+            </h:panelGroup>
+            <p:spacer width="800" height="30" />   
+            <h:panelGrid columns="2" styleClass="defaulttext">
+              <p:outputLabel  value="#{contact.phone}"  style="font-weight: bold; padding-right: 10px; " />  
+              <p:outputLabel value="#{contact.phoneNumber}"  />   
+              <p:outputLabel style="font-weight: bold; padding-right: 10px; ">
+                #{contact.email}
+              </p:outputLabel> 
+              <h:outputLink value="mailto:#{contact.emailAddress}" >#{contact.emailAddress}</h:outputLink>
+            </h:panelGrid>
+
+          </h:panelGroup>
+        </h:panelGroup> 
+      </ui:define>
+
+    </ui:composition>
+  </body>
+</html>

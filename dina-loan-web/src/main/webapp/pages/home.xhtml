@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:p="http://primefaces.org/ui"   >
+
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >   
+        <h:form id="onlineform" enctype="multipart/form-data" prependId="false">   
+          <h:panelGroup id="openWindow">
+            <h:outputScript rendered="#{languages.openGbif}">
+              window.open('#{onlineForm.gbifUrl}', '_blank')
+            </h:outputScript>
+          </h:panelGroup> 
+          
+          <h:panelGroup styleClass="main" layout="block" id="mainpanel" >   
+            <!--  home page -->
+            <h:panelGroup id="homepanel">
+              <h:panelGroup layout="block" id="homepanel1" rendered="#{onlineForm.section == 1}" styleClass="sectionstyle1" >
+                <h:panelGroup layout="block" >
+                  <p:outputLabel value="#{msg.homepagetitle}" styleClass="maintext" />  
+                </h:panelGroup>
+                <p:spacer width="800" height="30" />
+                <h:panelGroup layout="block" >
+                  <p:outputLabel value="#{msg.homepagetext1}" styleClass="subsubtitle" />  
+                </h:panelGroup>
+                <p:spacer width="800" height="30" />
+                <!-- statistic page include -->
+                <ui:include src="#{statistic.statisticViewPath}" />   
+                <p:spacer width="800" height="30" />
+                <h:panelGroup layout="block" style=" text-align: center;"> 
+                  <p:commandButton value="#{msg.gotoonlineform}" actionListener="#{onlineForm.goToDepartments}"  
+                                   update="collectionpanel homepanel"  global="false" process="@this" /> 
+                </h:panelGroup> 
+              </h:panelGroup>
+            </h:panelGroup>
+
+            <!-- select collection -->
+            <ui:include src="/pages/departments.xhtml" />
+ 
+            <!-- page 1 -->
+            <ui:include src="/pages/purpose.xhtml" />
+ 
+            <!-- page 2 -->
+            <ui:include src="/pages/page2.xhtml" />
+ 
+            <!-- page 3 -->
+            <ui:include src="/pages/page3.xhtml" />
+ 
+            <!-- page 4  -->
+            <ui:include src="/pages/page4.xhtml" />  
+
+            <!-- page 5 -->
+            <ui:include src="/pages/page5.xhtml" />  
+ 
+            <!-- page 6 -->
+            <ui:include src="/pages/page6.xhtml" />  
+ 
+            <!-- page 7 -->
+            <ui:include src="/pages/page7.xhtml" />  
+ 
+            <!-- page 8 -->
+            <ui:include src="/pages/page8.xhtml" />  
+  
+            <!-- last page -->
+            <ui:include src="/pages/summarypage.xhtml" /> 
+            
+            <!-- confirmation page -->
+            <ui:include src="/pages/comfirmationpage.xhtml" />
+            
+            <!-- dialogs page include -->
+            <ui:include src="/pages/dialogview.xhtml" />  
+          </h:panelGroup> 
+        </h:form>
+
+      </ui:define>
+    </ui:composition>
+  </body>
+</html> 

@@ -1,0 +1,136 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>
+      <h:panelGroup id="page3panel">
+        <h:panelGroup layout="block" id="page3panel1" rendered="#{onlineForm.step == 4}" styleClass="sectionstyle1"  >
+          <!-- page 3 section 1 -->
+          <h:panelGroup layout="block" id="page31panel" rendered="#{onlineForm.numOfPages == 9}"   >   
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.fomr12title}" styleClass="maintext" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="30" />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.form12title1}" styleClass="subtitle" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="30" />
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.page3subtitle}" styleClass="subtitle" /> 
+            </h:panelGroup>
+            <p:spacer width="900" height="30" />
+            <h:panelGroup style="padding: 45px;">
+              <p:inputTextarea id="descLoanPage3" value="#{onlineForm.descriptionOfLoan}" 
+                               rows="7" cols="110" styleClass="contactfieldstext" >  
+                <p:ajax event="blur" listener="#{onlineForm.handleProjectDescription()}" 
+                        update="projectDescriptionButtonPanel" global="false" />
+              </p:inputTextarea>
+            </h:panelGroup>
+ 
+            <h:panelGroup style="float: right; " layout="block"  id="uploadfilePanel" >
+              <h:panelGroup layout="block" style="width: 300px; float: left; ">
+                <p:outputLabel value="#{msg.optional}:" styleClass="text" /> 
+                <br />
+                <p:outputLabel value="#{msg.attachfile}:" styleClass="text" />  
+                <h:panelGrid cellpadding="0" cellspacing="0" >
+                  <p:fileUpload fileUploadListener="#{onlineForm.handleFileUpload}" 
+                                mode="advanced"   label="#{msg.uploadfile}"  
+                                invalidSizeMessage="#{msg.invalidfilesiz}"
+                                auto="true" styleClass="originalbutton" sizeLimit="5000000" 
+                                update=":onlineform:uploadfilePanel projectDescriptionButtonPanel" />  
+                </h:panelGrid>  
+                <h:panelGrid  id="uploadedFilePanel" cellpadding="0" cellspacing="0" style="margin-top: -20px; " rendered="#{not empty onlineForm.scPurposeFileName}">
+                  <p:panel style="border: none; font-size: 12px; " > 
+                    <p:outputLabel value="#{onlineForm.scPurposeFileName}" /> 
+                    <p:spacer width="10" />
+                    <p:commandLink actionListener="#{onlineForm.removefile(onlineForm.scPurposeFileName)}" 
+                                   process="uploadfilePanel" 
+                                   title="#{msg.btnremovefile}" 
+                                   update="uploadfilePanel projectDescriptionButtonPanel" 
+                                   global="false"  > 
+                      <h:graphicImage name="images/button_remove.gif" styleClass="images" /> 
+                    </p:commandLink> 
+                  </p:panel>    
+                </h:panelGrid>
+              </h:panelGroup>  
+            </h:panelGroup>   
+            <p:spacer width="900" height="60" />
+            <h:panelGroup layout="block" style="width: 150px; float: right;" id="projectDescriptionButtonPanel"> 
+              <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage2}"  global="false" process="@this"
+                               update="page3panel page2panel " />  
+              <p:spacer width="10" />
+              <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage4}" process="page3panel" 
+                               disabled="#{!onlineForm.isProjectDescriptionSet}"
+                               update="page3panel page4panel " global="false" />  
+            </h:panelGroup>  
+            <p:spacer width="900" height="30" />    
+          </h:panelGroup> 
+          <!-- page 3 section 2 -->     
+          <h:panelGroup layout="block" id="page32panel" rendered="#{onlineForm.numOfPages == 7}"   >   
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.edpage3title}" styleClass="maintext" /> 
+            </h:panelGroup>
+            <br />
+            <br /> 
+            <p:panel header="#{msg.appropriatelabel}" >
+              <h:selectOneRadio value="#{onlineForm.educationPurpose}" layout="pageDirection" styleClass="collectionlistradiofont">
+                <f:selectItem itemValue="exhibition" itemLabel="#{msg.exhibitionslbl}" />
+                <f:selectItem itemValue="education" itemLabel="#{msg.educationlbl}" />   
+                <p:ajax event="change"  listener="#{onlineForm.purposeCheckChanged()}"  update="page32buttonpanel " global="false" />  
+              </h:selectOneRadio>  
+            </p:panel>    
+            <p:spacer width="900" height="50" />
+            <h:panelGroup layout="block" style="width: 150px; float: right;" id="page32buttonpanel"> 
+              <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage2}" process="@this"  
+                               update="page3panel page2panel " global="false" />  
+              <p:spacer width="10" />
+              <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage4}" global="false" process="page3panel"
+                               update="page3panel page4panel "   disabled="#{!onlineForm.isPurposeChecked}" /> 
+            </h:panelGroup>  
+            <p:spacer width="900" height="30" /> 
+          </h:panelGroup>
+
+          <!-- page 3 section 3 -->
+          <h:panelGroup layout="block" id="page33panel" rendered="#{onlineForm.numOfPages == 6}"  styleClass="page2Panel"  >       
+            <h:panelGroup layout="block" >
+              <p:outputLabel value="#{msg.otpage3title}" styleClass="maintext" /> 
+            </h:panelGroup> 
+            <br />
+            <br /> 
+            <p:panel> 
+              <h:panelGrid columns="2" >
+                <h:selectOneRadio value="#{onlineForm.page3requestType}" layout="pageDirection" id="page33radio" styleClass="customradio" >
+                  <f:selectItem itemValue="Physical" itemLabel="#{msg.physical}"  />
+                  <f:selectItem itemValue="Photo" itemLabel="#{msg.photo}" />	 
+                </h:selectOneRadio> 
+
+                <h:panelGroup layout="block">
+                  <p:graphicImage value="/resources/images/icon_question_mark.jpg" styleClass="languageimg"  alt="#{msg.helptext}" id="page33radio1" />  
+                  <br />
+                  <p:graphicImage value="/resources/images/icon_question_mark.jpg" styleClass="languageimg" alt="#{msg.helptext}"  id="page33radio2" />  
+                </h:panelGroup>
+
+                <p:tooltip for="page33radio1" value="#{msg.physicalrequesttip}" 
+                           showEffect="fade" hideEffect="fade" style="font-size: 12px; white-space: normal; width: 250px; "/>  
+
+                <p:tooltip for="page33radio2" value="#{msg.photorequesttip}" 
+                           showEffect="fade" hideEffect="fade" style="font-size: 12px; white-space: normal; width: 250px; "/>  
+              </h:panelGrid> 
+            </p:panel>
+            <p:spacer width="900" height="50" />
+            <h:panelGroup layout="block" style="width: 150px; float: right;"> 
+              <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage2}" process="@this"  
+                               update="page3panel page2panel " global="false" />  
+              <p:spacer width="10" />
+              <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage4}" process="page3panel"
+                               update="page3panel page4panel " global="false"   /> 
+            </h:panelGroup>  
+            <p:spacer width="900" height="30" />
+          </h:panelGroup> 
+        </h:panelGroup> 
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

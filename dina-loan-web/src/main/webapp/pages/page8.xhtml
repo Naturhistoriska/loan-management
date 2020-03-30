@@ -1,0 +1,256 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"   
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition> 
+      <h:panelGroup id="page8panel" > 
+        <h:panelGroup layout="block"  id="page8panel1" rendered="#{onlineForm.step == 9}"  styleClass="sectionstyle2"  >  
+          <p:messages id="page8panelmsg" autoUpdate="false"   showDetail="true" showSummary="false" closable="true"   showIcon="true"  />
+
+          <h:panelGrid columns="2"  columnClasses="col1,alignBottom" id="page8contactpanel">
+            <p:outputLabel value="#{msg.contactdetailtitle}:" style="font-size: 20px; font-family: Arial,sans-serif; font-weight: bold;" />  
+
+            <h:panelGroup rendered="#{onlineForm.numOfPages == 9}" id="contactlinksPanel"> 
+              <h:panelGroup rendered="#{onlineForm.isPhysical}"> 
+                <p:outputLabel value="#{msg.page8label1}" styleClass="text" /> 
+                <p:commandLink value="#{msg.primaryborrower}:" action="#{onlineForm.addPrimaryContact}" 
+                               update="contact2Panel contactlinksPanel" 
+                               styleClass="contactfieldstext" global="false" process="@this" />   
+                <br /> 
+                <h:panelGrid cellpadding="0" cellspacing="0" rendered="#{!onlineForm.isPhd}" id="removeContactlinkPanel">
+                  <p:commandLink value="#{msg.removeprimaryborrow}:" action="#{onlineForm.removePrimaryContact()}"  
+                                 update="contact2Panel contactlinksPanel"  
+                                 rendered="#{onlineForm.hasPrimaryContact}" styleClass="contactfieldstext"  global="false" process="@this" disabled="#{onlineForm.isPhd} "/> 
+                </h:panelGrid> 
+              </h:panelGroup>  
+              <h:panelGroup rendered="#{!onlineForm.isPhysical}">
+                <p:spacer width="10" />
+              </h:panelGroup>
+            </h:panelGroup> 
+            <h:panelGroup rendered="#{onlineForm.numOfPages != 9}">
+              <p:spacer width="10" />
+            </h:panelGroup>
+
+            <h:panelGrid columns="3" id="contact1Panel" style=" font-size:  11px; font-family: Arial,sans-serif;">
+              <p:outputLabel value="#{msg.title}"  /> 
+              <p:selectOneMenu value="#{onlineForm.contact1.title}" id="contact1title" style="width:185px; font-size:  11px; font-family: Arial,sans-serif;">  
+                <f:selectItem itemValue="#{msg.mr}" itemLabel="#{msg.mr}" />
+                <f:selectItem itemValue="#{msg.mrs}" itemLabel="#{msg.mrs}" />
+                <f:selectItem itemValue="#{msg.ms}" itemLabel="#{msg.ms}" />
+                <f:selectItem itemValue="#{msg.miss}" itemLabel="#{msg.miss}" />
+                <f:selectItem itemValue="#{msg.dr}" itemLabel="#{msg.dr}" />
+                <f:selectItem itemValue="#{msg.prof}" itemLabel="#{msg.prof}" />
+                <f:selectItem itemValue="#{msg.docent}" itemLabel="#{msg.docent}" />
+                <f:selectItem itemValue="#{msg.assprof}" itemLabel="#{msg.assprof}" />
+                <f:selectItem itemValue="#{msg.postdoc}" itemLabel="#{msg.postdoc}" />
+                <f:selectItem itemValue="#{msg.phd}" itemLabel="#{msg.phd}" /> 
+                <f:selectItem itemValue="#{msg.master}" itemLabel="#{msg.master}" /> 
+                <p:ajax listener="#{onlineForm.primaryContactTitleChanged}" update="contact2Panel contactlinksPanel" global="false" process="@this,contact1title"/>
+              </p:selectOneMenu>   
+              <p:spacer width="5" />
+
+              <h:outputLabel for="contact1firstname" value="#{msg.firstname}:" />
+              <p:inputText id="contact1firstname" value="#{onlineForm.contact1.firstname}" requiredMessage="#{msg.errmsgfirstname}"
+                           size="30" required="true"   styleClass="contactfieldstext" >   
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1firstname"  />
+              </p:inputText>  
+              <p:message for="contact1firstname" display="icon"   />
+
+              <h:outputLabel for="contact1lastname" value="#{msg.lastname}:" />
+              <p:inputText id="contact1lastname" value="#{onlineForm.contact1.lastname}" size="30" required="true" 
+                           requiredMessage="#{msg.errmsglastname}" styleClass="contactfieldstext" >   
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1lastname"   />
+              </p:inputText> 
+              <p:message for="contact1lastname"  display="icon"  />
+
+              <h:outputLabel for="contact1institution" value="#{msg.institution}:" />
+              <p:inputText id="contact1institution" value="#{onlineForm.contact1.institution}" size="30" required="true" 
+                           requiredMessage="#{msg.errmsginstitution}" styleClass="contactfieldstext" >    
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1institution"  />
+              </p:inputText> 
+              <p:message for="contact1institution" display="icon"  />
+
+              <h:outputLabel for="contact1detartment" value="#{msg.department}:" />
+              <p:inputText id="contact1detartment" value="#{onlineForm.contact1.department}" size="30" styleClass="contactfieldstext"  >  
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1detartment"  />
+              </p:inputText> 
+              <p:spacer width="5" />
+
+              <h:outputLabel for="contact1address" value="#{msg.address}:" />
+              <p:inputText id="contact1address" value="#{onlineForm.contact1.address.address}" size="30" requiredMessage="#{msg.errmsgaddress}" 
+                           required="true" styleClass="contactfieldstext" >  
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1address"   />
+              </p:inputText> 
+              <p:message for="contact1address" display="icon"   /> 
+              <h:outputLabel for="contact1city" value="#{msg.city}:" />
+              <p:inputText id="contact1city" value="#{onlineForm.contact1.address.city}" size="30" required="true" 
+                           requiredMessage="#{msg.errmsgcity}"  styleClass="contactfieldstext" >   
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1city"  />
+              </p:inputText> 
+              <p:message for="contact1city" display="icon"   />  
+              <h:outputLabel for="contact1state" value="#{msg.state}:" />
+              <p:inputText id="contact1state"  value="#{onlineForm.contact1.address.state}" size="30" styleClass="contactfieldstext"  >     
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1state"  />
+              </p:inputText> 
+              <p:spacer width="5" /> 
+              <h:outputLabel for="contact1zip" value="#{msg.zip}:" /> 
+              <p:inputText id="contact1zip" value="#{onlineForm.contact1.address.zip}" styleClass="contactfieldstext" 
+                           required="true" requiredMessage="#{msg.errmsgzip}"  > 
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1zip" />
+              </p:inputText> 
+              <p:message for="contact1zip" display="icon"  />  
+              <h:outputLabel for="countrySelection1" value="#{msg.country}:" />  
+              <p:selectOneMenu id="countrySelection1" value="#{onlineForm.contact1.address.country}" 
+                               required="true" requiredMessage="#{msg.errmsgcountry}"  
+                               style="width:185px; font-size:  11px; font-family: Arial,sans-serif;"> 
+                <f:selectItems value="#{onlineForm.countryList}"    />    
+              </p:selectOneMenu>
+              <p:message for="countrySelection1" display="icon"  />  
+              <h:outputLabel for="contact1email" value="#{msg.email}:" />
+              <p:inputText id="contact1email" required="true"   size="30"
+                           requiredMessage="#{msg.errmsgemail}"
+                           validatorMessage="#{msg.errmsgemailvalidation}"  styleClass="contactfieldstext" 
+                           value="#{onlineForm.contact1.email}">  
+                <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />   
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1email" />
+              </p:inputText> 
+              <p:message for="contact1email"  display="icon"  />
+
+              <h:outputLabel for="contact1phone" value="#{msg.phone}:" />
+              <p:inputText id="contact1phone" value="#{onlineForm.contact1.phone}" size="30" required="true" 
+                           requiredMessage="#{msg.errmsgphone}" 
+                           validatorMessage="#{msg.invalidphone}" 
+                           styleClass="contactfieldstext"  >    
+                <f:validateRegex pattern="^[+ ]?([0-9]+([- .]+)?)*" />  
+                <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact1phone" />
+              </p:inputText>  
+              <p:message for="contact1phone" display="icon"  />  
+            </h:panelGrid>  
+
+            <h:panelGroup  id="contact2Panel" style=" font-size:  11px; font-family: Arial,sans-serif;">
+              <h:panelGrid columns="3" rendered="#{onlineForm.hasPrimaryContact}" >
+                <p:outputLabel value="#{msg.title}" />  
+                <p:selectOneMenu value="#{onlineForm.contact2.title}" id="contact2title"  style="width:185px; font-size:  11px; font-family: Arial,sans-serif;">   
+                  <f:selectItem itemValue="#{msg.mr}" itemLabel="#{msg.mr}" />
+                  <f:selectItem itemValue="#{msg.mrs}" itemLabel="#{msg.mrs}" />
+                  <f:selectItem itemValue="#{msg.ms}" itemLabel="#{msg.ms}" />
+                  <f:selectItem itemValue="#{msg.miss}" itemLabel="#{msg.miss}" />
+                  <f:selectItem itemValue="#{msg.dr}" itemLabel="#{msg.dr}" />
+                  <f:selectItem itemValue="#{msg.prof}" itemLabel="#{msg.prof}" />
+                  <f:selectItem itemValue="#{msg.docent}" itemLabel="#{msg.docent}" />
+                  <f:selectItem itemValue="#{msg.assprof}" itemLabel="#{msg.assprof}" />
+                  <f:selectItem itemValue="#{msg.postdoc}" itemLabel="#{msg.postdoc}" />  
+                  <p:ajax event="change" listener="#{onlineForm.saveText()}"   global="false" process="@this,contact2title"  /> 
+                </p:selectOneMenu>   
+                <p:spacer width="5" /> 
+
+                <h:outputLabel for="contact2firstname" value="#{msg.firstname}:" />
+                <p:inputText id="contact2firstname" value="#{onlineForm.contact2.firstname}" requiredMessage="#{msg.errmsgfirstname}" 
+                             size="30" required="#{onlineForm.hasPrimaryContact}" styleClass="contactfieldstext" > 
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2firstname"   />
+                </p:inputText> 
+                <p:message for="contact2firstname" display="icon" />
+
+                <h:outputLabel for="contact2lastname" value="#{msg.lastname}:" />
+                <p:inputText id="contact2lastname" value="#{onlineForm.contact2.lastname}" size="30" required="#{onlineForm.hasPrimaryContact}" 
+                             requiredMessage="#{msg.errmsglastname}" styleClass="contactfieldstext" >  
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2lastname"  />
+                </p:inputText> 
+                <p:message for="contact2lastname" display="icon"  />
+
+                <h:outputLabel for="contact2institution" value="#{msg.institution}:" />
+                <p:inputText id="contact2institution" value="#{onlineForm.contact2.institution}" size="30" required="#{onlineForm.hasPrimaryContact}" 
+                             requiredMessage="#{msg.errmsginstitution}" styleClass="contactfieldstext" >   
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2institution" />
+                </p:inputText> 
+                <p:message for="contact2institution" display="icon"  />
+
+                <h:outputLabel for="contact2detartment" value="#{msg.department}:" />
+                <p:inputText id="contact2detartment" value="#{onlineForm.contact2.department}" size="30" styleClass="contactfieldstext" >  
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2detartment" />
+                </p:inputText> 
+                <p:spacer width="5" /> 
+                <h:outputLabel for="contact2address" value="#{msg.address}:" />
+                <p:inputText id="contact2address" value="#{onlineForm.contact2.address.address}" size="30" requiredMessage="#{msg.errmsgaddress}" 
+                             required="#{onlineForm.hasPrimaryContact}" styleClass="contactfieldstext" >   
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2address" />
+                </p:inputText> 
+                <p:message for="contact2address"  display="icon"  />
+
+                <h:outputLabel for="contact2city" value="#{msg.city}:" />
+                <p:inputText id="contact2city" value="#{onlineForm.contact2.address.city}" size="30" required="#{onlineForm.hasPrimaryContact}" 
+                             requiredMessage="#{msg.errmsgcity}"  styleClass="contactfieldstext"  >   
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2city" />
+                </p:inputText> 
+                <p:message for="contact2city"  display="icon"  /> 
+
+                <h:outputLabel for="contact2state" value="#{msg.state}:" />
+                <p:inputText id="contact2state"  value="#{onlineForm.contact2.address.state}" size="30" styleClass="contactfieldstext" >    
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2state" />
+                </p:inputText> 
+                <p:spacer width="5" /> 
+                <h:outputLabel for="contact2zip" value="#{msg.zip}:" /> 
+                <p:inputText id="contact2zip" value="#{onlineForm.contact2.address.zip}"  styleClass="contactfieldstext" 
+                             required="#{onlineForm.hasPrimaryContact}"  requiredMessage="#{msg.errmsgzip}"   >
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2zip" />
+                </p:inputText> 
+                <p:message for="contact2zip" display="icon"  />   
+                <h:outputLabel for="countrySelection2" value="#{msg.country}:" />  
+                <p:selectOneMenu id="countrySelection2" value="#{onlineForm.contact2.address.country}" required="#{onlineForm.hasPrimaryContact}"  
+                                 style="width:185px; font-size:  11px; font-family: Arial,sans-serif;"> 
+                  <f:selectItems value="#{onlineForm.countryList}"    />  
+                </p:selectOneMenu>
+                <p:message for="countrySelection2" display="icon"    />  
+                <h:outputLabel for="contact2email" value="#{msg.email}:" />
+                <p:inputText id="contact2email" required="#{onlineForm.hasPrimaryContact}"    size="30"
+                             requiredMessage="#{msg.errmsgemail}"
+                             validatorMessage="#{msg.errmsgemailvalidation}"  styleClass="contactfieldstext" 
+                             value="#{onlineForm.contact2.email}">  
+                  <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />    
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2email" /> 
+                </p:inputText> 
+                <p:message for="contact2email" display="icon"  />
+
+                <h:outputLabel for="contact2phone" value="#{msg.phone}:" />
+                <p:inputText id="contact2phone" value="#{onlineForm.contact2.phone}" size="30" required="#{onlineForm.hasPrimaryContact}" 
+                             requiredMessage="#{msg.errmsgphone}"
+                             validatorMessage="#{msg.invalidphone}"  styleClass="contactfieldstext" >  
+                  <f:validateRegex pattern="^[+ ]?([0-9]+([- .]+)?)*" />  
+                  <p:ajax event="blur"  listener="#{onlineForm.saveText()}" global="false" process="@this,contact2phone"/>
+                </p:inputText> 
+                <p:message for="contact2phone" display="icon"  />   
+              </h:panelGrid> 
+
+              <h:panelGroup rendered="#{onlineForm.numOfPages != 9}">
+                <p:spacer width="10" />
+              </h:panelGroup>
+            </h:panelGroup> 
+          </h:panelGrid> 
+          <p:spacer width="900" height="30" /> 
+          <!-- change made by Tobias request on Feb 1, 2016.  For photo request, primary borrower is not need -->
+          <h:panelGrid columns="3" columnClasses="aligntop,aligntop,aligntop" rendered="#{onlineForm.isPhysical}" >  
+            <h:selectBooleanCheckbox  value="#{onlineForm.isAgree}" > 
+              <p:ajax listener="#{onlineForm.onIsAgreeStatusChange}" update="page8buttonpanel" global="false" /> 
+            </h:selectBooleanCheckbox>  
+            <p:spacer width="5" /> 
+            <p:outputLabel value="#{msg.page8agreementcheck2}" styleClass="defaulttext"  /> 
+          </h:panelGrid> 
+          <h:panelGroup layout="block" style="width: 150px; float: right;  " id="page8buttonpanel">  
+            <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage7}" process="@this"  
+                             update="page4panel page5panel page7panel page8panel" global="false"   >  
+              <p:resetInput target=":onlineform:page8panel1" />
+            </p:commandButton>
+            <p:spacer width="10" />
+            <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage9}"  
+                             update="lastpagepanel page8panel policyDialogPanel destructivePolicyDialogPanel"  
+                             global="false" process="page8panel" disabled="#{!onlineForm.isAgree}" > 
+            </p:commandButton>
+          </h:panelGroup>  
+          <p:spacer width="900" height="30" />
+        </h:panelGroup>
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

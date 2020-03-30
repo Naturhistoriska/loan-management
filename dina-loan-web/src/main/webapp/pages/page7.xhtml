@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"    
+      xmlns:h="http://java.sun.com/jsf/html"    > 
+  <body>
+    <ui:composition>  
+      <h:panelGroup id="page7panel" >
+        <h:panelGroup layout="block" id="page7panel1" rendered="#{onlineForm.step == 8}" styleClass="sectionstyle1"  > 
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.page7title}" styleClass="maintext" /> 
+          </h:panelGroup> 
+          <p:spacer width="900" height="30" />
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.page7title2}" styleClass="boldtext" /> 
+            <p:outputLabel value="#{msg.page7title21}" styleClass="text" /> 
+          </h:panelGroup> 
+          <br />  
+          <h:panelGrid columns="2" columnClasses="column4,column6" >
+            <p:outputLabel value="#{msg.registnumber}" styleClass="defaulttext" />  
+            <p:inputText id="citesnum" value="#{onlineForm.citesNumber}" styleClass="defaulttext" size="50" 
+                         disabled="#{onlineForm.disableCITE}"/>  
+            <p:spacer width="5" /> 
+            <h:panelGrid columns="3">
+              <h:selectBooleanCheckbox  value="#{onlineForm.noCITE}" > 
+                <p:ajax listener="#{onlineForm.onCITESChanged}" update="citesnum" global="false"  />
+              </h:selectBooleanCheckbox>  
+              <p:spacer width="5" />
+              <p:outputLabel value="#{msg.nocites}" styleClass="defaulttext" /> 
+            </h:panelGrid> 
+          </h:panelGrid>
+          <p:spacer width="900" height="30" /> 
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.citesdesc1}" styleClass="text" /> 
+            <h:outputLink value="#{msg.citesdesc2}" target="_blank" > 
+              <h:outputText value="#{msg.citesdesc2}" style="color: #8B8786; font-style: normal; font-size: 12px; " /> 
+            </h:outputLink>  
+          </h:panelGroup>
+          <p:spacer width="900" height="30" />
+          <h:panelGroup layout="block" >
+            <p:outputLabel value="#{msg.page7title3}" styleClass="italictext" /> 
+          </h:panelGroup> 
+          <p:spacer width="900" height="40" />
+          <h:panelGroup layout="block" style="width: 150px; float: right;  ">  
+            <p:commandButton value="#{msg.back}" action="#{onlineForm.gotoPage6}" process="@this"  
+                             update="page7panel page6panel " global="false"  />  
+            <p:spacer width="10" />
+            <p:commandButton value="#{msg.next}" action="#{onlineForm.gotoPage8}" 
+                             update="page7panel page8panel " global="false" process="page7panel" />
+          </h:panelGroup> 
+          <p:spacer width="900" height="30" />
+        </h:panelGroup> 
+      </h:panelGroup>
+    </ui:composition>
+  </body>
+</html>

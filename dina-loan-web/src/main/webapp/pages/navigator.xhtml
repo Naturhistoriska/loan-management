@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" >
+  <body>
+    <ui:composition>    
+      <h:panelGrid styleClass="imgswitch" cellpadding="0" cellspacing="0" id="imgswitchPanel"  >
+        <p:graphicImage value="#{images.image}" styleClass="img"   /> 
+        <h:form id="breadcrumbForm">
+          <h:panelGrid rendered="#{navigate.isHomePage}" cellpadding="0" cellspacing="0" 
+                       style="width: 960px; background-color: #FFFFFF; margin-top: -5px">
+            <p:breadCrumb rendered="#{breadcrumb.navigationPathEnabled}"  >  
+              <p:menuitem value="#{breadcrumb.homeItem.value}" action="#{onlineForm.start()}" 
+                            update="@all"  global="false"  oncomplete="drawRegionsMap();"  >  
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+               
+              <p:menuitem value="#{breadcrumb.onlineFormItem.value}" action="#{onlineForm.navigateIndexOnlineForm}" 
+                          process="@this"
+                          disabled="#{breadcrumb.onlineFormItem.disabled}" styleClass="#{breadcrumb.onlineFormItem.style}" 
+                          update="@all" global="false" >
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>   
+              <p:menuitem value="#{breadcrumb.page1Item.value}" action="#{onlineForm.navigateIndexPage1}" 
+                          process="@this" rendered="#{breadcrumb.page1Item.rendered}"
+                          disabled="#{breadcrumb.page1Item.disabled}" styleClass="#{breadcrumb.page1Item.style}" 
+                          update="@all"   global="false" >  
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+              <p:menuitem value="#{breadcrumb.page2Item.value}" action="#{onlineForm.navigateIndexPage2}" 
+                          process="@this" rendered="#{breadcrumb.page2Item.rendered}"
+                          disabled="#{breadcrumb.page2Item.disabled}" styleClass="#{breadcrumb.page2Item.style}"
+                          update="@all"  global="false" >  
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+              <p:menuitem value="#{breadcrumb.page3Item.value}" action="#{onlineForm.navigateIndexPage3}" process="@this" rendered="#{breadcrumb.page3Item.rendered}"
+                          disabled="#{breadcrumb.page3Item.disabled}" styleClass="#{breadcrumb.page3Item.style}" update="@all"   global="false" >  
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+              <p:menuitem value="#{breadcrumb.page4Item.value}" action="#{onlineForm.navigateIndexPage4}" process="@this" rendered="#{breadcrumb.page4Item.rendered}"
+                          disabled="#{breadcrumb.page4Item.disabled}" styleClass="#{breadcrumb.page4Item.style}" update="@all"   global="false" >  
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+              <p:menuitem value="#{breadcrumb.page5Item.value}" action="#{onlineForm.navigateIndexPage5}" process="@this" rendered="#{breadcrumb.page5Item.rendered}"
+                          disabled="#{breadcrumb.page5Item.disabled}" styleClass="#{breadcrumb.page5Item.style}" update="@all"    global="false" >  
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+              <p:menuitem value="#{breadcrumb.page6Item.value}" action="#{onlineForm.navigateIndexPage6}" process="@this" rendered="#{breadcrumb.page6Item.rendered}"
+                          disabled="#{breadcrumb.page6Item.disabled}" styleClass="#{breadcrumb.page6Item.style}" 
+                          update="@all"   global="false" > 
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+              <p:menuitem value="#{breadcrumb.page7Item.value}" action="#{onlineForm.navigateIndexPage7}" rendered="#{breadcrumb.page7Item.rendered}" process="@this"
+                          disabled="#{breadcrumb.page7Item.disabled}" styleClass="#{breadcrumb.page7Item.style}" update="@all"  global="false" >  
+                <p:resetInput target=":onlineform:page8panel" />
+              </p:menuitem>  
+              <p:menuitem value="#{breadcrumb.page8Item.value}" action="#{onlineForm.navigateIndexPage8}" rendered="#{breadcrumb.page8Item.rendered}" process="@this"
+                          disabled="#{breadcrumb.page8Item.disabled}" styleClass="#{breadcrumb.page8Item.style}" update="@all"   global="false" />  
+              <p:menuitem value="#{breadcrumb.page9Item.value}" action="#{onlineForm.navigateIndexPage9}" rendered="#{breadcrumb.page9Item.rendered}" process="@this"
+                          disabled="#{breadcrumb.page9Item.disabled}" styleClass="#{breadcrumb.page9Item.style}"  update="@all"   global="false" />  
+            </p:breadCrumb>  
+          </h:panelGrid>
+
+          <h:panelGrid  cellpadding="0" cellspacing="0"  
+                        style="width: 960px; background-color: #FFFFFF; margin-top: -5px; 
+                        padding-top: 10px; padding-right: 5px; float: right; ">
+            <h:panelGrid styleClass="backtofomrlink" rendered="#{!navigate.isHomePage}" >
+              <p:commandLink actionListener="#{onlineForm.backtoform}" value="#{msg.backtoloanform}"  
+                             style="color: #8B8786; " 
+                             process="@this" global="false"    
+                             oncomplete="drawRegionsMap();"  />   
+            </h:panelGrid>
+          </h:panelGrid>
+        </h:form>
+      </h:panelGrid>  
+
+    </ui:composition>
+  </body>
+</html>
+
