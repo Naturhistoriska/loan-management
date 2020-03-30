@@ -1,0 +1,16 @@
+/dina-email/target/
+/dina-loan-admin/target/
+/dina-loan-web/target/
+/dina-manager/target/
+/dina-mongodb/target/
+/target/
+.DS_Store
+/dina-email/nb-configuration.xml
+/dina-loan-admin/nb-configuration.xml
+/dina-loan-admin/faces-config.NavData
+
+/dina-loan-web/nb-configuration.xml
+/dina-loan-web/faces-config.NavData
+
+/dina-manager/nb-configuration.xml
+/dina-mongodb/nb-configuration.xml
