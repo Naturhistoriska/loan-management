@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:5.7.22
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - 13306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  wildfly:
+    image: dina/wildfly:v0.1
+    # image: jboss/wildfly:8.2.0.Final
+    container_name: wildfly
+    restart: always
+    volumes:
+      - ./config/certs/wildfly.jks:/opt/jboss/wildfly/standalone/configuration/certs/wildfly.jks
+      - ./config/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
+      - ./config/app.properties:/opt/jboss/wildfly/standalone/configuration/app.properties
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "9990:9990"
+    depends_on:
+      - db
+
+networks:
+  default:
+    external:
+      name: dwproxy_default
+
+volumes:
+  mysql_data:
