@@ -3,8 +3,7 @@ package se.nrm.dina.mongodb.loan.vo;
 //import com.fasterxml.jackson.annotation.JsonInclude; 
  
 import java.util.List;
-import java.util.UUID;
-import org.jongo.marshall.jackson.oid.MongoId;
+import java.util.UUID;  
 
 /**
  *
@@ -12,9 +11,8 @@ import org.jongo.marshall.jackson.oid.MongoId;
  */ 
 //@JsonInclude(JsonInclude.Include.ALWAYS) 
 public class Loan  {
-
-  @MongoId
-  private String _id;
+  
+  protected String _id; 
   private String loanNumber;
   private String uuid;
   private String department;
@@ -64,6 +62,10 @@ public class Loan  {
 
   public void setLoanNumber(String loanNumber) {
     this.loanNumber = loanNumber;
+  }
+  
+  public Loan(String id) {
+    this._id = id;
   }
 
   public Loan(UUID uuid) {

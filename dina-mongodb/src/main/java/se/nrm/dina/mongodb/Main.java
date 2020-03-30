@@ -21,7 +21,7 @@ public class Main {
   public static void main(String args[]) throws JsonProcessingException {
 
     ObjectMapper mapper = new ObjectMapper();
-    MongoClient mongo = new MongoClient("localhost", 27017);
+    MongoClient mongo = new MongoClient("mongo", 27017);
 
     DB db = mongo.getDB("loans");
 
