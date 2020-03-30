@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: userdb
 -- ------------------------------------------------------
--- Server version	5.7.22
+-- Server version 5.7.22
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,8 +30,18 @@ CREATE TABLE `tbl_groups` (
   UNIQUE KEY `id_unique` (`id`),
   KEY `fk_username` (`username`),
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `tbl_users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_groups`
+--
+
+LOCK TABLES `tbl_groups` WRITE;
+/*!40000 ALTER TABLE `tbl_groups` DISABLE KEYS */;
+INSERT INTO `tbl_groups` VALUES ('admin','admin',3);
+/*!40000 ALTER TABLE `tbl_groups` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_users`
@@ -48,6 +58,16 @@ CREATE TABLE `tbl_users` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_users`
+--
+
+LOCK TABLES `tbl_users` WRITE;
+/*!40000 ALTER TABLE `tbl_users` DISABLE KEYS */;
+INSERT INTO `tbl_users` VALUES ('admin','jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=','dinanrm@gmail.com',0);
+/*!40000 ALTER TABLE `tbl_users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -58,4 +78,4 @@ CREATE TABLE `tbl_users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-30 10:02:50
+-- Dump completed on 2020-03-30 13:23:24
