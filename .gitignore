@@ -14,3 +14,7 @@
 
 /dina-manager/nb-configuration.xml
 /dina-mongodb/nb-configuration.xml
+
+
+/mongo/data/db
+/mongo/data/configdb

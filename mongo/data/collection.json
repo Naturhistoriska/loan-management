@@ -1,0 +1,82 @@
+[{
+  "_id": {
+    "$oid": "53c070f11a4aef8b693e84b0"
+  },
+  "name": "Coleoptera (Sweden)",
+  "email": "manager1@org.se",
+  "group": "Insects",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "53c070f11a4aef8b693e84b1"
+  },
+  "name": "Hymenoptera",
+  "email": "manager2@org.se",
+  "group": "Insects",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "53c072ed1a4aef8b693e84b2"
+  },
+  "name": "Diptera",
+  "email": "manager3@org.se",
+  "group": "Insects",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "53c072ed1a4aef8b693e84bc"
+  },
+  "name": "Aves",
+  "email": "manager4@org.se",
+  "group": "Vertebrates",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "53c072ed1a4aef8b693e84bd"
+  },
+  "name": "Pisces",
+  "email": "manager5@org.se",
+  "group": "Vertebrates",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "53c072ed1a4aef8b693e84be"
+  },
+  "name": "Cyclostomata",
+  "email": "manager6@org.se",
+  "group": "Vertebrates",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "53c074b21a4aef8b693e84c5"
+  },
+  "name": "Platyhelminthes",
+  "email": "manager7@org.se",
+  "group": "Invertebrates",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "53c074b21a4aef8b693e84c6"
+  },
+  "name": "Nematoda",
+  "email": "manager8@org.se",
+  "group": "Invertebrates",
+  "manager": "loanrequestZOO@org.se",
+  "department": "Zoology"
+}, {
+  "_id": {
+    "$oid": "540c1d480364c51bef42f723"
+  },
+  "name": "Non scientific",
+  "email": "manger10@org.se",
+  "group": "Non scientific",
+  "manager": "manager10@org.se",
+  "department": "Zoology"
+}]

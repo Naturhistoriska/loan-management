@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo:4.2.1
+    restart: always
+    container_name: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/data/db
+
+  mongo_seed:
+    image: mongo:4.2.1
+    links:
+      - mongo
+    volumes:
+      - ./data:/data
+    command:
+      /data/import.sh
+
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+#    restart: always
+    ports:
+      - 8081:8081
+
+networks:
+  default:
+    external:
+      name: dwproxy_default

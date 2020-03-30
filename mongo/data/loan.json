@@ -1,0 +1,37 @@
+[{
+  "_id": "ReqNo000001",
+  "uuid": "b80ab18e-021f-4515-b34d-515aa5787a17",
+  "department": "Zoology",
+  "purpose": "Education/Exhibition",
+  "eduPurpose": "exhibition",
+  "type": "Physical",
+  "loanDescription": " - Polychaeta till vår utställning \"Osynliga mysterier\"",
+  "exhPorpuseDesc": " - I en burk i alkohol i glasmonter",
+  "curator": "curator@org.se",
+  "manager": "manager3@org.se",
+  "borrower": "John Doe",
+  "primaryUser": {
+    "title": "Mr.",
+    "firstname": "John",
+    "lastname": "Doe",
+    "institution": "Some institution",
+    "department": "Department 1",
+    "address": {
+      "address": "Box 123",
+      "city": "Stockholm",
+      "state": "",
+      "zip": "12345",
+      "country": "Sweden"
+    },
+    "phone": "1234567",
+    "email": "john.doe@int.com"
+  },
+  "fromDate": "2015-09-07",
+  "toDate": "2016-03-31",
+  "submitDate": "2015-09-08",
+  "status": "Request accepted",
+  "closeDate": "2017-02-21",
+  "loanNumber": "1766",
+  "releventCollection": "Diptera",
+  "comments": ""
+}]
