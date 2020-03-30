@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"  >
+
+  <h:body>  
+    <ui:composition template="./../templates/masterLayout.xhtml"> 
+      <ui:define name="windowTitle">
+        Online Loan Admin
+      </ui:define> 
+
+      <ui:define name="content">      
+
+        <h:form id="login"  onsubmit="document.#{p:component('login')}.action = 'j_security_check';" prependId="false">   
+
+          <h:panelGrid styleClass="loginmainpanel">
+            <h:panelGrid>
+              <p:messages autoUpdate="true" showDetail="true" showSummary="false" closable="true"    /> 
+            </h:panelGrid> 
+          </h:panelGrid> 
+
+          <h:panelGrid styleClass="loginmainpanel" id="loginmainpanel" > 
+            <p:panel header="Login" styleClass="loginPanel" id="loginPanel" >  
+
+              <p:spacer width="20" height="20" />
+              <p:spacer width="20" height="20" />  
+              <p:focus context="loginbox"/>  
+              <h:panelGrid id="loginbox" style="width: 400px; margin-left: auto; margin-right: auto;">  
+                <h:panelGrid columns="2" cellpadding="5" style="width: 320px; margin-left: auto; margin-right: auto; text-align: center; ">
+                  <h:outputLabel for="username" value="Username: " />
+                  <p:inputText id="username" value="#{login.username}" size="30" required="true" 
+                               requiredMessage="Username is required." />   
+                  <p:spacer width="5" />
+                  <p:spacer width="5" />
+
+                  <h:outputLabel for="password" value="Password: " />
+                  <p:password id="password" value="#{login.password}"  size="30" required="true"  
+                              requiredMessage="Password is required." />  
+                </h:panelGrid> 
+
+                <p:spacer width="10"  /> 
+                <p:spacer width="10" /> 
+
+                <h:panelGrid style="width: 100px; margin-left: auto; margin-right: auto; ">
+                  <p:commandButton ajax="false" id="loginButton" value="Login" update="@all" action="#{login.login}" onclick="PF('statusDialog').show()" />
+                </h:panelGrid> 
+              </h:panelGrid>
+            </p:panel>  
+          </h:panelGrid> 
+        </h:form> 
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>

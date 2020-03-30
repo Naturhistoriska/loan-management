@@ -1,0 +1,180 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"  > 
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >   
+        <h:form id="collectionForm" prependId="false">    
+          <h:panelGroup styleClass="main" layout="block" id="collectionpanel" >  
+            <h:panelGroup layout="block">  
+              <h:panelGroup layout="block" id="subcollectionPanel" styleClass="subcollectionPanel text" >  
+                <h:panelGrid>
+                  <p:selectOneMenu value="#{admin.department}" id="contact1title" style="width:185px; font-size:  11px; font-family: Arial,sans-serif;">  
+                    <f:selectItem itemValue="Botany" itemLabel="Botany" itemDisabled="true" />
+                    <f:selectItem itemValue="Environmental Specimen Bank" itemLabel="Environmental Specimen Bank" itemDisabled="true" />
+                    <f:selectItem itemValue="Geology" itemLabel="Geology" itemDisabled="true" />
+                    <f:selectItem itemValue="Palaeobiology" itemLabel="Palaeobiology" itemDisabled="true" />
+                    <f:selectItem itemValue="Zoology" itemLabel="Zoology" /> 
+                    <p:ajax listener="#{admin.departmentChanged}" update="subcollectionPanel" global="false" />
+                  </p:selectOneMenu>    
+                </h:panelGrid>
+                <p:spacer width="900" height="30" /> 
+                <p:accordionPanel  dynamic="true" cache="true"  id="accordionCollectionPanel" > 
+                  <p:ajax event="tabChange" listener="#{admin.onTabChange}" /> 
+                  <p:tab title="Edit Non scientific loans"  > 
+                    <h:panelGroup layout="block">
+                      <h:outputLabel for="ungroupedManager" 
+                                     value="Manager for non-scientific loans [Click on the text to edit]: " 
+                                     styleClass="defaultboldtext" />
+                      <br />
+                    </h:panelGroup>
+                    <h:panelGrid cellpadding="0" cellspacing="0" columns="4" id="nonScientificPanel" 
+                                 columnClasses="cgcol2,cgcol,cgcol2,cgcol5"> 
+                      <p:spacer width="10" />
+                      <p:inplace id="ungroupedManager">
+                        <p:inputText value="#{admin.nonScientificLoansManager}"  required="true"  id="nonScientificManagerEmail"
+                                     requiredMessage="Manager's email can not be empty!" size="40"
+                                     validatorMessage="Invalid email address!"  styleClass="contactfieldstext" >
+                          <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /> 
+                        </p:inputText> 
+                      </p:inplace>  
+                      <p:spacer width="20" /> 
+                      <h:panelGrid style="padding-left: 20px; vertical-align: top;">
+                        <p:commandButton value="Update" process="@this,nonScientificPanel"  
+                                         actionListener="#{admin.updateNonScientificManager}" />
+                      </h:panelGrid> 
+                      <p:spacer width="10" />
+                      <p:message for="nonScientificManagerEmail" /> 
+                    </h:panelGrid>
+                  </p:tab>
+                  <p:tab title="Edit Relevent Collection"  > 
+                    <h:panelGrid   cellpadding="0" cellspacing="0" id="changeGroupNamePanel">
+
+                      <h:panelGrid columns="4"  columnClasses="cgcol1,cgcol2,cgcol3,cgcol" > 
+                        <h:outputLabel for="collection" value="Collection: " styleClass="defaultboldtext" />
+                        <p:spacer width="10" />
+                        <h:outputLabel for="manager" value="Manager: " styleClass="defaultboldtext" />
+                        <h:outputText value="[Click on the text to edit]" styleClass="defaultboldtext"/>  
+                      </h:panelGrid> 
+                      <p:messages id="editCollectionPanelmsg" autoUpdate="true"  showDetail="true" showSummary="false" closable="true" rendered="#{admin.activeTab == 1}"  />
+ 
+                      <ui:repeat var="cm" value="#{admin.cmList}" varStatus="status">
+                        <h:panelGrid columns="7" id="collectionManagerEditPanel" 
+                                     columnClasses="cgcol1,cgcol2,cgcol3,cgcol4,cgcol5" > 
+                          <p:inplace id="collection">
+                            <p:inputText value="#{cm.newGroupName}"  required="true"  requiredMessage="Collection name can not be empty!" />
+                          </p:inplace>  
+
+                          <p:spacer width="10" />
+                          <p:inplace id="manager">
+                            <p:inputText value="#{cm.manager}" size="30" required="true"  requiredMessage="Manager's email can not be empty!" />
+                          </p:inplace>
+
+                          <p:outputLabel value="&lt;==&gt;" style="color: #0b5e82; "  /> 
+                          <p:commandButton value="Update" process="@this,collectionManagerEditPanel"  
+                                           actionListener="#{admin.updateCollection(cm)}" />
+                          <p:spacer width="5" />  
+                          <p:commandButton value="Remove (Remove whole collection)" actionListener="#{admin.removeCollection(cm)}" 
+                                           process="@this,collectionManagerEditPanel"   >
+                            <p:confirm header="Confirmation" message="This will delete whole collection. Are you sure?" 
+                                       icon="ui-icon-alert" /> 
+                          </p:commandButton>
+                        </h:panelGrid> 
+                      </ui:repeat> 
+                      <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" style="color:   #FFFFFF;"   />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" style="color:   #FFFFFF;"   />
+                      </p:confirmDialog>
+
+                      <br />
+                      <br />
+
+                      <ui:repeat var="map" value="#{admin.map.keySet().toArray()}" varStatus="status">   
+                        <p:dataTable   var="c" value="#{admin.map.get(map) }" editable="true" style="margin-bottom:20px"  >
+                          <f:facet name="header">
+                            #{map} (Collection manager: #{admin.managermail(map)}   ) 
+                          </f:facet> 
+                          <p:ajax event="rowEdit" listener="#{admin.onRowEdit}"   />
+                          <p:ajax event="rowEditCancel" listener="#{admin.onRowCancel}"  /> 
+                          <p:column headerText="Collection name">
+                            <p:cellEditor>
+                              <f:facet name="output">
+                                <h:outputText value="#{c.name}" />
+                              </f:facet>
+                              <f:facet name="input">
+                                <p:inputText  value="#{c.name}" style="width:100%"/>
+                              </f:facet>
+                            </p:cellEditor>
+                          </p:column> 
+                          <p:column headerText="Curator's email">
+                            <p:cellEditor>
+                              <f:facet name="output">
+                                <h:outputText value="#{c.email}" />
+                              </f:facet>
+                              <f:facet name="input">
+                                <p:inputText value="#{c.email}" style="width:100%"/>
+                              </f:facet>
+                            </p:cellEditor>
+                          </p:column> 
+                          <p:column style="width:32px">
+                            <p:rowEditor />
+                          </p:column>
+
+                          <p:column styleClass="alignTop" style="width: 20px; font-size: 12px;">   
+                            <p:commandLink title="Remove" 
+                                           process="@this" action="#{admin.removeSubCollection(c)}"
+                                           global="false"  >   
+                              <p:graphicImage value="/resources/images/button_remove.gif" styleClass="images" />
+                              <p:collector value="#{c}"  removeFrom="#{admin.map.get(map)}" unique="true"   />  
+                            </p:commandLink>  
+                          </p:column>  
+                        </p:dataTable>  
+                        <p:spacer width="750" height="40" />
+                      </ui:repeat>    
+                    </h:panelGrid>
+                  </p:tab>
+
+                  <p:tab title="Create New Relevent Collection">  
+                    <h:panelGrid columns="3"  id="createNewCollectionPanel"> 
+                      <h:outputLabel for="newCollectionName" value="Collection Name: " />
+                      <p:inputText id="newCollectionName" value="#{admin.newCollectionName}" size="30"
+                                   required="true" requiredMessage="Collection name is required." />
+                      <p:message for="newCollectionName"   />
+
+                      <h:outputLabel for="newCurator" value="Curator's email: " />
+                      <p:inputText id="newCurator" value="#{admin.newCollectionCurator}" size="30"
+                                   required="true"  requiredMessage="Curator email is required." />
+                      <p:message for="newCurator"   /> 
+                      <h:outputText value="Collection group :" />  
+                      <p:selectOneMenu id="newGroupName" value="#{admin.newCollectionGroupName}" 
+                                       editable="true"  style="width:185px; font-size:  11px; font-family: Arial,sans-serif;"> 
+                        <f:selectItems value="#{admin.collectionGroupNames}"  /> 
+                        <p:ajax listener="#{admin.addNewCollection}" update="@this,newManager" 
+                                global="false" process="@this"/> 
+                      </p:selectOneMenu>
+                      <p:spacer width="10" />
+
+                      <h:outputLabel for="newManager" value="Collection manager's email: " />
+                      <p:inputText id="newManager" value="#{admin.newCollectionManager}" size="30" required="true" 
+                                   requiredMessage="Collection manager's email is required." disabled="#{admin.managerDisable}" />
+                      <p:message for="newManager"   />
+
+                      <p:spacer width="10" />
+                      <p:spacer width="10" />
+                      <h:panelGrid style="width: 200px; float: right;">
+                        <p:commandButton value="Save collection" action="#{admin.saveNewCollection}"  
+                                         global="true" process="createNewCollectionPanel" update=":collectionForm:collectionpanel" />
+                      </h:panelGrid> 
+                    </h:panelGrid>
+                  </p:tab> 
+                </p:accordionPanel> 
+              </h:panelGroup> 
+            </h:panelGroup> 
+          </h:panelGroup>
+        </h:form>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

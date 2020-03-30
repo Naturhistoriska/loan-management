@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"    >
+  <body>
+    <ui:composition>   
+      <h:panelGroup  layout="block"   id="foot" >
+        <h:panelGroup layout="block" styleClass="footstyle"   >
+          <h:form  id="footform"> 
+            <h:panelGroup layout="block" styleClass="textfoot" style="float: left;">
+              <br />
+              <br />   
+              <h:panelGrid columns="3" style="width: 960px;"> 
+                <h:commandLink action="#{admin.contact}" value="#{msg.contact}:"  style="color: #FFFFFF;" disabled="true" />  
+                <h:outputLink value="mailto:team@mail.dina-web.net" style="color: #FFFFFF;">team@mail.dina-web.net</h:outputLink>
+
+                <h:panelGrid style="width: 740px; text-align: right; float: right; padding-right: 30px; " columns="3">
+                  <h:outputText value="Login as: #{request.userPrincipal.name}" rendered="#{not empty request.remoteUser}"/> 
+                </h:panelGrid>
+              </h:panelGrid> 
+              <br />
+              <br />
+            </h:panelGroup> 
+          </h:form>
+        </h:panelGroup>  
+      </h:panelGroup> 
+    </ui:composition>
+  </body>
+</html>
+

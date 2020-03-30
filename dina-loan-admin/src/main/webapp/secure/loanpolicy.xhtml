@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:p="http://primefaces.org/ui"  >
+
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >    
+        <h:form id="loanpolicyForm" >     
+          <h:panelGroup  layout="block" id="userProfilePanel" styleClass="main" > 
+              <h:panelGroup layout="block" styleClass="policypanel" id="policyPanel">
+                <p:panel header="Update Loan policy documents" styleClass="nobord">
+                  <p:spacer width="750" height="20" />
+                  <h:panelGrid id="updatePolicyPanel" rendered="#{policy.isNewPolicy}">
+                    <h:outputText value="Right click here to update new policy files"  style="color: #FF0000; "/>
+                  </h:panelGrid>
+
+                  <p:contextMenu for="updatePolicyPanel"> 
+                    <p:menuitem value="Update" update="policyPanel" icon="ui-icon-refresh" 
+                                actionListener="#{policy.updatePolicy}" oncomplete="window.location.reload();"/>
+                  </p:contextMenu> 
+                  <p:spacer width="750" height="30" />
+                  <p:commandButton id="currentScPolicyBtn"  value="Current loan policy for scientific purpose" type="button"  />
+                  <p:overlayPanel id="currentScPolicyPanel" for="currentScPolicyBtn" hideEffect="fade" dynamic="true"  >
+                    <object type="application/pdf" data="#{policy.scPolicy}" height="750px" width="800px"    /> 
+                  </p:overlayPanel> 
+                  <p:spacer width="750" height="50" />
+                  <h:panelGrid styleClass="text" id="scpolicyfilePanel"> 
+                    <h:outputText value="Upload loan policy for scientific purpose: " styleClass="defaultboldtext" />
+                    <p:spacer width="750" height="20" />
+                    <h:outputText value="(Drag and drop file into upload box, or select file from file system.)" styleClass="smalltext" />
+                    <p:spacer width="750" height="20" />
+                    <p:fileUpload fileUploadListener="#{policy.uploadScFile}" mode="advanced"
+                                  allowTypes="/(\.|\/)(pdf)$/" styleClass="originalbutton" update="policyPanel" />  
+                    </h:panelGrid>
+                    <p:spacer width="750" height="30" />
+
+                  <p:commandButton id="currentEdPolicyBtn" value="Current loan policy for educational purpose" type="button" />
+                  <p:overlayPanel id="currentEdPolicyPanel" for="currentEdPolicyBtn" hideEffect="fade" dynamic="true"  >
+                    <object type="application/pdf" data="#{policy.edPolicy}" height="750px" width="800px"  />  
+                  </p:overlayPanel>
+                  <p:spacer width="750" height="50" />
+                  <h:panelGrid styleClass="text" id="edpolicyfilePanel">   
+                    <h:outputText value="Upload loan policy for educational purpose: "  styleClass="defaultboldtext" /> 
+                    <p:spacer width="750" height="20" />
+                    <h:outputText value="(Drag and drop file into upload box, or select file from file system.)" styleClass="smalltext" />
+                    <p:spacer width="750" height="20" /> 
+                    <p:fileUpload fileUploadListener="#{policy.uploadEdFile}" mode="advanced" 
+                                  allowTypes="/(\.|\/)(pdf)$/" styleClass="originalbutton" update="policyPanel"  />  
+                  </h:panelGrid>
+                </p:panel> 
+            </h:panelGroup>
+          </h:panelGroup>
+        </h:form>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"     
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"  > 
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >   
+        <h:form id="accountForm" prependId="false">
+          <h:panelGroup styleClass="main" layout="block" id="accountpanel" >  
+            <h:panelGroup layout="block" styleClass="subcollectionPanel" id="userAccountPanel">  
+              <br /> 
+              <p:messages id="userAccountPanelmsg" autoUpdate="true" 
+                          showDetail="true" showSummary="false" closable="true"  /> 
+              <p:spacer width="900" height="20" /> 
+
+              <h:panelGrid styleClass="userAccountPanel">
+                <p:fieldset legend="Create user account" >  
+                  <h:panelGrid columns="3" id="createUserAccountPanel"  >
+                    <p:spacer width="5" />
+                    <p:spacer width="5" />
+                    <p:spacer width="5" /> 
+                    <h:outputLabel for="username" value="Username: * " />
+                    <p:inputText id="username" value="#{user.username}"   required="true" 
+                                 requiredMessage="Username is required." size="30" />      
+                    <p:message for="username"  /> 
+                    <h:outputLabel for="password" value="Password: * " />
+                    <p:password id="password" value="#{user.password}"  required="true" 
+                                requiredMessage="Password is required."  size="30"  />      
+                    <p:message for="password"  /> 
+
+                    <h:outputLabel for="email" value="Email: * " />  
+                    <p:inputText id="email" required="true"   size="30"
+                                 requiredMessage="Email is required."
+                                 validatorMessage="Invalid email format" styleClass="contactfieldstext" 
+                                 value="#{user.email}"> 
+                      <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />   
+                    </p:inputText> 
+                    <p:message for="email"  /> 
+
+                    <h:outputLabel value="Group: * " />
+                    <h:selectOneMenu value="#{user.groupname}" >
+                      <f:selectItem itemValue="user" itemLabel="User" />	  
+                      <f:selectItem itemValue="manager" itemLabel="Manager" /> 
+                      <f:selectItem itemValue="admin" itemLabel="Admin" /> 
+                      <f:ajax listener="#{user.changeGroup}" />
+                    </h:selectOneMenu>
+                    <p:spacer width="10" />   
+                    <p:spacer width="10" />  
+                    <p:spacer width="10" />  
+                    <p:spacer width="10" />   
+                    <p:spacer width="10" />  
+                    <p:spacer width="10" />  
+                    <p:commandButton value="Submit" 
+                                     action="#{user.addUserAccount()}" 
+                                     global="true"
+                                     update="userAccountPanel" />
+                    <p:spacer width="10" />  
+                    <p:spacer width="10" />  
+                    <p:spacer width="10" />   
+                    <p:spacer width="10" />  
+                    <p:spacer width="10" />  
+                    <p:spacer width="10" />    
+                  </h:panelGrid>   
+                </p:fieldset> 
+              </h:panelGrid>
+              <p:spacer width="900" height="30"/> 
+
+              <p:panel styleClass="nobord"  > 
+                <p:dataTable  value="#{user.accounts}"    
+                              editable="true" var="account" 
+                              emptyMessage="No account found with given criteria" 
+                              filteredValue="#{user.filteredAccounts}"> 
+                  <f:facet name="header">
+                    Accounts
+                  </f:facet>
+
+                  <p:ajax event="rowEdit" listener="#{user.onRowEdit}"  process="@this" global="false"  /> 
+
+                  <p:column headerText="User name" width="120" filterBy="#{account.username.username}" 
+                            footerText="contains" filterMatchMode="contains">
+                    <h:outputText value="#{account.username.username}" />
+                  </p:column>
+
+                  <p:column headerText="Email" footerText="contains" filterMatchMode="contains"   width="150"  filterBy="#{account.username.email}" >  
+                    <p:cellEditor>
+                      <f:facet name="output"><h:outputText value="#{account.username.email}" /></f:facet>
+                      <f:facet name="input">
+                        <p:inputText id="email" required="true"   size="30"
+                                     requiredMessage="Email is required."
+                                     validatorMessage="Invalid email format"  styleClass="contactfieldstext" 
+                                     value="#{account.username.email}"> 
+                          <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />   
+                        </p:inputText>  
+                      </f:facet>
+                    </p:cellEditor>  
+                  </p:column>
+
+                  <p:column headerText="Group" footerText="contains" filterMatchMode="contains"   width="120"  filterBy="#{account.groupname}" >  
+                    <p:cellEditor>
+                      <f:facet name="output"><h:outputText value="#{account.groupname}" /></f:facet>
+                      <f:facet name="input"> 
+                        <h:selectOneMenu value="#{account.groupname}" >
+                          <f:selectItem itemValue="user" itemLabel="User" />	   	
+                          <f:selectItem itemValue="manager" itemLabel="Manager" /> 
+                          <f:selectItem itemValue="admin" itemLabel="Admin" /> 
+                        </h:selectOneMenu>
+                      </f:facet>
+                    </p:cellEditor>  
+                  </p:column>
+
+                  <p:column headerText="On vacation"  width="50" >  
+                    <p:cellEditor>
+                      <f:facet name="output">
+                        <p:selectBooleanCheckbox value="#{account.username.onvacation}"  disabled="true"/>
+                      </f:facet>
+                      <f:facet name="input">
+                        <p:selectBooleanCheckbox value="#{account.username.onvacation}" />
+                      </f:facet>
+                    </p:cellEditor>  
+                  </p:column>
+
+                  <p:column style="width:32px"  >
+                    <p:rowEditor   />
+                  </p:column> 
+
+                  <p:column styleClass="alignTop" style="width: 20px; font-size: 12px;">   
+                    <p:commandLink  title="Remove" disabled="#{account.groupname == 'admin' || account.groupname == 'superuser'}"
+                                    process="@this" action="#{user.removeAccount(account)}" global="false"  >   
+                      <p:graphicImage value="/resources/images/button_remove.gif"  styleClass="images" />
+                      <p:collector value="#{account}"  removeFrom="#{user.accounts}" unique="true"   />  
+                    </p:commandLink>  
+                  </p:column>  
+                </p:dataTable>   
+              </p:panel> 
+            </h:panelGroup>   
+          </h:panelGroup> 
+        </h:form>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

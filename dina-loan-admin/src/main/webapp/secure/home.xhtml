@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html"    
+      xmlns:p="http://primefaces.org/ui"  >
+
+  <body>
+    <ui:composition  template="/templates/masterLayout.xhtml">     
+      <ui:define name="content"  >     
+        <h:form id="adminform" enctype="multipart/form-data" prependId="false">   
+          <h:panelGroup styleClass="main" layout="block" id="mainpanel" > 
+            <h:panelGroup layout="block"   >
+              <h:panelGroup layout="block" id="subadmin" styleClass="subadminPanel text" >  
+                This is the loan request administration page.
+                <br />
+                <br />   
+                <h:panelGrid columns="5" id="vacationpanel"  >
+                  <h:outputText value="On vacation: " />
+                  <p:spacer width="5" />   
+                  <p:inputSwitch value="#{user.loggedinUser.onvacation}">
+                    <p:ajax update="mainpanel" listener="#{user.updateUserVacation()}" />
+                  </p:inputSwitch>
+
+                  <p:spacer width="5" /> 
+                  <h:outputText value="Click to activate/deactivate" /> 
+                </h:panelGrid> 
+                <br />
+                <br />    
+                <h:panelGrid style="border: none;" 
+                             rendered="#{request.isUserInRole('admin') || request.isUserInRole('manager') || request.isUserInRole('superuser')}">
+                  <p:commandLink actionListener="#{navigate.gotoManageAccountPage()}" value="Manage user account"  
+                                 process="@this" global="false" styleClass="clink"  />  
+                </h:panelGrid>
+
+                <h:panelGrid style="border: none;" 
+                             rendered="#{request.isUserInRole('admin') || request.isUserInRole('manager') || request.isUserInRole('superuser')}">
+                  <p:commandLink actionListener="#{navigate.gotoManageCollectionPage()}" value="Manage collection"  
+                                 process="@this" global="false" styleClass="clink"  />  
+                </h:panelGrid>
+
+                <h:panelGrid style="border: none;" >
+                  <p:commandLink actionListener="#{navigate.gotoManageLoanPage()}" value="Manage loan requests"  
+                                 process="@this" global="false" styleClass="clink"  />  
+                </h:panelGrid>
+
+                <h:panelGrid style="border: none;"
+                             rendered="#{request.isUserInRole('admin') || request.isUserInRole('manager') || request.isUserInRole('superuser')}">
+                  <p:commandLink actionListener="#{navigate.gotoLoanPolicyPage()}" value="Manage policy documents"  
+                                 process="@this" global="false"  styleClass="clink"  />  
+                </h:panelGrid> 
+                <br />
+                <br /> 
+              </h:panelGroup>  
+            </h:panelGroup>  
+          </h:panelGroup>  
+        </h:form>
+        <script type="text/javascript">
+          function start() {
+            PF('statusDialog').show();
+          }
+
+          function stop() {
+            PF('statusDialog').hide();
+          }
+        </script>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

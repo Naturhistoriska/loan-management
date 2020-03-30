@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+  
+  <render-kit>
+    <renderer>
+      <component-family>org.primefaces.component</component-family>
+      <renderer-type>org.primefaces.component.FileUploadRenderer</renderer-type>
+      <renderer-class>se.nrm.dina.loan.admin.fileupload.MyFileUploadRenderer</renderer-class>
+    </renderer>
+  </render-kit> 
+  <lifecycle>
+    <phase-listener>
+      se.nrm.dina.loan.admin.phaseListener.UACompatibleHeaderPhaseListener
+    </phase-listener>
+  </lifecycle> 
+    
+  <application>
+    <locale-config>
+      <default-locale>en</default-locale>
+      <!--<supported-locale>sv</supported-locale>-->  
+    </locale-config>
+    <resource-bundle>
+      <base-name>Messages</base-name>
+      <var>msg</var>
+    </resource-bundle> 
+  </application>  
+</faces-config>
+
+
+
+
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"  >
+
+  <h:head> 
+    <title>
+      <ui:insert name="windowTitle">
+        #{msg.headername}
+      </ui:insert>
+    </title>     
+    <link rel="shortcut icon" href="https://localhost:8443/loan-admin/resources/images/favicon.ico" type="image/x-icon" />
+  </h:head>
+
+  <h:body styleClass="background"> 		     
+    <h:outputStylesheet library="css" name="default.css"  /> 
+    
+    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" /> 
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">   
+      <h:panelGrid columns="3"  >  
+        <p:graphicImage value="/resources/images/loaderA32.gif"   alt="#{msg.inprocess}" title="#{msg.inprocess}" styleClass="images" /> 
+        <p:spacer width="10" />
+        <p:outputLabel value="#{msg.inprocess}" styleClass="inprocess" /> 
+      </h:panelGrid>  
+    </p:dialog> 
+    <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+      <p:graphicImage value="/resources/images/bar90.gif"   styleClass="images" />
+    </p:dialog>
+
+
+    <h:panelGroup layout="block" styleClass="templet">
+      <h:panelGroup  id="header" layout="block"  >
+        <ui:insert name="header" >
+          <ui:include src="/secure/header.xhtml" />
+        </ui:insert> 
+      </h:panelGroup>
+      
+      <h:panelGroup  id="images" layout="block"  style="width: 960px; margin-top: -5px; ">
+        <ui:insert name="images" >
+          <ui:include src="/secure/images.xhtml" />
+        </ui:insert> 
+      </h:panelGroup> 
+
+
+      <h:panelGroup id="main" layout="block"  >
+        <ui:insert name="content"/>
+      </h:panelGroup>
+
+      <h:panelGroup id="footer" layout="block"  >
+        <ui:insert name="footer" >
+          <ui:include src="/secure/footer.xhtml" />
+        </ui:insert>
+      </h:panelGroup> 
+    </h:panelGroup> 
+  </h:body>
+</html>

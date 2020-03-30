@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"   >
+
+  <body> 
+    <ui:composition template="./../templates/masterLayout.xhtml"> 
+      <ui:define name="windowTitle">
+        Login error
+      </ui:define> 
+      <ui:define name="content"> 
+        <h:outputText value="#{requestScope['javax.servlet.forward.servlet_path']}" /> 
+        <h:panelGroup rendered="#{requestScope['javax.servlet.forward.servlet_path'] == '/faces/pages/j_security_check'}">
+          <h:outputText value="Unknown login, please try again" styleClass="error" />
+        </h:panelGroup> 
+        <p><a href="/faces/pages/login.xhtml">Return to login page</a></p>
+      </ui:define> 
+    </ui:composition> 
+  </body>
+</html>

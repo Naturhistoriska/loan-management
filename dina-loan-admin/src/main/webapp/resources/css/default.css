@@ -1,0 +1,1035 @@
+/* 
+    Document   : default.css (for onlineloan admin application)
+    Created on : 2014-Jul-16, 14:14:41
+    Author     : Ida Li
+    Description: Baserad på NRMs grafiska profil och pollenrapporten -sitevision.
+    Stylesheet for dina-loan-admin, NRM
+*/
+
+
+.body{
+    font-family: "Arial",sans-serif;
+    position: relative; 
+    min-height: 100%; 
+    top: 0px;
+}
+
+/*back*/
+.background{
+    background-color:#ebede8;
+    /*background-image:url(/images/18.67f7c5a013d827ecb4c32f/1367827613667/bg.gif);*/
+    background-repeat:no-repeat;
+    margin:0 0 0 0;
+}
+
+
+.templet {
+    width: 960px; 
+    margin: auto;
+}
+
+.inprocess {
+    font-size: 16px; 
+    font-weight: bold;
+}
+
+
+
+/* header */ 
+.headertitle {
+    font-size: 46px;
+    color: #FFFFFF;
+    text-align: left;
+    margin-left: 20px;
+    font-family:   serif; 
+}
+ 
+
+.header {
+    font-size: 20px;
+    margin-top:10px;
+    margin-bottom: 30px;
+    color: #5e5e5e; 
+    font-family: "Arial",sans-serif;
+}
+
+.back{
+    border:none;
+    width:100%;
+    min-width:0;
+    padding:0;
+    margin:0;
+    padding-top:7px;
+    padding-bottom:0px;
+    border-radius: 10px 10px 0 0;
+    float:none !important;
+}
+
+
+
+/* footer */ 
+#foot {
+    position: absoulte;
+    bottom: 0;
+    height: 125px;
+}
+
+ 
+
+.footstyle{
+    background-color:#686868;
+    margin:0 auto;
+    max-width:940px;
+    padding-bottom:20px;
+    padding-left:10px;
+    padding-right:10px;
+    -webkit-border-radius: 0px 0px 15px 15px;
+    border-radius: 0px 0px 15px 15px; 
+    float: left;
+    width: 100%;
+}
+
+.textfoot{ 
+    font-size: 10px;
+    color:#ffffff;
+    font-family: "Arial",sans-serif;   
+}
+
+
+
+
+.cgcol1 {
+    width: 150px;
+}
+
+.cgcol2 {
+    width: 10px;
+}
+
+.cgcol3 {
+    width: 200px;
+}
+
+.cgcol4 {
+    width: 50px;
+}
+
+.cgcol5 {
+    width: 100px;
+}
+ 
+
+.cgcol {
+    width: 300px;
+}
+
+
+/*top*/
+.roundedtop {
+  -webkit-border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px;    
+}
+
+.top {
+    background-color:#0b5e82; 
+    margin:0 auto;
+    max-width:960px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    
+}
+
+.topmenu {
+    background-color:#072735; 
+    /*margin-left:-10px;*/ 
+    width:960px;
+}
+
+
+.topmenu a.current {
+    background: none repeat scroll 0 0 #036fab;  
+}
+
+.topmenu a {
+   width: auto;
+   padding: 12px 10px;
+   border-right: none;
+   border-right: 1px solid #0b5e82;
+   color: #FFFFFF;
+   display: block;
+   font-family: "Arial",sans-serif;
+   font-size: 14px;
+   text-align: center;
+   text-decoration: none;
+   text-shadow: 1px 2px 1px #436b16; 
+    /*filter: dropshadow(color=#2e5900, offx=1, offy=1);*/
+}
+ 
+.topmenu li {
+   overflow: hidden;
+   position: relative;
+   float: left;
+   display: block;
+   width: auto;
+}
+
+.topmenu ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+}
+ 
+.main {
+    background-color:#ffffff;
+    margin:0 auto;
+    max-width:960px; 
+    padding:30px 0 30px 0;
+}
+ 
+.login {   
+    padding: 10px 10px 20px 20px;
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold; 
+}
+
+.loginbox { 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center;
+}
+
+.logonrm {   
+    margin-right: 20px;
+    float: right;
+    border-style: none;
+}
+
+
+/* admin page */ 
+.centralpanel {
+    width: 960px;  
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* admin page */ 
+.policypanel {
+    width: 800px;  
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+ 
+/* admin page */ 
+.profilepanel {
+    width: 960px;  
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    font-size: 12px; 
+}
+
+
+
+.text {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+
+.createUserAccountPanel {
+    padding-left: 50px;
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+
+.defaultboldtext {
+    font-weight: bold;
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+
+a {
+    color: #000000;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal; 
+}
+
+
+.clink { 
+    font-family: arial,helvetica,sans-serif;
+    color: #686868;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+
+.subcollectionPanel {
+    width: 860px;
+    margin-right: auto;
+    margin-left: auto; 
+}
+
+.subadminPanel {
+  width: 700px;
+  margin-right: auto;
+  margin-left: auto; 
+}
+
+
+.collectionCol1 {
+    width: 200px;
+    text-align: left;
+}
+
+
+.collectionCol2 {
+    width: 200px;
+    text-align: left;
+}
+
+.collectionCol3 {
+    width: 100px;
+    text-align: left;
+}
+
+.collectionCol4 {
+    width: 200px;
+    text-align: left;
+}
+
+.collectionCol5 {
+    width: 50px;
+}
+
+.collectionCol6 {
+    width:  50px;
+}
+
+.oddpanel {
+    font-size: 12px; 
+    font-family:  Arial,sans-serif; 
+    background-color: #EDF6FA;
+    width: 690px;
+}
+
+.evenpanel {
+    font-size: 12px; 
+    font-family:  Arial,sans-serif; 
+    background-color: #FFFFFF; 
+    width: 690px;
+}
+
+ 
+ 
+ 
+.collectiongrouplist {
+    width:250px; 
+    font-size:  11px; 
+    font-family: Arial,sans-serif;
+}
+
+
+.loanspanel {
+    width: 920px;
+    margin-right: auto;
+    margin-left: auto; 
+    font-size: 12px;
+    font-family: Arial,sans-serif;
+}
+
+
+
+.ui-widget-header {
+    background:  #EDF6FA; 
+}
+
+
+.ui-widget-content { 
+    /*border: none !important;*/
+    font-size: 12px !important;
+    font-family:  Arial,sans-serif !important; 
+}
+
+.nobord.ui-widget-content {
+    border: none !important;
+}
+
+.nobord.ui-widget-header {
+    border: none !important;
+}
+
+
+ 
+
+/* button */
+
+.ui-button-text {
+    background-color:  #0b5e82;
+}
+.ui-button-text-only .ui-button-text {
+    font-size: 9pt; 
+    color: #FFFFFF;
+}
+
+.originalbutton .ui-button-text {
+    background:  #D2CFCF;
+}
+
+
+.errormsg {
+    color: #FF0000; 
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+.requestPending {
+    background-color: #FFFFCC; 
+}
+
+.loanSent {
+    background-color: #99FFFF;
+}
+
+.loanDenied {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+
+.loanAccepted {
+    background-color: #BEF781;
+    color: #000000;
+}
+
+
+
+.ui-accordion-header  {
+    background: transparent;
+    font-size: 12px;
+    font-weight: bold;   
+}
+
+.ui-panel-titlebar  { 
+    font-size: 12px;
+    font-weight: bold;  
+    border: none;
+}
+
+.imgswitch {
+    width: 960px; 
+    margin-bottom: -5px; 
+}
+
+.menubutton {
+    color:#ffffff;
+    margin-top:-4px;
+    padding-bottom:5px;
+    padding-left:10px;
+}
+
+.images {  
+    border: none;  
+}
+
+
+/** to take away select all **/
+.ui-selectcheckboxmenu-header .ui-chkbox .ui-chkbox-box {
+    visibility: hidden;
+}
+ 
+
+
+.alignTop {
+    vertical-align:top;
+}
+
+
+.calendarFilter .ui-inputfield {
+    width:70px !important;
+    margin: 0 0.2em !important;
+}
+
+
+
+ 
+
+
+.loginPanel .ui-widget-header {
+    background-color: #686868;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold; 
+}
+
+
+
+.loginPanel .ui-widget-content { 
+    background-color: #D2CFCF; 
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 12px; 
+}
+
+.loginmainpanel {
+    padding: 10px 10px 20px 20px;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 500px;
+}
+
+
+.userAccountPanel {
+    padding: 10px 10px 20px 20px;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 600px;
+}
+
+
+ 
+
+/* text wrap in datatable */
+.fixed-size {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+
+.ui-datatable table {
+   table-layout: auto !important;
+}
+
+
+#loans .ui-selectonemenu .ui-selectonemenu-trigger {
+    right: -10px !important;
+}
+
+
+
+
+/*
+ 
+ 
+
+ 
+
+   
+
+ 
+.sectionstyle1 {
+    width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sectionstyle2 {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.departmentUrl {
+    text-decoration: none; 
+    color: #8B8786; 
+    font-size: 12px; 
+}
+
+
+
+
+a {
+    color: #000000;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+}
+
+
+
+
+
+
+
+
+
+.maintext {
+    font-size: 24px;
+    font-family: "Arial",sans-serif;
+    font-weight: bold;
+}
+
+ 
+
+.unactiveTab {
+    color: #000000;
+    font-family: "Arial",sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+
+.activeTab { 
+    background-color: #c2dfef; 
+    text-decoration: underline; 
+    font-family: "Arial",sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+
+.breadcrumbpanel {
+    width: 930px; 
+    margin-top: -5px;   
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+
+
+ 
+
+
+ 
+
+
+
+.collectionpanel {
+    width: 600px; 
+    margin: auto; 
+    margin-bottom: 40px;
+}
+
+
+.page2Panel {
+    width: 600px; 
+    margin: auto; 
+    margin-bottom: 40px;
+}
+
+
+.defaulttext {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+.collectionlistradiofont {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+
+
+
+.noupdate {
+    font-size: 12px;
+    font-family: "Arial",sans-serif;
+}
+
+ 
+ 
+
+
+.subheader{
+    font-weight: bold;
+}
+        
+.text {
+    font-family: "Arial",sans-serif;
+    color: #424242; 
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.boldtext {
+    font-family: "Arial",sans-serif;
+    color: #424242; 
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.italictext {
+    font-family: "Arial",sans-serif;
+    color: #424242; 
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+
+
+
+
+.subtitle {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Arial",sans-serif;
+}
+
+ 
+
+  
+
+.subheader2{
+    font-style: italic;
+}
+
+.dnatext{
+    font-size: 11px;
+    color: lightsteelblue;
+    width: 450px;
+    word-wrap: break-word;
+    font-family:monospace;
+}
+
+.imgtext{
+    font-size: 12px;
+}
+
+
+
+
+
+.menyrad {
+ -- 
+}
+
+
+.img {  
+    border: none;  
+}
+
+.languageimg {  
+    border: none;  
+    padding-top: 5px;
+}
+ 
+
+
+
+
+
+
+
+
+.aligntop {
+    vertical-align: top;
+}
+
+.alignBottom {
+    vertical-align: bottom;
+}
+
+.col1 {
+    vertical-align:bottom;
+    width: 450px;
+}
+
+
+#map_canvas {
+    width:395px;  
+    overflow:hidden; 
+    float: left
+}
+#map_canvas svg {
+     margin-left: -200px;
+    margin-right: 350px;   
+    overflow: hidden;
+} 
+
+.ui-tabs-nav {
+    font-size: 11px !important; 
+} 
+ 
+ 
+.ui-tabs .ui-tabs-panel {
+    border: none !important;
+      padding: 0px 0px 0px 0px; 
+      font-size: 11px;
+} 
+
+
+
+ 
+ 
+.uploadfilecol1 {
+    width: 60%;
+}
+
+.uploadfilecol2 {
+    width: 30%;
+    float: right;
+}
+
+
+
+.ui-growl {
+    right: 40%;
+    top: 250px;
+    font-size: 12px;
+}
+
+.progresscol1 {
+    padding-left: 10px;
+    width: 40px;
+}
+
+.progresscol2 {
+    width: 200px;
+}
+
+ 
+
+.subtablecol {
+    width: 70px;
+}
+
+.hide-column-names table thead tr {
+    display: none !important; 
+}
+
+
+
+ datatable
+.ui-datatable * {
+    border : 0px !important;   
+    padding: 0px !important;  
+    padding-bottom: 2px !important;
+    padding-top: 2px !important;
+}
+
+
+.ui-datatable table thead tr{
+    display: none !important; 
+} 
+
+.ui-datatable table thead tr {
+    display: none !important; 
+} 
+
+
+
+
+
+
+ for safari 
+\
+.ui-datatable * {
+    border : 0px !important;   
+    padding: 0px !important;  
+    padding-bottom: 2px !important;
+    padding-top: 2px !important;
+}
+
+
+ 
+
+\
+.ui-datatable table thead tr {
+    display: none !important; 
+} 
+
+
+\
+.resulttbl {
+    font-size: 12px;
+}
+
+ for safari 
+
+ 
+
+.greentext {
+    color: #33CC00;
+}
+
+.redtext {
+    color: #D00000;
+}
+ 
+.resulttextfont1 {
+    font-family:  courier;
+    font-size: 7px; 
+    font-size: 10px !important;  
+}
+
+
+
+
+
+ 
+
+.largebutton .ui-button-text {
+    background-color: #0b5e82;
+    width: 150px;
+}
+
+
+.ui-radiobutton .ui-radiobutton-box { 
+    bottom: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+ 
+.ui-icon-bullet {
+    background-position: -83px -146px !important;
+}
+
+
+
+
+
+.ui-datatable .ui-row-editor .ui-icon-pencil { 
+    background: url('../resources/images/edit_icon.gif') no-repeat center !important; 
+    background-position: center center !important; 
+    height: 20px;
+    margin-top: -3px;
+}
+ 
+
+.ui-datatable .ui-row-editor .ui-icon-check { 
+    background: url('../resources/images/Checkmark16x16.png') no-repeat center;  
+}
+
+
+.ui-datatable .ui-row-editor .ui-icon-close {
+    margin-left: 10px;
+    background: transparent url('../resources/images/delete.png') no-repeat center; 
+}
+
+
+.samplespanelodd {
+    font-size: 12px; 
+    font-family:  Arial,sans-serif; 
+    background-color: #EDF6FA;
+    width: 690px;
+}
+
+.samplespaneleven {
+    font-size: 12px; 
+    font-family:  Arial,sans-serif; 
+    background-color: #FFFFFF; 
+    width: 690px;
+}
+
+.column1 {
+    width: 150px;
+}
+
+.column2 {
+    width: 500px;
+}
+
+.column3 {
+    width: 30px;
+    float: right; 
+}
+
+
+.contactCol1 {
+    width: 53%; 
+    float:left;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.contactCol2 {
+    margin-left: 25%;
+}
+
+.ui-fileupload-buttonbar { 
+    font-size: 12px !important;
+}
+ 
+.ui-datepicker {
+    font-size: 12px !important;
+} 
+
+
+#wrap { 
+   height:310px;
+   width:480px; 
+}
+
+
+ui-selectonemenu .ui-selectonemenu-label {
+    font-size: 11px !important;
+    font-family:  Arial,sans-serif !important; 
+}
+
+.ui-selectonemenu-item .ui-selectonemenu-list-item {
+    font-size: 11px !important;
+    font-family:  Arial,sans-serif !important; 
+}
+
+
+
+
+
+.ui-tooltip {
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 #ddd;
+    -moz-box-shadow: 0 0 10px 0 #ddd;
+    -webkit-box-shadow: 0 0 10px 0 #ddd;
+    color: #666;
+    background: #EDF6FA;
+}
+
+
+.ui-dialog-title-dialog {
+    font-size: 24px;
+    font-weight: bold;
+    font-family:  Arial,sans-serif;
+    color: #FFFFFF;
+}
+
+
+.ui-dialog-titlebar  {
+    background-color: #036fab;
+    font-size: 18px;
+    font-weight: bold;
+    font-family:  Arial,sans-serif;
+    color: #FFFFFF;
+}
+
+ 
+
+* ##################################### data table ################################ *  
+.sampletable.ui-datatable table thead tr {
+    display: none !important;
+    border: none !important;
+} 
+
+
+ 
+.table.customradio  th, table.customradio td {
+    padding: 3px;
+} */
