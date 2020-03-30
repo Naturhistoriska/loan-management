@@ -12,20 +12,16 @@ Loan admin is for loan manager to handle the requests.
 ## Prerequisites
 
 Solr: 4.10.2
-
-### Collections data need to be index in solr
+Collections data need to be index in solr
 
 Mongodb 4.2.1
-
-### loans
+loans
 
 mysql 5.7.22
-
-### userdb
+userdb
 
 wildfly 8.2
-
-### Config datasource to connect to mysql userdb
+Config datasource to connect to mysql userdb
 
 
 
