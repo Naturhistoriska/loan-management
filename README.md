@@ -50,7 +50,9 @@ Download this source code. cd to directory: loan-management
  
     - copy file from local to docker container:
     
-     1. docker cp db/userdb.sql mysql:/userdb.sql
+    
+    
+     1. docker cp data/userdb.sql mysql:/userdb.sql
      2. docker exec -it mysql bash
      3. inside mysql docker container:
      4. mysql -u root -p userdb < userdb.sql
