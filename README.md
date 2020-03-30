@@ -83,6 +83,10 @@ Download this source code. cd to directory: loan-management
   
   - Loan admin:
   - https://localhost:8443/loan-admin
+ 
+  Access loan-admin with:
+  username: admin
+  password: admin
 
 
 
