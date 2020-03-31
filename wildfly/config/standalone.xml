@@ -441,12 +441,4 @@
         </outbound-socket-binding>
     </socket-binding-group>
 
-    <deployments>
-        <deployment name="loan-admin.war" runtime-name="loan-admin.war" enabled="true">
-            <content sha1="fb2118cb2658556d29db7f75d3f5a0b7ec3f6ba4"/>
-        </deployment>
-        <deployment name="loan.war" runtime-name="loan.war" enabled="true">
-            <content sha1="ae26c2f1f0ebf89985b152c782430a788902d8b5"/>
-        </deployment>
-    </deployments>
 </server>
