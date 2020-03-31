@@ -12,7 +12,7 @@ import java.util.UUID;
 //@JsonInclude(JsonInclude.Include.ALWAYS) 
 public class Loan  {
   
-  protected String _id; 
+  private String _id; 
   private String loanNumber;
   private String uuid;
   private String department;
